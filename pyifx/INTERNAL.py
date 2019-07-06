@@ -14,10 +14,11 @@ class _PyfixImage():
 		return cls(None,image)
 
 
-def checkPathType(path):
+def _check_path_type(path):
 	is os.path.isdir(path):
 		return 'dir'
 	elif os.path.isfile(path):
 		return 'file'
 	else:
 		return None
+
