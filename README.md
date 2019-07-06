@@ -7,6 +7,19 @@ Most features of this project (eg. docs, contribution guides) will be added once
 ## Version
 Current version: 0.0.1
 
+## Features
+
+pyifx contains 4 main modules, giving users access to functions such as:
+	* Image brightening
+	* Color overlay
+	* Blurring 
+	* And much more.
+	
+A full list of features is available in the documentation.
+	
+pyifx also allows for images to be modified both individually and in bulk, giving users the option to automate image modification processes.
+	
+
 ## Code Example
 TBA
 
