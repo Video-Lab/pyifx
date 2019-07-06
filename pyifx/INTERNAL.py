@@ -28,9 +28,12 @@ def _convert_dir_to_images(dir):
 		images = []
 	 	possible_extensions = ['.tif', '.tiff', '.jpg', '.jpeg', '.png', '.raw']
 
-	 	for f in os.listdir(dir):
-	 		if os.path.splitext(f)[1] in possible_extensions:
-	 			images.append(cls(os.path.join(dir,f)))
-	 			
+	 	def add_to_images(dir):
+			for f in os.listdir(dir):
+		 		if os.path.splitext(f)[1] in possible_extensions:
+		 			images.append(cls(os.path.join(dir,f)))
+		 		elif os.path.isdir(f):
+		 			add_to_images(f)
+
 	 	return images
 
