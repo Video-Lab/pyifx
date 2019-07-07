@@ -1,13 +1,13 @@
 import os
 import sys
-import cv2
 import numpy as np
 import matplotlib as mpl
+import imageio
 
 class PyifxImage():
 	def __init__(self, path, out_path=None, image=None):
 		self.path = path
-		self.image = np.asarray(cv2.imread(path))
+		self.image = np.asarray(imageio.imread(path))
 		self.out_path = out_path
 
 	@classmethod

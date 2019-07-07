@@ -26,7 +26,6 @@ def check_path_type(path):
 		return None
 
 def convert_dir_to_images(dir):
-	images = []
 	possible_extensions = ['.tif', '.tiff', '.jpg', '.jpeg', '.png', '.raw']
 
 	def add_to_images(idir):
@@ -39,7 +38,7 @@ def convert_dir_to_images(dir):
 	add_to_images(dir)
 	return images
 
-def brighten(i,oi,factor=0.4):
+def brighten(i,oi,factor=0.35):
 	image = PyifxImage(i,oi)
 
 	for row in range(len(image.image)):
@@ -50,3 +49,11 @@ def brighten(i,oi,factor=0.4):
 
 	cv2.imwrite(oi, image.image)
 	return image
+
+def brighten_multiple(dir,prefix="_",oprefix="pyifx/",factor=0.35):
+	old_imgs = convert_dir_to_images(dir)
+	new_imgs = {img: os.path.join(oprefix,f"{prefix}{os.path.split[img][1]}")
+	for img in old_imgs}
+
+	for i, o in new_imgs.items():
+		brighten(i,o,factor)
