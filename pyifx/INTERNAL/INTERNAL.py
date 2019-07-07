@@ -25,17 +25,16 @@ def check_path_type(path):
 	else:
 		return None
 
-def convert_dir_to_images(dir):
+def convert_dir_to_images(dirc):
 	images = []
-	possible_extensions = ['.tif', '.tiff', '.jpg', '.jpeg', '.png', '.raw']
+	possible_extensions = ['.jpg', '.jpeg', '.png']
 
-	def add_to_images(idir):
-		for f in os.listdir(idir):
+	def add_to_images(idirc):
+		for f in os.listdir(idirc):
 		 	if os.path.splitext(f)[1] in possible_extensions:
-		 		images.append(cls(os.path.join(idir,f)))
+		 		images.append(os.path.join(idirc,f))
 		 	elif os.path.isdir(f):
 		 		add_to_images(f)
 
-	add_to_images(dir)
+	add_to_images(dirc)
 	return images
-

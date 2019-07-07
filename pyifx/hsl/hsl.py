@@ -1,4 +1,4 @@
-def brighten(i,oi,factor=0.4):
+def brighten(i,oi,factor=0.35):
 	image = INTERNAL.PyifxImage(i,oi)
 
 	for row in range(len(image.image)):
@@ -7,13 +7,16 @@ def brighten(i,oi,factor=0.4):
 				value = image.image[row][p][v]
 				image.image[row][p][v] = min(255, value*(1+factor))
 
-	cv2.imwrite(oi, image.image)
+	imageio.imwrite(oi, image.image)
 	return image
 
-def brighten_multiple(dir,prefix="_",oprefix="pyifx/",factor=0.35):
-	old_imgs = convert_dir_to_images(dir)
-	new_imgs = {img: os.path.join(oprefix,f"{prefix}{os.path.split[img][1]}")
-	for img in old_imgs}
+def brighten_multiple(dirc,opath="pyifx/",prefix="_",factor=0.35):
+	if not os.path.exists(opath):
+		os.makedirs(opath)
+
+	old_imgs = convert_dir_to_images(dirc)
+	new_imgs = {img: os.path.join(opath,f"{prefix}{os.path.split(img)[1]}") for img in old_imgs}
+
 
 	for i, o in new_imgs.items():
 		brighten(i,o,factor)
