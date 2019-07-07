@@ -4,10 +4,10 @@ import cv2
 import numpy as np
 import matplotlib as mpl
 
-class _PyfixImage():
+class PyifxImage():
 	def __init__(self, path, out_path=None, image=None):
 		self.path = path
-		self.image = cv2.imread(path, os.path.splitext(path)[1])
+		self.image = cv2.imread(path)
 		self.out_path = out_path
 
 	@classmethod
@@ -17,7 +17,7 @@ class _PyfixImage():
 		return i
 
 
-def _check_path_type(path):
+def check_path_type(path):
 	if os.path.isdir(path):
 		return 'dir'
 	elif os.path.isfile(path):
@@ -25,7 +25,7 @@ def _check_path_type(path):
 	else:
 		return None
 
-def _convert_dir_to_images(dir):
+def convert_dir_to_images(dir):
 	images = []
 	possible_extensions = ['.tif', '.tiff', '.jpg', '.jpeg', '.png', '.raw']
 
