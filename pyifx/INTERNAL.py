@@ -1,12 +1,14 @@
 import os
 import sys
+import cv2
 import numpy as np
 import matplotlib as mpl
 
 class _PyfixImage():
-	def __init__(self, path,image=None):
+	def __init__(self, path, out_path=None, image=None):
 		self.path = path
-		self.image = mpl.pyplot.imread(path, os.path.splitext(path)[1])
+		self.image = cv2.imread(path, os.path.splitext(path)[1])
+		self.out_path = out_path
 
 	@classmethod
 	def from_image(cls, image):
