@@ -4,11 +4,20 @@ import numpy as np
 import matplotlib as mpl
 import imageio
 
+# import hsl
+# import color
+# import format
+# import graphics
+# import misc
+
 class PyifxImage():
-	def __init__(self, path, out_path=None, image=None):
+	def __init__(self, path, out_path=None, create_image=True):
 		self.path = path
-		self.image = np.asarray(imageio.imread(path))
-		self.out_path = out_path
+		self.output_path = out_path
+		self.image = None
+		if create_image:
+			self.image = np.asarray(imageio.imread(path))
+
 
 	@classmethod
 	def from_image(cls, image):

@@ -1,3 +1,5 @@
+import INTERNAL
+
 def brighten(i,oi,factor=0.35):
 	image = INTERNAL.PyifxImage(i,oi)
 
@@ -10,13 +12,11 @@ def brighten(i,oi,factor=0.35):
 	imageio.imwrite(oi, image.image)
 	return image
 
-def brighten_multiple(dirc,opath="pyifx/",prefix="_",factor=0.35):
-	if not os.path.exists(opath):
-		os.makedirs(opath)
+def brighten_multiple(dirc,output_path="pyifx/",prefix="_",factor=0.35):
+	if not os.path.exists(output_path):
+		os.makedirs(output_path)
 
-	old_imgs = convert_dir_to_images(dirc)
-	new_imgs = {img: os.path.join(opath,f"{prefix}{os.path.split(img)[1]}") for img in old_imgs}
+	new_imgs = misc.to_image_list(dirc, output_path, prefix)
 
-
-	for i, o in new_imgs.items():
-		brighten(i,o,factor)
+	for img in new_imgs:
+		brighten(img.path, img.output_path, factor)
