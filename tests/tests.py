@@ -5,4 +5,5 @@ from test_function_defs import *
 
 img = PyifxImage("tests/512x512-png-1.png")
 print(img.path)
-print(img.image)
+
+brighten("tests/512x512-png-1.png", "tests/512x512-png-1-brightened.png")
