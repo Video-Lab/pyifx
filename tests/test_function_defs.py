@@ -7,7 +7,7 @@ import matplotlib as mpl
 class PyifxImage():
 	def __init__(self, path, out_path=None, image=None):
 		self.path = path
-		self.image = cv2.imread(path)
+		self.image = np.asarray(cv2.imread(path))
 		self.out_path = out_path
 
 	@classmethod
