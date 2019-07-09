@@ -29,12 +29,18 @@ def convert_dir_to_images(dirc):
 	add_to_images(dirc)
 	return images
 
-def _brighten(img,factor=0.35):
+def _change_light(img, factor, method):
+	
 	for row in range(len(img.image)):
 		for p in range(len(img.image[row])):
 			for v in range(len(img.image[row][p])):
 				value = img.image[row][p][v]
-				img.image[row][p][v] = min(255, value*(1+factor))
+				if method == "b":
+					img.image[row][p][v] = min(255, value*(1+factor))
+				elif method == "d":
+					img.image[row][p][v] = max(0, value*(1-factor))
+				else:
+					raise Exception("Something went wrong. Please try again.")
 
 	out_path, extension = os.path.splitext(img.output_path)
 	file_count = 1
@@ -47,6 +53,39 @@ def _brighten(img,factor=0.35):
 
 	imageio.imwrite(out_path + extension, img.image)
 	return img
+
+def _brightness(img_paths, factor, method):
+		if type(img_paths) == misc.ImageVolume:
+
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
+
+		new_imgs = img_paths.volume
+
+		for img in new_imgs:
+			if method == "b" or method == "d":
+				_change_light(img, factor, method)
+			else:
+				raise Exception("Something went wrong. Please try again.")
+
+	elif type(img_paths) == misc.PyifxImage:
+			if method == "b" or method == "d":
+				_change_light(img_paths, factor, method)
+			else:
+				raise Exception("Something went wrong. Please try again.")
+
+	elif type(img_paths) == list:
+
+		for img in img_paths:
+			if type(img) != misc.PyifxImage:
+				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+			if method == "b" or method == "d":
+				_change_light(img, factor, method)
+			else:
+				raise Exception("Something went wrong. Please try again.")
+
+	else:
+		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
 # misc.py
 
@@ -80,23 +119,7 @@ class ImageVolume():
 # hsl.py
 
 def brighten(img_paths,factor=0.35):
-	if type(img_paths) == ImageVolume:
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
+	_brightness(img_paths, factor, "b")
 
-		new_imgs = img_paths.volume_to_list()
-
-		for img in new_imgs:
-			_brighten(img, factor)
-
-	elif type(img_paths) == PyifxImage:
-		_brighten(img_paths, factor)
-
-	elif type(img_paths) == list:
-		for img in img_paths:
-			if type(img) != PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
-			else:
-				_brighten(img, factor)
-	else:
-		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+def darken(img_paths,factor=0.35):
+	_brightness(img_paths, factor, "d")
