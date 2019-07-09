@@ -5,7 +5,7 @@ def brighten(img_paths,factor=0.35):
 		if not os.path.exists(img_paths.odir):
 			os.makedirs(img_paths.odir)
 
-		new_imgs = img_paths.volume_to_list()
+		new_imgs = img_paths.volume
 
 		for img in new_imgs:
 			INTERNAL._brighten(img, factor)

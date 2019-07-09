@@ -38,5 +38,13 @@ def _brighten(img,factor=0.35):
 				value = img.image[row][p][v]
 				img.image[row][p][v] = min(255, value*(1+factor))
 
-	imageio.imwrite(img.output_path, img.image)
+
+	out_name = os.path.split(img.output_path)[0]
+	file_count = 1
+	
+	while os.path.isfile(os.path.join(out_name, os.path.split(img.output_path[1]))):
+		out_name += f" ({file_count})"
+		file_count++
+
+	imageio.imwrite(os.path.join(out_name, os.path.split(img.output_path[1])), img.image)
 	return img

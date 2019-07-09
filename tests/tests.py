@@ -16,5 +16,6 @@ from test_function_defs import *
 
 # TESTS TODO
 
+brighten(PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/test_existing_file.jpg"), 0.6)
 
 # FAILED TESTS

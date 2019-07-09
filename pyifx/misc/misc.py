@@ -20,6 +20,7 @@ class ImageVolume():
 		self.idir = i
 		self.odir = o
 		self.prefix = p
+		self.volume = self.volume_to_list()
 
 	def volume_to_list(self):
 		old_imgs = INTERNAL.convert_dir_to_images(self.idir)
