@@ -49,3 +49,22 @@ def _brighten(img,factor=0.35):
 
 	imageio.imwrite(out_path + extension, img.image)
 	return img
+
+def _darken(img,factor=0.35):
+	for row in range(len(img.image)):
+		for p in range(len(img.image[row])):
+			for v in range(len(img.image[row][p])):
+				value = img.image[row][p][v]
+				img.image[row][p][v] = max(0, value*(1-factor))
+
+	out_path, extension = os.path.splitext(img.output_path)
+	file_count = 1
+	temp_path = out_path
+
+	while os.path.isfile(out_path + extension):
+		out_path = temp_path
+		out_path += f" ({file_count})"
+		file_count += 1
+
+	imageio.imwrite(out_path + extension, img.image)
+	return img

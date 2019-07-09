@@ -14,8 +14,10 @@ from test_function_defs import *
 # brighten(imgs, 0.6) - List image test 
 # brighten(9999, 0.6) - Wrong type test
 
+# brighten(PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/test_existing_file.jpg"), 0.6) - Existing file test
+
 # TESTS TODO
 
-brighten(PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/test_existing_file.jpg"), 0.6)
+
 
 # FAILED TESTS
