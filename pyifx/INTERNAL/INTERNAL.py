@@ -32,15 +32,15 @@ def convert_dir_to_images(dirc):
 	return images
 
 def _change_light(img, factor, method):
-	
+
 	for row in range(len(img.image)):
 		for p in range(len(img.image[row])):
 			for v in range(len(img.image[row][p])):
 				value = img.image[row][p][v]
 				if method == "b":
-					img.image[row][p][v] = min(255, value*(1+factor))
+					img.image[row][p][v] = min(255, value*(1+factor)-(value/20))
 				elif method == "d":
-					img.image[row][p][v] = max(0, value*(1-factor))
+					img.image[row][p][v] = max(0, value*(1-factor)+(value/20))
 				else:
 					raise Exception("Something went wrong. Please try again.")
 
