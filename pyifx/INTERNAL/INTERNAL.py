@@ -5,7 +5,6 @@ import matplotlib as mpl
 import imageio
 
 # import hsl
-# import color
 # import format
 # import graphics
 # import misc

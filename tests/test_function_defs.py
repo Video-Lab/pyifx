@@ -78,3 +78,6 @@ def to_image_list(dirc, output_path, prefix):
 		image_list.append(PyifxImage(i,o,create_image=False))
 
 	return image_list
+
+#TODO
+# Move class out of internal - user access to functions from instance of class
