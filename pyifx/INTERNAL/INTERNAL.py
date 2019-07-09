@@ -59,32 +59,32 @@ def _change_light(img, factor, method):
 def _brightness(img_paths, factor, method):
 		if type(img_paths) == misc.ImageVolume:
 
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
+			if not os.path.exists(img_paths.odir):
+				os.makedirs(img_paths.odir)
 
-		new_imgs = img_paths.volume
+			new_imgs = img_paths.volume
 
-		for img in new_imgs:
-			if method == "b" or method == "d":
-				_change_light(img, factor, method)
-			else:
-				raise Exception("Something went wrong. Please try again.")
+			for img in new_imgs:
+				if method == "b" or method == "d":
+					_change_light(img, factor, method)
+				else:
+					raise Exception("Something went wrong. Please try again.")
 
-	elif type(img_paths) == misc.PyifxImage:
-			if method == "b" or method == "d":
-				_change_light(img_paths, factor, method)
-			else:
-				raise Exception("Something went wrong. Please try again.")
+		elif type(img_paths) == misc.PyifxImage:
+				if method == "b" or method == "d":
+					_change_light(img_paths, factor, method)
+				else:
+					raise Exception("Something went wrong. Please try again.")
 
-	elif type(img_paths) == list:
+		elif type(img_paths) == list:
 
-		for img in img_paths:
-			if type(img) != misc.PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
-			if method == "b" or method == "d":
-				_change_light(img, factor, method)
-			else:
-				raise Exception("Something went wrong. Please try again.")
+			for img in img_paths:
+				if type(img) != misc.PyifxImage:
+					raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+				if method == "b" or method == "d":
+					_change_light(img, factor, method)
+				else:
+					raise Exception("Something went wrong. Please try again.")
 
-	else:
-		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+		else:
+			raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
