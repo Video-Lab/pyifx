@@ -4,8 +4,9 @@ An image editing &amp; handling library in Python.
 ## A Notice
 Most features of this project (eg. docs, contribution guides) will be added once the project reaches the beta stage.
 
-## Version
-Current version: 0.0.1
+## Version History 
+0.0.1 - InDev
+0.0.2 - Brightness module added, main classes, internal + misc functions (CURRENT)
 
 ## Features
 
