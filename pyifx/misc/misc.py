@@ -16,10 +16,10 @@ class PyifxImage():
 		return i
 
 class ImageVolume():
-	def __init__(self, i, o, p)
-	self.idir = i
-	self.odir = o
-	self.prefix = p
+	def __init__(self, i, o, p="_"):
+		self.idir = i
+		self.odir = o
+		self.prefix = p
 
 	def volume_to_list(self):
 		old_imgs = INTERNAL.convert_dir_to_images(self.idir)

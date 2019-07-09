@@ -38,5 +38,5 @@ def _brighten(img,factor=0.35):
 				value = img.image[row][p][v]
 				img.image[row][p][v] = min(255, value*(1+factor))
 
-	imageio.imwrite(img.output_path, image.image)
+	imageio.imwrite(img.output_path, img.image)
 	return img

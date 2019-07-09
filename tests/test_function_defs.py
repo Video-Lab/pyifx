@@ -5,21 +5,7 @@ import numpy as np
 import matplotlib as mpl
 import imageio
 
-class PyifxImage():
-	def __init__(self, path, out_path=None, create_image=True):
-		self.path = path
-		self.output_path = out_path
-		self.image = None
-		if create_image:
-			self.image = np.asarray(imageio.imread(path))
-
-
-	@classmethod
-	def from_image(cls, image):
-		i = cls(None)
-		i.image = image
-		return i
-
+# INTERNAL.py
 
 def check_path_type(path):
 	if os.path.isdir(path):
@@ -43,41 +29,65 @@ def convert_dir_to_images(dirc):
 	add_to_images(dirc)
 	return images
 
+def _brighten(img,factor=0.35):
+	for row in range(len(img.image)):
+		for p in range(len(img.image[row])):
+			for v in range(len(img.image[row][p])):
+				value = img.image[row][p][v]
+				img.image[row][p][v] = min(255, value*(1+factor))
+
+	imageio.imwrite(img.output_path, img.image)
+	return img
+
+# misc.py
+
+class PyifxImage():
+	def __init__(self, path, out_path=None, create_image=True):
+		self.path = path
+		self.output_path = out_path
+		self.image = None
+		if create_image:
+			self.image = np.asarray(imageio.imread(path))
+
+
+	@classmethod
+	def from_image(cls, image):
+		i = cls(None)
+		i.image = image
+		return i
+
+class ImageVolume():
+	def __init__(self, i, o, p="_"):
+		self.idir = i
+		self.odir = o
+		self.prefix = p
+
+	def volume_to_list(self):
+		old_imgs = convert_dir_to_images(self.idir)
+		new_imgs = [PyifxImage(img, os.path.join(self.odir,f"{self.prefix}{os.path.split(img)[1]}")) for img in old_imgs]
+
+		return new_imgs
 
 # hsl.py
 
-def brighten(i,oi,factor=0.35):
-	image = PyifxImage(i,oi)
+def brighten(img_paths,factor=0.35):
+	if type(img_paths) == ImageVolume:
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
 
-	for row in range(len(image.image)):
-		for p in range(len(image.image[row])):
-			for v in range(len(image.image[row][p])):
-				value = image.image[row][p][v]
-				image.image[row][p][v] = min(255, value*(1+factor))
+		new_imgs = img_paths.volume_to_list()
 
-	imageio.imwrite(oi, image.image)
-	return image
+		for img in new_imgs:
+			_brighten(img, factor)
 
-def brighten_multiple(dirc,output_path="pyifx/",prefix="_",factor=0.35):
-	if not os.path.exists(output_path):
-		os.makedirs(output_path)
+	elif type(img_paths) == PyifxImage:
+		_brighten(img_paths, factor)
 
-	new_imgs = to_image_list(dirc, output_path, prefix)
-
-	for img in new_imgs:
-		brighten(img.path, img.output_path, factor)
-
-#misc.py
-
-def to_image_list(dirc, output_path, prefix):
-	image_list = []
-	old_imgs = convert_dir_to_images(dirc)
-	new_imgs = {img: os.path.join(output_path,f"{prefix}{os.path.split(img)[1]}") for img in old_imgs}
-
-	for i,o in new_imgs.items():
-		image_list.append(PyifxImage(i,o,create_image=False))
-
-	return image_list
-
-#TODO
-# Move class out of internal - user access to functions from instance of class
+	elif type(img_paths) == list:
+		for img in img_paths:
+			if type(img) != PyifxImage:
+				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+			else:
+				_brighten(img, factor)
+	else:
+		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
