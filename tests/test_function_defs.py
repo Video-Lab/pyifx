@@ -35,10 +35,16 @@ def _change_light(img, factor, method):
 		for p in range(len(img.image[row])):
 			for v in range(len(img.image[row][p])):
 				value = img.image[row][p][v]
+				new_factor = factor
+
+				if sum(img.image[row][p]) > 690:
+					new_factor_bright = max(0,factor/1.5)
+					new_factor_dark = min(1,factor*1.5)
+
 				if method == "b":
-					img.image[row][p][v] = min(255, value*(1+factor)-(value/20))
+					img.image[row][p][v] = min(255, value*(1+new_factor_bright))
 				elif method == "d":
-					img.image[row][p][v] = max(0, value*(1-factor)+(value/20))
+					img.image[row][p][v] = max(0, value*(1-new_factor_dark))
 				else:
 					raise Exception("Something went wrong. Please try again.")
 

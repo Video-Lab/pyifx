@@ -40,7 +40,7 @@ img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/dark/mult/512x51
 
 # TESTS TODO
 
-brighten(img_list[:3], 0.6)
-darken(img_list[3:], 0.6) 
+brighten(img_list[:3], 0.5)
+darken(img_list[3:], 0.5) 
 
 # FAILED TESTS
