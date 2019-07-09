@@ -1,22 +1,23 @@
 import INTERNAL
 
-def brighten(i,oi,factor=0.35):
-	image = INTERNAL.PyifxImage(i,oi)
+def brighten(img_paths,factor=0.35, type="single"):
+	if type(img_paths) == misc.ImageVolume:
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
 
-	for row in range(len(image.image)):
-		for p in range(len(image.image[row])):
-			for v in range(len(image.image[row][p])):
-				value = image.image[row][p][v]
-				image.image[row][p][v] = min(255, value*(1+factor))
+		new_imgs = img_paths.volume_to_list(img_paths.idir, img_paths.odir, img_paths.prefix)
 
-	imageio.imwrite(oi, image.image)
-	return image
+		for img in new_imgs:
+			INTERNAL._brighten(img.path, img.output_path, factor)
 
-def brighten_multiple(dirc,output_path="pyifx/",prefix="_",factor=0.35):
-	if not os.path.exists(output_path):
-		os.makedirs(output_path)
+	elif type(img_paths) == misc.PyifxImage:
+		INTERNAL._brighten(img_paths.input, img_paths.output_path, factor)
 
-	new_imgs = misc.to_image_list(dirc, output_path, prefix)
-
-	for img in new_imgs:
-		brighten(img.path, img.output_path, factor)
+	elif type(img_paths) == list:
+		for img in img_paths:
+			if type(img) != misc.PyifxImage:
+				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+			else:
+				INTERNAL._brighten(img.input, img.output_path, factor)
+	else:
+		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")

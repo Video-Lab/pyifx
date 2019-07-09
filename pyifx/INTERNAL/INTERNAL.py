@@ -9,22 +9,6 @@ import imageio
 # import graphics
 # import misc
 
-class PyifxImage():
-	def __init__(self, path, out_path=None, create_image=True):
-		self.path = path
-		self.output_path = out_path
-		self.image = None
-		if create_image:
-			self.image = np.asarray(imageio.imread(path))
-
-
-	@classmethod
-	def from_image(cls, image):
-		i = cls(None)
-		i.image = image
-		return i
-
-
 def check_path_type(path):
 	if os.path.isdir(path):
 		return 'dir'
@@ -46,3 +30,13 @@ def convert_dir_to_images(dirc):
 
 	add_to_images(dirc)
 	return images
+
+def _brighten(img,factor=0.35):
+	for row in range(len(img.image)):
+		for p in range(len(img.image[row])):
+			for v in range(len(img.image[row][p])):
+				value = img.image[row][p][v]
+				img.image[row][p][v] = min(255, value*(1+factor))
+
+	imageio.imwrite(img.output_path, image.image)
+	return img

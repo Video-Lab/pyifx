@@ -1,11 +1,28 @@
 import INTERNAL
 
-def to_image_list(dirc, output_path):
-	image_list = []
-	old_imgs = INTERNAL.convert_dir_to_images(dirc)
-	new_imgs = {img: os.path.join(ouput_path,f"{prefix}{os.path.split(img)[1]}") for img in old_imgs}
+class PyifxImage():
+	def __init__(self, path, out_path=None, create_image=True):
+		self.path = path
+		self.output_path = out_path
+		self.image = None
+		if create_image:
+			self.image = np.asarray(imageio.imread(path))
 
-	for i,o in new_imgs.items():
-		image_list.append(INTERNAL.PyifxImage(i,o,create_image=False))
 
-	return image_list
+	@classmethod
+	def from_image(cls, image):
+		i = cls(None)
+		i.image = image
+		return i
+
+class ImageVolume():
+	def __init__(self, i, o, p)
+	self.idir = i
+	self.odir = o
+	self.prefix = p
+
+	def volume_to_list(self):
+		old_imgs = INTERNAL.convert_dir_to_images(self.idir)
+		new_imgs = [PyifxImage(img, os.path.join(self.odir,f"{self.prefix}{os.path.split(img)[1]}")) for img in old_imgs]
+
+		return new_imgs
