@@ -88,3 +88,28 @@ def _brightness(img_paths, factor, method):
 
 		else:
 			raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+def _color_overlay(img_paths, color, opacity):
+			if type(img_paths) == misc.ImageVolume:
+
+			if not os.path.exists(img_paths.odir):
+				os.makedirs(img_paths.odir)
+
+			new_imgs = img_paths.volume
+
+			for img in new_imgs:
+				_add_color_overlay(img, color, opacity)
+
+		elif type(img_paths) == misc.PyifxImage:
+			add_color_overlay(img_paths, color, opacity )
+
+		elif type(img_paths) == list:
+
+			for img in img_paths:
+				if type(img) != misc.PyifxImage:
+					raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+					
+				_add_color_overlay(img, color, opacity)
+
+		else:
+			raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
