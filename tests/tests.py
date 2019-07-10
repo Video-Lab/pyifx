@@ -22,7 +22,6 @@ img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
 # TESTS TODO
 
 to_grayscale(img_1)
-saturate(img_2, 100)
 
 
 # COMPLETED TESTS
