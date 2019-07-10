@@ -127,6 +127,56 @@ def _add_color_overlay(img, color, opacity):
 	_write_file(img)
 	return img
 
+def _saturation(img_paths, percent, method):
+	if type(img_paths) == ImageVolume:
+
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
+
+		new_imgs = img_paths.volume
+
+		for img in new_imgs:
+			if method == "d" or method == "ds":
+				_saturate(img, percent, method)
+			else:
+				raise Exception("Something went wrong. Please try again.")
+
+	elif type(img_paths) == PyifxImage:
+		if method == "d" or method == "ds":
+			_saturate(img_paths, percent, method)
+		else:
+			raise Exception("Something went wrong. Please try again.")
+
+	elif type(img_paths) == list:
+
+		for img in img_paths:
+			if type(img) != PyifxImage:
+				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+			if method == "d" or method == "ds":
+				_saturate(img, percent, method)
+			else:
+				raise Exception("Something went wrong. Please try again.")
+
+		else:
+			raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+def _saturate(img, percent, method):
+	type_map = {"d": 1, "ds": -1}
+
+	for row in range(len(img.image)):
+		for p in range(len(img.image[row])):
+
+			gray_val = sum(img.image[row][p])/3
+			for v in range(len(img.image[row][p])):
+
+			value = img.image[row][p][v]
+			diff = gray_val - value
+			pixel_change = diff * (type_map[method]*percent)
+			img.image[row][p][v] -= pixel_change
+	
+	_write_file(img)
+	return img
+
 def _write_file(img):
 	out_path, extension = os.path.splitext(img.output_path)
 
@@ -184,3 +234,9 @@ def darken(img_paths,factor=0.45):
 
 def color_overlay(img_paths, color, opacity=0.3):
 	_color_overlay(img_paths, color, opacity)
+
+def saturate(img_paths, percent=30):
+	_saturation(img_paths, max(0, min(percent, 100))/100, "s")
+
+def desaturate(img_paths, percent=30):
+	_saturation(img_paths, max(0, min(percent, 100))/100, "ds")

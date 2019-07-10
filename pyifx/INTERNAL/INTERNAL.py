@@ -165,7 +165,7 @@ def _saturate(img, percent, method):
 			value = img.image[row][p][v]
 			diff = gray_val - value
 			pixel_change = diff * (type_map[method]*percent)
-			img.image[row][p][v] += pixel_change
+			img.image[row][p][v] -= pixel_change
 	
 	_write_file(img)
 	return img	
