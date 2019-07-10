@@ -6,7 +6,10 @@ Most features of this project (eg. docs, contribution guides) will be added once
 
 ## Version History 
 0.0.1 - InDev
-0.0.2 - Brightness module added, main classes, internal + misc functions (CURRENT)
+
+0.0.2 - Brightness module added, main classes, internal + misc functions
+
+0.0.3 - Color overlay module added (CURRENT)
 
 ## Features
 
@@ -18,7 +21,7 @@ pyifx contains 4 main modules, giving users access to functions such as:
 	
 A full list of features is available in the documentation.
 	
-pyifx also allows for images to be modified both individually and in bulk, giving users the option to automate image modification processes.
+pyifx also allows for images to be modified both individually and in bulk, giving users the option to automate the image modification processes.
 	
 
 ## Code Example
