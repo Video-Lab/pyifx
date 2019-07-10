@@ -21,9 +21,8 @@ img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
 
 # TESTS TODO
 
-saturate(img_1, 80)
-desaturate(img_2, 80)
-
+to_grayscale(img_1)
+saturate(img_2, 100)
 
 
 # COMPLETED TESTS
@@ -53,5 +52,8 @@ desaturate(img_2, 80)
 
 # color_overlay(img_1, [128,242,242])
 # color_overlay(img_2, [74,24,25], 80) - Color Overlay Tests
+
+# saturate(img_1, 80)
+# desaturate(img_2, 80) - Grayscale Tests
 
 # FAILED TESTS

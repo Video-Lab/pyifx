@@ -14,3 +14,6 @@ def saturate(img_paths, percent=30):
 
 def desaturate(img_paths, percent=30):
 	INTERNAL._saturation(img_paths, max(0, min(percent, 100))/100, "ds")
+
+def to_grayscale(img_paths):
+	INTERNAL._saturation(img_paths, 100, "ds")
