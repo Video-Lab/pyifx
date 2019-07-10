@@ -108,8 +108,31 @@ def _color_overlay(img_paths, color, opacity):
 			for img in img_paths:
 				if type(img) != misc.PyifxImage:
 					raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
-					
+
 				_add_color_overlay(img, color, opacity)
 
 		else:
 			raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+def _add_color_overlay(img, color, opacity):
+	for row in range(len(img.image)):
+		for p in range(len(img.image[row])):
+			for v in range(len(img.image[row][p])):
+
+				val = img.image[row][p][v]
+				diff = color[v] - val
+				diff *= opacity
+				img.image[row][p][v] += diff
+
+	out_path, extension = os.path.splitext(img.output_path)
+	file_count = 1
+	temp_path = out_path
+
+	while os.path.isfile(out_path + extension):
+		out_path = temp_path
+		out_path += f" ({file_count})"
+		file_count += 1
+
+	imageio.imwrite(out_path + extension, img.image)
+
+	return img
