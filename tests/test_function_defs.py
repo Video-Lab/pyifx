@@ -87,6 +87,59 @@ def _brightness(img_paths, factor, method):
 		else:
 			raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
+
+def _color_overlay(img_paths, color, opacity):
+			if type(img_paths) == ImageVolume:
+
+			if not os.path.exists(img_paths.odir):
+				os.makedirs(img_paths.odir)
+
+			new_imgs = img_paths.volume
+
+			for img in new_imgs:
+				_add_color_overlay(img, color, opacity)
+
+		elif type(img_paths) == PyifxImage:
+			add_color_overlay(img_paths, color, opacity )
+
+		elif type(img_paths) == list:
+
+			for img in img_paths:
+				if type(img) != PyifxImage:
+					raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+				_add_color_overlay(img, color, opacity)
+
+		else:
+			raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+def _add_color_overlay(img, color, opacity):
+	for row in range(len(img.image)):
+		for p in range(len(img.image[row])):
+			for v in range(len(img.image[row][p])):
+
+				val = img.image[row][p][v]
+				diff = color[v] - val
+				diff *= opacity
+				img.image[row][p][v] += diff
+
+
+	_write_file(img)
+	return img
+
+def _write_file(img):
+	out_path, extension = os.path.splitext(img.output_path)
+	file_count = 1
+	temp_path = out_path
+
+	while os.path.isfile(out_path + extension):
+		out_path = temp_path
+		out_path += f" ({file_count})"
+		file_count += 1
+
+	imageio.imwrite(out_path + extension, img.image)
+	return img
+
 # misc.py
 
 class PyifxImage():
@@ -124,3 +177,6 @@ def brighten(img_paths,factor=0.45):
 
 def darken(img_paths,factor=0.45):
 	_brightness(img_paths, factor, "d")
+
+def color_overlay(img_paths, color, opacity=0.3):
+	_color_overlay(img_paths, color, opacity)

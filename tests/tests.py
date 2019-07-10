@@ -3,6 +3,9 @@ in the file named "test_function_defs.py" for the purpose of testing. """
 
 from test_function_defs import *
 
+out_path_1 = "tests/imgs/overlay/__512x512-jpg-1.jpg"
+out_path_2 = "tests/imgs/overlay/__512x512-jpeg-1.jpg"
+
 img_list = [PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/bright/list/__512x512-jpg-1.jpg"),
 PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/bright/list/__512x512-jpeg-1.jpg"),
 PyifxImage("tests/imgs/512x512-png-1.png", "tests/imgs/bright/list/__512x512-png-1.png"),
@@ -13,8 +16,14 @@ PyifxImage("tests/imgs/512x512-png-1.png", "tests/imgs/dark/list/__512x512-png-1
 img_vol = ImageVolume("tests/imgs/", "tests/imgs/bright/vol/", "__")
 img_vol_dark = ImageVolume("tests/imgs", "tests/imgs/dark/vol", "__")
 
-img_1 = PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/bright/single/__512x512-jpg-1.jpg")
-img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/dark/mult/512x512-jpeg-1.jpg")
+img_1 = PyifxImage("tests/imgs/512x512-jpg-1.jpg", out_path_1)
+img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
+
+# TESTS TODO
+
+color_overlay(img_1, [128,242,242])
+color_overlay(img_2, [74,24,25])
+
 
 # COMPLETED TESTS
 
@@ -36,11 +45,9 @@ img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/dark/mult/512x51
 # darken(img_vol_dark, 0.6)
 
 # brighten(img_1, 0.6)
-# darken(img_2, 0.6) - New Combination Tests
+# darken(img_2, 0.6) 
 
-# TESTS TODO
-
-brighten(img_list[:3], 0.5)
-darken(img_list[3:], 0.5) 
+# brighten(img_list[:3], 0.5)
+# darken(img_list[3:], 0.5) - New Combination Tests
 
 # FAILED TESTS
