@@ -5,11 +5,10 @@ An image editing &amp; handling library in Python.
 Most features of this project (eg. docs, contribution guides) will be added once the project reaches the beta stage.
 
 ## Version History 
-0.0.1 - InDev
-
-0.0.2 - Brightness module added, main classes, internal + misc functions
-
-0.0.3 - Color overlay module added (CURRENT)
+0.0.1 - InDev <br />
+0.0.2 - Brightness module added, main classes, internal + misc functions <br />
+0.0.3 - Color overlay module added <br />
+<b>0.1.0 - HSL Module Added (CURRENT)</b> <br />
 
 ## Features
 
