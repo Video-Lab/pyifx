@@ -129,13 +129,13 @@ def _saturation(img_paths, percent, method):
 		new_imgs = img_paths.volume
 
 		for img in new_imgs:
-			if method == "d" or method == "ds":
+			if method == "s" or method == "ds":
 				_saturate(img, percent, method)
 			else:
 				raise Exception("Something went wrong. Please try again.")
 
 	elif type(img_paths) == misc.PyifxImage:
-		if method == "d" or method == "ds":
+		if method == "s" or method == "ds":
 			_saturate(img_paths, percent, method)
 		else:
 			raise Exception("Something went wrong. Please try again.")
@@ -145,7 +145,7 @@ def _saturation(img_paths, percent, method):
 		for img in img_paths:
 			if type(img) != misc.PyifxImage:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
-			if method == "d" or method == "ds":
+			if method == "s" or method == "ds":
 				_saturate(img, percent, method)
 			else:
 				raise Exception("Something went wrong. Please try again.")
@@ -154,7 +154,7 @@ def _saturation(img_paths, percent, method):
 			raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
 def _saturate(img, percent, method):
-	type_map = {"d": 1, "ds": -1}
+	type_map = {"s": 1, "ds": -1}
 
 	for row in range(len(img.image)):
 		for p in range(len(img.image[row])):
@@ -162,11 +162,11 @@ def _saturate(img, percent, method):
 			gray_val = sum(img.image[row][p])/3
 			for v in range(len(img.image[row][p])):
 
-			value = img.image[row][p][v]
-			diff = gray_val - value
-			pixel_change = diff * (type_map[method]*percent)
-			img.image[row][p][v] -= pixel_change
-	
+				value = img.image[row][p][v]
+				diff = gray_val - value
+				pixel_change = diff * (type_map[method]*percent)
+				img.image[row][p][v] = max(0, min((img.image[row][p][v]-pixel_change), 255))
+
 	_write_file(img)
 	return img	
 
