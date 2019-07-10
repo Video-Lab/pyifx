@@ -22,7 +22,7 @@ img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
 # TESTS TODO
 
 color_overlay(img_1, [128,242,242])
-color_overlay(img_2, [74,24,25])
+color_overlay(img_2, [74,24,25], 0.8)
 
 
 # COMPLETED TESTS
