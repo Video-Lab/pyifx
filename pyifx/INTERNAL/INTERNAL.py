@@ -31,23 +31,23 @@ def convert_dir_to_images(dirc):
 	add_to_images(dirc)
 	return images
 
-def _change_light(img, factor, method):
+def _change_light(img, percent, method):
 
 	for row in range(len(img.image)):
 		for p in range(len(img.image[row])):
 			for v in range(len(img.image[row][p])):
 				value = img.image[row][p][v]
 				if method == "b":
-					img.image[row][p][v] = min(255, value*(1+factor)-(value/6))
+					img.image[row][p][v] = min(255, value*(1+percent)-(value/6))
 				elif method == "d":
-					img.image[row][p][v] = max(0, value*(1-factor)-(value/6))
+					img.image[row][p][v] = max(0, value*(1-percent)-(value/6))
 				else:
 					raise Exception("Something went wrong. Please try again.")
 
 	_write_file(img)
 	return img
 
-def _brightness(img_paths, factor, method):
+def _brightness(img_paths, percent, method):
 		if type(img_paths) == misc.ImageVolume:
 
 			if not os.path.exists(img_paths.odir):
@@ -57,13 +57,13 @@ def _brightness(img_paths, factor, method):
 
 			for img in new_imgs:
 				if method == "b" or method == "d":
-					_change_light(img, factor, method)
+					_change_light(img, percent, method)
 				else:
 					raise Exception("Something went wrong. Please try again.")
 
 		elif type(img_paths) == misc.PyifxImage:
 				if method == "b" or method == "d":
-					_change_light(img_paths, factor, method)
+					_change_light(img_paths, percent, method)
 				else:
 					raise Exception("Something went wrong. Please try again.")
 
@@ -73,7 +73,7 @@ def _brightness(img_paths, factor, method):
 				if type(img) != misc.PyifxImage:
 					raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 				if method == "b" or method == "d":
-					_change_light(img, factor, method)
+					_change_light(img, percent, method)
 				else:
 					raise Exception("Something went wrong. Please try again.")
 
