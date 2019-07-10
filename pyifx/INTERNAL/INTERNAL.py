@@ -119,6 +119,13 @@ def _add_color_overlay(img, color, opacity):
 	_write_file(img)
 	return img
 
+
+def _saturation(img_paths, percentage, type):
+	pass
+
+def _saturate(img, percentage):
+	pass
+
 def _write_file(img):
 	out_path, extension = os.path.splitext(img.output_path)
 

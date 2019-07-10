@@ -8,3 +8,9 @@ def darken(img_paths,percent=45):
 
 def color_overlay(img_paths, color, opacity=30):
 	INTERNAL._color_overlay(img_paths, color, max(0, min(opacity, 100))/100)
+
+def saturate(img_paths, percentage=30):
+	INTERNAL._saturation(img_paths, max(0, min(percentage, 100))/100, "s")
+
+def grayscale(img_paths, percentage=30):
+	INTERNAL._saturation(img_paths, max(0, min(percentage, 100))/100, "g")
