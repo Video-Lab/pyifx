@@ -44,16 +44,7 @@ def _change_light(img, factor, method):
 				else:
 					raise Exception("Something went wrong. Please try again.")
 
-	out_path, extension = os.path.splitext(img.output_path)
-	file_count = 1
-	temp_path = out_path
-
-	while os.path.isfile(out_path + extension):
-		out_path = temp_path
-		out_path += f" ({file_count})"
-		file_count += 1
-
-	imageio.imwrite(out_path + extension, img.image)
+	_write_file(img)
 	return img
 
 def _brightness(img_paths, factor, method):
@@ -124,6 +115,11 @@ def _add_color_overlay(img, color, opacity):
 				diff *= opacity
 				img.image[row][p][v] += diff
 
+
+	_write_file(img)
+	return img
+
+def _write_file(img):
 	out_path, extension = os.path.splitext(img.output_path)
 	file_count = 1
 	temp_path = out_path
@@ -134,5 +130,4 @@ def _add_color_overlay(img, color, opacity):
 		file_count += 1
 
 	imageio.imwrite(out_path + extension, img.image)
-
-	return img
+	return img	
