@@ -1,3 +1,7 @@
+from INTERNAL_hsl import *
+from INTERNAL_misc import *
+
+
 def _write_file(img):
 	out_path, extension = os.path.splitext(img.output_path)
 

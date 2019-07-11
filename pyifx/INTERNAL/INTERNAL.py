@@ -9,6 +9,9 @@ import imageio
 # import graphics
 # import misc
 
+from INTERNAL_hsl import *
+from INTERNAL_misc import *
+
 def _check_path_type(path):
 	if os.path.isdir(path):
 		return 'dir'
