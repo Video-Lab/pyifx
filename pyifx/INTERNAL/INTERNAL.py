@@ -11,6 +11,7 @@ import imageio
 
 from INTERNAL_hsl import *
 from INTERNAL_misc import *
+from INTERNAL_graphics import *
 
 def _check_path_type(path):
 	if os.path.isdir(path):
