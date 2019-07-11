@@ -23,7 +23,7 @@ class ImageVolume():
 		self.volume = self.volume_to_list()
 
 	def volume_to_list(self):
-		old_imgs = INTERNAL.convert_dir_to_images(self.idir)
+		old_imgs = INTERNAL._convert_dir_to_images(self.idir)
 		new_imgs = [PyifxImage(img, os.path.join(self.odir,f"{self.prefix}{os.path.split(img)[1]}")) for img in old_imgs]
 
 		return new_imgs

@@ -9,7 +9,7 @@ import imageio
 # import graphics
 # import misc
 
-def check_path_type(path):
+def _check_path_type(path):
 	if os.path.isdir(path):
 		return 'dir'
 	elif os.path.isfile(path):
@@ -17,7 +17,7 @@ def check_path_type(path):
 	else:
 		return None
 
-def convert_dir_to_images(dirc):
+def _convert_dir_to_images(dirc):
 	images = []
 	possible_extensions = ['.jpg', '.jpeg', '.png']
 
