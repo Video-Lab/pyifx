@@ -3,6 +3,12 @@ from INTERNAL_graphics import *
 from INTERNAL import *
 
 
+
+def _type_checker(var, types)
+	if type(var) in types:
+		return True
+	return False
+
 def _write_file(img):
 	out_path, extension = os.path.splitext(img.output_path)
 
