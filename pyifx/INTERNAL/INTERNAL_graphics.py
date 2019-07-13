@@ -21,10 +21,12 @@ def _create_kernel(size=(3,3), radius, type_kernel=None):
 
 	elif type_kernel == "mean":
 		divider = size[0]*size[1]
-		kernel = np.asarray([[1/divider for r in range(size[1])] for h in range(size[0])])
+		kernel = np.array([[1/divider for r in range(size[1])] for h in range(size[0])])
 
 	else:
 		raise Exception("Something went wrong. Please try again.")
+
+	kernel = np.flip(kernel, axis=1)
 
 	kernel = _Kernel(kernel, _is_kernel_seperable(kernel))
 
@@ -35,8 +37,25 @@ def _is_kernel_separable(kernel):
 	else:
 		return False
 
-def _convolute(img, filter):
-	pass
+def _convolute(img, kernel):
+	if kernel.seperable == False:
+
+		new_img = numpy.empty(shape=kernel.shape())
+		k_height = math.floor(kernel.shape()[0]/2)
+		k_width = math.floor(kernel.shape()[1]/2)
+
+		for r in range(len(img.image)):
+			for p in range(len(img.image[r])):
+				for c in range(len(img.image[r][p])):
+					new_pixel_value = 0
+					for column in range(-height, height+1):
+						for row in range(-width, width+1):
+							new_pixel_value += img.image[r+row][p+column][c]*kernel[row+width][column+height]
+
+					new_img[r][p][c] = new_pixel_value
+
+		img.image = new_img
+		return img
 
 def _blur(img_paths, kernel):
 	pass
@@ -52,7 +71,7 @@ class _Kernel:
 	def __init__(self, kernel, seperable):
 		self.seperable = seperable
 		if seperable == True:
-			self.seperated_kernel = np.asarray([kernel[0], [c[0] for c in kernel]])
+			self.seperated_kernel = np.array([kernel[0], [c[0] for c in kernel]])
 			self.kernel = None
 
 		else:
