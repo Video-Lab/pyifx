@@ -7,6 +7,8 @@ from INTERNAL import *
 def _type_checker(var, types)
 	if type(var) in types:
 		return True
+
+	raise TypeError("Please use correct variable types.")
 	return False
 
 def _write_file(img):
