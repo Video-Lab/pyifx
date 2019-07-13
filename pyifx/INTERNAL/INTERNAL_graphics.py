@@ -3,7 +3,7 @@ from INTERNAL_misc import *
 from INTERNAL_hsl import *
 
 
-def _create_kernel(size=(3,3), radius, type_kernel=None):
+def _create_kernel(size=(3,3), radius, type_kernel):
 
 	if len(size) != 2:
 		raise ValueError("Incorrect size tuple used.")
@@ -57,8 +57,38 @@ def _convolute(img, kernel):
 		img.image = new_img
 		return img
 
-def _blur(img_paths, kernel):
-	pass
+def _blur(img_paths, radius, type_kernel, size=(3,3)):
+
+	kernel = _create_kernel(size, radius, type_kernel)	
+
+	if type(img_paths) == misc.ImageVolume:
+
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
+
+		new_imgs = img_paths.volume
+
+			for img in new_imgs:
+				_blur_operation(img, kernel)
+
+	elif type(img_paths) == misc.PyifxImage:
+		_blur_operation(img, kernel)
+
+	elif type(img_paths) == list:
+
+		for img in img_paths:
+			if type(img) != misc.PyifxImage:
+				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+			_blur_operation(img, kernel)
+
+			else:
+				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+def _blur_operation(img, kernel):
+	img = _convolute(img, kernel)
+	INTERNAL_misc._write_file(img)
+	return img
 
 def _rank(A, atol=1e-13, rtol=0):
     A = np.atleast_2d(A)

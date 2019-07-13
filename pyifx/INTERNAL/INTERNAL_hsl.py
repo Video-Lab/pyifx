@@ -15,7 +15,7 @@ def _change_light(img, percent, method):
 				else:
 					raise Exception("Something went wrong. Please try again.")
 
-	_write_file(img)
+	INTERNAL_misc._write_file(img)
 	return img
 
 def _brightness(img_paths, percent, method):
@@ -87,7 +87,7 @@ def _add_color_overlay(img, color, opacity):
 				img.image[row][p][v] += diff
 
 
-	_write_file(img)
+	INTERNAL_misc._write_file(img)
 	return img
 
 
@@ -138,5 +138,5 @@ def _saturate(img, percent, method):
 				pixel_change = diff * (type_map[method]*percent)
 				img.image[row][p][v] = max(0, min((img.image[row][p][v]-pixel_change), 255))
 
-	_write_file(img)
+	INTERNAL_misc._write_file(img)
 	return img
