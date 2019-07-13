@@ -1,5 +1,5 @@
 from INTERNAL_misc import *
-from INTERNAL_graphics impor *
+from INTERNAL_graphics import *
 from INTERNAL import *
 
 def _change_light(img, percent, method):
