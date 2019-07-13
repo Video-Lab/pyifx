@@ -1,4 +1,4 @@
-def _create_kernel(size=(3,3), radius=1.5, type_kernel=None):
+def _create_kernel(size=(3,3), radius, type_kernel=None):
 	matrix = None
 
 	if type_kernel == "gaussian":
@@ -9,8 +9,11 @@ def _create_kernel(size=(3,3), radius=1.5, type_kernel=None):
 	    sumh = matrix.sum()
 	    if sumh != 0:
 	        matrix /= sumh
-	    matrix = np.asmatrix(matrix)
 
+	elif type_kernel == "mean":
+		divider = size[0]*size[1]
+		matrix = np.asarray([[1/divider for r in range(size[1])] for h in range(size[0])])
+		
 	else:
 		raise Exception("Something went wrong. Please try again.")
 
