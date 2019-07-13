@@ -50,7 +50,7 @@ def _convolute(img, kernel):
 					new_pixel_value = 0
 					for column in range(-height, height+1):
 						for row in range(-width, width+1):
-							new_pixel_value += img.image[r+row][p+column][c]*kernel[row+width][column+height]
+							new_pixel_value += img.image[r+row][p+column][c]*kernel.kernel[row+width][column+height]
 
 					new_img[r][p][c] = new_pixel_value
 

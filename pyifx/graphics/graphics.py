@@ -10,6 +10,3 @@ def blur_mean(img_paths, radius=3):
 	INTERNAL._type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
 	radius = (radius, radius)
 	_blur(img_paths, type_kernel="mean", size=radius)
-
-
-	

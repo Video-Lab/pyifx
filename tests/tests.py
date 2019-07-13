@@ -3,8 +3,8 @@ in the file named "test_function_defs.py" for the purpose of testing. """
 
 from test_function_defs import *
 
-out_path_1 = "tests/imgs/saturate/__512x512-jpg-1.jpg"
-out_path_2 = "tests/imgs/saturate/__512x512-jpeg-1.jpg"
+out_path_1 = "tests/imgs/blur/__512x512-jpg-1.jpg"
+out_path_2 = "tests/imgs/blur/__512x512-jpeg-1.jpg"
 
 img_list = [PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/bright/list/__512x512-jpg-1.jpg"),
 PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/bright/list/__512x512-jpeg-1.jpg"),
@@ -21,7 +21,8 @@ img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
 
 # TESTS TODO
 
-to_grayscale(img_1)
+blur_gaussian(img_1, 3.0)
+blur_mean(img_2, 3)
 
 
 # COMPLETED TESTS
@@ -53,6 +54,7 @@ to_grayscale(img_1)
 # color_overlay(img_2, [74,24,25], 80) - Color Overlay Tests
 
 # saturate(img_1, 80)
-# desaturate(img_2, 80) - Grayscale Tests
+# desaturate(img_2, 80)
+# to_grayscale(img_1) - Grayscale Tests
 
 # FAILED TESTS
