@@ -21,8 +21,6 @@ img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
 
 # TESTS TODO
 
-blur_gaussian(img_1, 3.0)
-blur_mean(img_2, 3)
 
 
 # COMPLETED TESTS
@@ -56,5 +54,8 @@ blur_mean(img_2, 3)
 # saturate(img_1, 80)
 # desaturate(img_2, 80)
 # to_grayscale(img_1) - Grayscale Tests
+
+# blur_gaussian(img_1, 6)
+# blur_mean(img_2, 6) - Blur Tests
 
 # FAILED TESTS

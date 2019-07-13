@@ -197,6 +197,13 @@ def _write_file(img):
 	imageio.imwrite(out_path + extension, img.image)
 	return img
 
+def _type_checker(var, types):
+	if type(var) in types:
+		return True
+
+	raise TypeError("Please use correct variable types.")
+	return False
+
 # misc.py
 
 class PyifxImage():
@@ -204,7 +211,7 @@ class PyifxImage():
 		self.path = path
 		self.output_path = out_path
 		self.image = None
-		if create_image:
+		if create_image == True:
 			self.image = np.asarray(imageio.imread(path))
 
 
@@ -222,7 +229,7 @@ class ImageVolume():
 		self.volume = self.volume_to_list()
 
 	def volume_to_list(self):
-		old_imgs = convert_dir_to_images(self.idir)
+		old_imgs = _convert_dir_to_images(self.idir)
 		new_imgs = [PyifxImage(img, os.path.join(self.odir,f"{self.prefix}{os.path.split(img)[1]}")) for img in old_imgs]
 
 		return new_imgs
@@ -254,18 +261,18 @@ def to_grayscale(img_paths):
 
 def blur_gaussian(img_paths, radius=1.5, size=(3,3)):
 	_type_checker(radius, [int, float])
-	_type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
-	_blur(img_paths, radius, "gaussian", size)
+	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
+	_blur(img_paths, radius, "gaussian", (int(radius), int(radius)))
 
 def blur_mean(img_paths, radius=3):
 	_type_checker(radius, [int])
-	_type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
-	radius = (radius, radius)
-	_blur(img_paths, type_kernel="mean", size=radius)
+	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
+	radius = (int(radius), int(radius))
+	_blur(img_paths, radius[0], type_kernel="mean", size=radius)
 
 #INTERNAL_graphics.py
 
-def _create_kernel(size=(3,3), radius=None, type_kernel):
+def _create_kernel(type_kernel, size=(3,3), radius=None):
 
 	if len(size) != 2:
 		raise ValueError("Incorrect size tuple used.")
@@ -284,7 +291,6 @@ def _create_kernel(size=(3,3), radius=None, type_kernel):
 	elif type_kernel == "mean":
 		divider = size[0]*size[1]
 		kernel = np.array([[1/divider for r in range(size[1])] for h in range(size[0])])
-
 	else:
 		raise Exception("Something went wrong. Please try again.")
 
@@ -292,36 +298,43 @@ def _create_kernel(size=(3,3), radius=None, type_kernel):
 
 	kernel = _Kernel(kernel, _is_kernel_seperable(kernel))
 
+	return kernel
 
-def _is_kernel_separable(kernel):
-	if _rank(kernel) == 1:
+
+def _is_kernel_seperable(kernel):
+	if int(_rank(kernel)) == 1:
 		return True
 	else:
 		return False
 
 def _convolute(img, kernel):
-	if kernel.seperable == False:
+	if kernel.seperable == False or kernel.seperable == True:
 
-		new_img = numpy.empty(shape=kernel.shape())
-		k_height = math.floor(kernel.shape()[0]/2)
-		k_width = math.floor(kernel.shape()[1]/2)
+		k_height = math.floor(kernel.kernel.shape[0]/2)
+		k_width = math.floor(kernel.kernel.shape[1]/2)		
+		new_img = np.zeros(shape=img.image.shape)
 
 		for r in range(len(img.image)):
 			for p in range(len(img.image[r])):
 				for c in range(len(img.image[r][p])):
 					new_pixel_value = 0
-					for column in range(-height, height+1):
-						for row in range(-width, width+1):
-							new_pixel_value += img.image[r+row][p+column][c]*kernel.kernel[row+width][column+height]
+					for column in range(-k_height, k_height+1):
+						for row in range(-k_width, k_width+1):
+							try:
+								new_pixel_value += img.image[r+row][p+column][c]*kernel.kernel[row+k_width][column+k_height]
+							except IndexError:
+								pass
+
 
 					new_img[r][p][c] = new_pixel_value
 
+		new_img = new_img.astype(np.uint8)
 		img.image = new_img
 		return img
 
 def _blur(img_paths, radius, type_kernel, size=(3,3)):
 
-	kernel = _create_kernel(size, radius, type_kernel)	
+	kernel = _create_kernel(type_kernel, size, radius)	
 
 	if type(img_paths) == ImageVolume:
 
@@ -330,11 +343,11 @@ def _blur(img_paths, radius, type_kernel, size=(3,3)):
 
 		new_imgs = img_paths.volume
 
-			for img in new_imgs:
-				_blur_operation(img, kernel)
+		for img in new_imgs:
+			_blur_operation(img, kernel)
 
 	elif type(img_paths) == PyifxImage:
-		_blur_operation(img, kernel)
+		_blur_operation(img_paths, kernel)
 
 	elif type(img_paths) == list:
 
@@ -344,17 +357,14 @@ def _blur(img_paths, radius, type_kernel, size=(3,3)):
 
 			_blur_operation(img, kernel)
 
-			else:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
-
 def _blur_operation(img, kernel):
-	img = _convolute(img, kernel)
-	_write_file(img)
-	return img
+	new_img = _convolute(img, kernel)
+	_write_file(new_img)
+	return new_img
 
 def _rank(A, atol=1e-13, rtol=0):
     A = np.atleast_2d(A)
-    s = np.inalg.svd(A, compute_uv=False)
+    s = np.linalg.svd(A, compute_uv=False)
     tol = max(atol, rtol * s[0])
     rank = int((s >= tol).sum())
     return rank
@@ -364,8 +374,8 @@ class _Kernel:
 		self.seperable = seperable
 		if seperable == True:
 			self.seperated_kernel = np.array([kernel[0], [c[0] for c in kernel]])
-			self.kernel = None
+			self.kernel = kernel
 
 		else:
-			self.seperated_kernel = None
+			self.seperated_kernel = np.array([kernel[0], [c[0] for c in kernel]])
 			self.kernel = kernel

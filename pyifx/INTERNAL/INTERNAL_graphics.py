@@ -3,7 +3,7 @@ from INTERNAL_misc import *
 from INTERNAL_hsl import *
 
 
-def _create_kernel(size=(3,3), radius=None, type_kernel):
+def _create_kernel(type_kernel, size=(3,3), radius=None):
 
 	if len(size) != 2:
 		raise ValueError("Incorrect size tuple used.")
@@ -29,37 +29,42 @@ def _create_kernel(size=(3,3), radius=None, type_kernel):
 	kernel = np.flip(kernel, axis=1)
 
 	kernel = _Kernel(kernel, _is_kernel_seperable(kernel))
+	return kernel
 
 
-def _is_kernel_separable(kernel):
-	if _rank(kernel) == 1:
+def _is_kernel_seperable(kernel):
+	if int(_rank(kernel)) == 1:
 		return True
 	else:
 		return False
 
 def _convolute(img, kernel):
-	if kernel.seperable == False:
+	if kernel.seperable == False or kernel.seperable == True: # Until seperable convolution is added:
 
-		new_img = numpy.empty(shape=kernel.shape())
-		k_height = math.floor(kernel.shape()[0]/2)
-		k_width = math.floor(kernel.shape()[1]/2)
+		new_img = np.empty(shape=img.image.shape)
+		k_height = math.floor(kernel.kernel.shape[0]/2)
+		k_width = math.floor(kernel.kernel.shape[1]/2)
 
 		for r in range(len(img.image)):
 			for p in range(len(img.image[r])):
 				for c in range(len(img.image[r][p])):
 					new_pixel_value = 0
-					for column in range(-height, height+1):
-						for row in range(-width, width+1):
-							new_pixel_value += img.image[r+row][p+column][c]*kernel.kernel[row+width][column+height]
+					for column in range(-k_height, k_height+1):
+						for row in range(-k_width, k_width+1):
+							try:
+								new_pixel_value += img.image[r+row][p+column][c]*kernel.kernel[row+k_width][column+k_height]
+							except IndexError:
+								pass
 
 					new_img[r][p][c] = new_pixel_value
 
+		new_img = new_img.astype(np.uint8)
 		img.image = new_img
 		return img
 
 def _blur(img_paths, radius, type_kernel, size=(3,3)):
 
-	kernel = _create_kernel(size, radius, type_kernel)	
+	kernel = _create_kernel(type_kernel, size, radius)	
 
 	if type(img_paths) == misc.ImageVolume:
 
@@ -68,8 +73,8 @@ def _blur(img_paths, radius, type_kernel, size=(3,3)):
 
 		new_imgs = img_paths.volume
 
-			for img in new_imgs:
-				_blur_operation(img, kernel)
+		for img in new_imgs:
+			_blur_operation(img_paths, kernel)
 
 	elif type(img_paths) == misc.PyifxImage:
 		_blur_operation(img, kernel)
@@ -82,17 +87,14 @@ def _blur(img_paths, radius, type_kernel, size=(3,3)):
 
 			_blur_operation(img, kernel)
 
-			else:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
-
 def _blur_operation(img, kernel):
-	img = _convolute(img, kernel)
-	INTERNAL_misc._write_file(img)
-	return img
+	new_img = _convolute(img, kernel)
+	INTERNAL_misc._write_file(new_img)
+	return new_img
 
 def _rank(A, atol=1e-13, rtol=0):
     A = np.atleast_2d(A)
-    s = np.inalg.svd(A, compute_uv=False)
+    s = np.linalg.svd(A, compute_uv=False)
     tol = max(atol, rtol * s[0])
     rank = int((s >= tol).sum())
     return rank
