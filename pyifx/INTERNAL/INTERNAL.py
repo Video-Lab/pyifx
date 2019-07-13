@@ -3,6 +3,7 @@ import sys
 import numpy as np
 import matplotlib as mpl
 import imageio
+import scipy
 
 # import hsl
 # import format
