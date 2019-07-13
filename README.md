@@ -8,7 +8,8 @@ Most features of this project (eg. docs, contribution guides) will be added once
 0.0.1 - InDev <br />
 0.0.2 - Brightness module added, main classes, internal + misc functions <br />
 0.0.3 - Color overlay module added <br />
-<b>0.1.0 - HSL Module Added (CURRENT)</b> <br />
+0.1.0 - HSL Module Added (CURRENT) <br />
+<b>0.1.1 - Convolutional Framework + Blur functions added (CURRENT)</b> <br />
 
 ## Features
 
