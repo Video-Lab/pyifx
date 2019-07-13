@@ -3,7 +3,7 @@ from INTERNAL_misc import *
 from INTERNAL_hsl import *
 
 
-def _create_kernel(size=(3,3), radius, type_kernel):
+def _create_kernel(size=(3,3), radius=None, type_kernel):
 
 	if len(size) != 2:
 		raise ValueError("Incorrect size tuple used.")
