@@ -3,27 +3,28 @@ from INTERNAL_misc import *
 from INTERNAL_hsl import *
 
 
-def _create_kernel(radius=None, type_kernel, size=(3,3)):
+def _create_kernel(radius, type_kernel, size=(3,3)):
 
 	if len(size) != 2:
-		raise ValueError("Incorrect size tuple used.")
+		raise ValueError("Incorrect tuple dimensions used.")
 
 	kernel = None
 
 	if type_kernel == "gaussian":
+
 		size = int(2*radius)
 		if size % 2 == 0:
 			size += 1
 
 		size = (size, size)
 
-	    m,n = [(ss-1.)/2. for ss in size]
-	    y,x = np.ogrid[-m:m+1,-n:n+1]
-	    kernel = np.exp( -(x*x + y*y) / (2.*radius*radius) )
-	    kernel[ kernel < np.finfo(kernel.dtype).eps*kernel.max() ] = 0
-	    sumh = kernel.sum()
-	    if sumh != 0:
-	        kernel /= sumh
+		m,n = [(ss-1.)/2. for ss in size]
+		y,x = np.ogrid[-m:m+1,-n:n+1]
+		kernel = np.exp( -(x*x + y*y) / (2.*radius*radius) )
+		kernel[ kernel < np.finfo(kernel.dtype).eps*kernel.max() ] = 0
+		sumh = kernel.sum()
+		if sumh != 0:
+			kernel /= sumh
 
 	elif type_kernel == "mean":
 		divider = size[0]*size[1]
@@ -44,29 +45,37 @@ def _is_kernel_seperable(kernel):
 	else:
 		return False
 
+
+def _convolute_over_image(img, kernel):
+	new_img = np.empty(shape=img.image.shape)
+	k_height = math.floor(kernel.shape[0]/2)
+	k_width = math.floor(kernel.shape[1]/2)
+
+	for r in range(len(img.image)):
+		for p in range(len(img.image[r])):
+			for c in range(len(img.image[r][p])):
+				new_pixel_value = 0
+				for column in range(-k_height, k_height+1):
+					for row in range(-k_width, k_width+1):
+						try:
+							new_pixel_value += img.image[r+row][p+column][c]*kernel[row+k_width][column+k_height]
+						except IndexError:
+							pass
+
+				new_img[r][p][c] = new_pixel_value	
+
+	new_img = new_img.astype(np.uint8)
+	img.image = new_img
+	return img
+
 def _convolute(img, kernel):
-	if kernel.seperable == False or kernel.seperable == True: # Until seperable convolution is added:
-
-		new_img = np.empty(shape=img.image.shape)
-		k_height = math.floor(kernel.kernel.shape[0]/2)
-		k_width = math.floor(kernel.kernel.shape[1]/2)
-
-		for r in range(len(img.image)):
-			for p in range(len(img.image[r])):
-				for c in range(len(img.image[r][p])):
-					new_pixel_value = 0
-					for column in range(-k_height, k_height+1):
-						for row in range(-k_width, k_width+1):
-							try:
-								new_pixel_value += img.image[r+row][p+column][c]*kernel.kernel[row+k_width][column+k_height]
-							except IndexError:
-								pass
-
-					new_img[r][p][c] = new_pixel_value
-
-		new_img = new_img.astype(np.uint8)
-		img.image = new_img
-		return img
+	if kernel.seperable == False
+		return _convolute_over_image(img, kernel.kernel)
+	else:
+		imgs = []
+		for matrix in kernel.seperated_kernel:
+			imgs.append(_convolute_over_image(img, matrix))
+		return INTERNAL.misc.combine(imgs[0], imgs[1])
 
 def _blur(img_paths, radius, type_kernel, size):
 

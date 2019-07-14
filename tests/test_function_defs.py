@@ -259,38 +259,46 @@ def to_grayscale(img_paths):
 
 # graphics.py
 
-def blur_gaussian(img_paths, radius=1.5, size=(3,3)):
+def blur_gaussian(img_paths, radius=1.5):
 	_type_checker(radius, [int, float])
 	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
-	_blur(img_paths, radius, "gaussian", (int(radius), int(radius)))
+
+	_blur(img_paths, radius=radius, type_kernel="gaussian")
 
 def blur_mean(img_paths, radius=3):
 	_type_checker(radius, [int])
 	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
-	radius = (int(radius), int(radius))
-	_blur(img_paths, radius[0], type_kernel="mean", size=radius)
+
+	radius = (radius, radius)
+	_blur(img_paths, radius=radius[0], type_kernel="mean", size=radius)
 
 #INTERNAL_graphics.py
 
-def _create_kernel(type_kernel, size=(3,3), radius=None):
+def _create_kernel(radius, type_kernel, size=(3,3)):
 
 	if len(size) != 2:
-		raise ValueError("Incorrect size tuple used.")
+		raise ValueError("Incorrect tuple dimensions used.")
 
 	kernel = None
 
 	if type_kernel == "gaussian":
-	    m,n = [(ss-1.)/2. for ss in size]
-	    y,x = np.ogrid[-m:m+1,-n:n+1]
-	    kernel = np.exp( -(x*x + y*y) / (2.*radius*radius) )
-	    kernel[ kernel < np.finfo(kernel.dtype).eps*kernel.max() ] = 0
-	    sumh = kernel.sum()
-	    if sumh != 0:
-	        kernel /= sumh
+
+		size = int(2*radius)
+		if size % 2 == 0:
+			size += 1
+		size = (size, size)
+		m,n = [(ss-1.)/2. for ss in size]
+		y,x = np.ogrid[-m:m+1,-n:n+1]
+		kernel = np.exp( -(x*x + y*y) / (2.*radius*radius) )
+		kernel[ kernel < np.finfo(kernel.dtype).eps*kernel.max() ] = 0
+		sumh = kernel.sum()
+		if sumh != 0:
+			kernel /= sumh
 
 	elif type_kernel == "mean":
 		divider = size[0]*size[1]
 		kernel = np.array([[1/divider for r in range(size[1])] for h in range(size[0])])
+
 	else:
 		raise Exception("Something went wrong. Please try again.")
 
@@ -334,7 +342,7 @@ def _convolute(img, kernel):
 
 def _blur(img_paths, radius, type_kernel, size=(3,3)):
 
-	kernel = _create_kernel(type_kernel, size, radius)	
+	kernel = _create_kernel(radius, type_kernel, size)	
 
 	if type(img_paths) == ImageVolume:
 

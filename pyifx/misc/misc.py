@@ -27,3 +27,6 @@ class ImageVolume():
 		new_imgs = [PyifxImage(img, os.path.join(self.odir,f"{self.prefix}{os.path.split(img)[1]}")) for img in old_imgs]
 
 		return new_imgs
+
+def _combine(img1, img2):
+	pass
