@@ -3,7 +3,7 @@ from INTERNAL_misc import *
 from INTERNAL_hsl import *
 
 
-def _create_kernel(type_kernel, size=(3,3), radius=None):
+def _create_kernel(radius=None, type_kernel, size=(3,3)):
 
 	if len(size) != 2:
 		raise ValueError("Incorrect size tuple used.")
@@ -11,6 +11,12 @@ def _create_kernel(type_kernel, size=(3,3), radius=None):
 	kernel = None
 
 	if type_kernel == "gaussian":
+		size = int(2*radius)
+		if size % 2 == 0:
+			size += 1
+
+		size = (size, size)
+
 	    m,n = [(ss-1.)/2. for ss in size]
 	    y,x = np.ogrid[-m:m+1,-n:n+1]
 	    kernel = np.exp( -(x*x + y*y) / (2.*radius*radius) )
@@ -62,9 +68,9 @@ def _convolute(img, kernel):
 		img.image = new_img
 		return img
 
-def _blur(img_paths, radius, type_kernel, size=(3,3)):
+def _blur(img_paths, radius, type_kernel, size):
 
-	kernel = _create_kernel(type_kernel, size, radius)	
+	kernel = _create_kernel(radius, type_kernel, size)	
 
 	if type(img_paths) == misc.ImageVolume:
 
