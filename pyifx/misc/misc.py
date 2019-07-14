@@ -28,5 +28,23 @@ class ImageVolume():
 
 		return new_imgs
 
-def _combine(img1, img2):
-	pass
+def _combine(img1, img2, out_path):
+	if img1.shape[0]*img1.shape[0] <= img2.shape[0]*img2.shape[1]:
+		shape = img1.shape
+	else:
+		shape = img2.shape
+
+	new_img = np.empty(shape)
+
+	for r in range(len(img1.image)):
+		for p in range(len(img1.image[r])):
+			for c in range(len(img1.image[r][p])):
+				try:
+					new_img[r][p][c] = (img1.image[r][p][c]+img2.image[r][p][c])/2
+				except IndexError:
+					pass
+
+	img = PyifxImage(None, out_path, False)
+	img.image = new_img.astype(np.uint8)
+	return img
+
