@@ -85,10 +85,10 @@ class ImageVolume():
 		return new_imgs
 
 def _combine(img1, img2, out_path):
-	if img1.shape[0]*img1.shape[0] <= img2.shape[0]*img2.shape[1]:
-		shape = img1.shape
+	if img1.image.shape[0]*img1.image.shape[0] <= img2.image.shape[0]*img2.image.shape[1]:
+		shape = img1.image.shape
 	else:
-		shape = img2.shape
+		shape = img2.image.shape
 
 	new_img = np.empty(shape)
 
@@ -96,7 +96,7 @@ def _combine(img1, img2, out_path):
 		for p in range(len(img1.image[r])):
 			for c in range(len(img1.image[r][p])):
 				try:
-					new_img[r][p][c] = (img1.image[r][p][c]+img2.image[r][p][c])/2
+					new_img[r][p][c] = min(255, max(0, (img1.image[r][p][c]+img2.image[r][p][c])/2))
 				except IndexError:
 					pass
 
@@ -104,39 +104,24 @@ def _combine(img1, img2, out_path):
 	img.image = new_img.astype(np.uint8)
 	return img
 
-# graphics.py
-
-def blur_gaussian(img_paths, radius=1.5):
-	_type_checker(radius, [int, float])
-	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
-
-	_blur(img_paths, radius=radius, type_kernel="gaussian")
-
-def blur_mean(img_paths, radius=3):
-	_type_checker(radius, [int])
-	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
-
-	radius = (radius, radius)
-	_blur(img_paths, radius=radius[0], type_kernel="mean", size=radius)
-
 #INTERNAL_graphics.py
 
-def _create_kernel(radius, type_kernel, size=(3,3)):
+def _create_kernel(radius, type_kernel, size):
 
-def _create_kernel(radius, type_kernel, size=(3,3)):
-
-	if len(size) != 2:
-		raise ValueError("Incorrect tuple dimensions used.")
+	if size != None:
+		if len(size) != 2:
+			raise ValueError("Incorrect tuple dimensions used.")
 
 	kernel = None
 
 	if type_kernel == "gaussian":
 
-		size = int(2*radius)
-		if size % 2 == 0:
-			size += 1
+		if size == None:
+			size = int(2*radius)
+			if size % 2 == 0:
+				size += 1
 
-		size = (size, size)
+			size = (size, size)
 
 		m,n = [(ss-1.)/2. for ss in size]
 		y,x = np.ogrid[-m:m+1,-n:n+1]
@@ -147,6 +132,8 @@ def _create_kernel(radius, type_kernel, size=(3,3)):
 			kernel /= sumh
 
 	elif type_kernel == "mean":
+		if radius % 2 == 0:
+			radius += 1
 		divider = size[0]*size[1]
 		kernel = np.array([[1/divider for r in range(size[1])] for h in range(size[0])])
 
@@ -166,58 +153,65 @@ def _is_kernel_seperable(kernel):
 		return False
 
 
-def _convolute_over_image(img, kernel):
+def _convolute_over_image(img, kernels):
 	new_img = np.empty(shape=img.image.shape)
-	k_height = math.floor(kernel.shape[0]/2)
-	k_width = math.floor(kernel.shape[1]/2)
+	for kernel in kernels:
+		print(kernel)
 
-	if k_height == 0:
-		k_height = 1
+		if len(kernel.shape) == 1:
+			k_width = math.floor(kernel.shape[0]/2)
+			k_height = 1
 
-	if k_width == 0:
-		k_width = 1
+		elif kernel.shape[1] == 1:
+			k_height = math.floor(kernel.shape[0]/2)
+			k_width = 1
 
-	for r in range(len(img.image)):
-		for p in range(len(img.image[r])):
-			for c in range(len(img.image[r][p])):
-				new_pixel_value = 0
+		else:
+			k_height = math.floor(kernel.shape[0]/2)
+			k_width = math.floor(kernel.shape[1]/2)	
 
-				if k_height == 1:
-					for row in range(-k_width, k_width+1):
-						try:
-							new_pixel_value += img.image[r+row][p+column][c]*kernel[0][column+k_height]
-						except IndexError:
-							pass
 
-				elif k_width == 1:
-					for row in range(-k_width, k_width+1):
-						try:
-							new_pixel_value += img.image[r+row][p+column][c]*kernel[row+k_width][0]
-						except IndexError:
-							pass
-							
-				else:
-					for column in range(-k_height, k_height+1):
-						for row in range(-k_width, k_width+1):
+
+		for r in range(len(img.image)):
+			for p in range(len(img.image[r])):
+				for c in range(len(img.image[r][p])):
+					new_pixel_value = 0
+
+					if k_height == 1:
+						for column in range(-k_width, k_width+1):
 							try:
-								new_pixel_value += img.image[r+row][p+column][c]*kernel[row+k_width][column+k_height]
+								new_pixel_value += img.image[r][p+column][c]*kernel[column+k_width]
+								
 							except IndexError:
 								pass
 
-				new_img[r][p][c] = new_pixel_value	
+					elif k_width == 1:
+						for row in range(-k_height, k_height+1):
+							try:
+								new_pixel_value += img.image[r+row][p][c]*kernel[row+k_height][0]
+								
+							except IndexError:
+								pass
+								
+					else:
+						for row in range(-k_height, k_height+1):
+							for column in range(-k_width, k_width+1):
+								try:
+									new_pixel_value += img.image[r+column][p+row][c]*kernel[row+k_height][column+k_width]
+									
+								except IndexError:
+									pass
 
-	new_img = new_img.astype(np.uint8)
+					new_img[r][p][c] = new_pixel_value
+
 	img.image = new_img
 	return img
 
 def _convolute(img, kernel):
-	if kernel.seperable == False
-		return _convolute_over_image(img, kernel.kernel)
+	if kernel.seperable == False:
+		return _convolute_over_image(img, [kernel.kernel])
 	else:
-		imgs = []
-		for matrix in kernel.seperated_kernel:
-			imgs.append(_convolute_over_image(img, matrix))
-		return combine(imgs[0], imgs[1], img.output_path)
+		return _convolute_over_image(img, kernel.seperated_kernel)
 
 def _blur(img_paths, radius, type_kernel, size):
 
@@ -231,10 +225,10 @@ def _blur(img_paths, radius, type_kernel, size):
 		new_imgs = img_paths.volume
 
 		for img in new_imgs:
-			_blur_operation(img_paths, kernel)
+			_blur_operation(img, kernel)
 
 	elif type(img_paths) == PyifxImage:
-		_blur_operation(img, kernel)
+		_blur_operation(img_paths, kernel)
 
 	elif type(img_paths) == list:
 
@@ -260,9 +254,24 @@ class _Kernel:
 	def __init__(self, kernel, seperable):
 		self.seperable = seperable
 		if seperable == True:
-			self.seperated_kernel = np.array([kernel[0], [c[0] for c in kernel]])
+			self.seperated_kernel = [np.array(kernel[0]), np.array([[c[0]] for c in kernel])]
 			self.kernel = None
 
 		else:
 			self.seperated_kernel = None
 			self.kernel = kernel
+
+# graphics.py
+
+def blur_gaussian(img_paths, radius=1.5, size=None):
+	_type_checker(radius, [int, float])
+	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
+
+	_blur(img_paths, radius=radius, type_kernel="gaussian", size=size)
+
+def blur_mean(img_paths, radius=3):
+	_type_checker(radius, [int])
+	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
+
+	size = (radius, radius)
+	_blur(img_paths, radius=radius, type_kernel="mean", size=size)

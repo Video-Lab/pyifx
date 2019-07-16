@@ -21,7 +21,7 @@ img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
 
 # TESTS TODO
 
-blur_gaussian(img_1, 2)
+blur_gaussian(img_1, 3)
 
 # COMPLETED TESTS
 
