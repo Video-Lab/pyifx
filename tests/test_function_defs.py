@@ -134,78 +134,70 @@ def _create_kernel(radius, type_kernel, size):
 	elif type_kernel == "mean":
 		if radius % 2 == 0:
 			radius += 1
-		divider = size[0]*size[1]
-		kernel = np.array([[1/divider for r in range(size[1])] for h in range(size[0])])
+			
+		divider = radius**2
+		kernel = np.array([[1/divider for r in range(radius)] for h in range(radius)])
 
 	else:
 		raise Exception("Something went wrong. Please try again.")
 
 	kernel = np.flip(kernel, axis=1)
 
-	kernel = _Kernel(kernel, _is_kernel_seperable(kernel))
 	return kernel
 
-
-def _is_kernel_seperable(kernel):
-	if int(_rank(kernel)) == 1:
-		return True
-	else:
-		return False
-
-
-def _convolute_over_image(img, kernels):
+def _convolute_over_image(img, kernel):
 	new_img = np.empty(shape=img.image.shape)
-	for kernel in kernels:
-		print(kernel)
+	k_height = math.floor(kernel.shape[0]/2)
+	k_width = math.floor(kernel.shape[1]/2)
 
-		if len(kernel.shape) == 1:
-			k_width = math.floor(kernel.shape[0]/2)
-			k_height = 1
+	for r in range(len(img.image)):
+		for p in range(len(img.image[r])):
+			for c in range(len(img.image[r][p])):
 
-		elif kernel.shape[1] == 1:
-			k_height = math.floor(kernel.shape[0]/2)
-			k_width = 1
+				new_pixel_value = 0
+				for row in range(-k_height, k_height+1):
+					for column in range(-k_width, k_width+1):
 
-		else:
-			k_height = math.floor(kernel.shape[0]/2)
-			k_width = math.floor(kernel.shape[1]/2)	
+						try:
+							new_pixel_value += img.image[r+column][p+row][c]*kernel[row+k_height][column+k_width]
+						except IndexError:
+							pass
 
+				new_img[r][p][c] = new_pixel_value	
 
-
-		for r in range(len(img.image)):
-			for p in range(len(img.image[r])):
-				for c in range(len(img.image[r][p])):
-					new_pixel_value = 0
-
-					if k_height == 1:
-						for column in range(-k_width, k_width+1):
-							try:
-								new_pixel_value += img.image[r][p+column][c]*kernel[column+k_width]
-								
-							except IndexError:
-								pass
-
-					elif k_width == 1:
-						for row in range(-k_height, k_height+1):
-							try:
-								new_pixel_value += img.image[r+row][p][c]*kernel[row+k_height][0]
-								
-							except IndexError:
-								pass
-								
-					else:
-						for row in range(-k_height, k_height+1):
-							for column in range(-k_width, k_width+1):
-								try:
-									new_pixel_value += img.image[r+column][p+row][c]*kernel[row+k_height][column+k_width]
-									
-								except IndexError:
-									pass
-
-					new_img[r][p][c] = new_pixel_value
-
+	new_img = new_img.astype(np.uint8)
 	img.image = new_img
 	return img
+
+def _blur(img_paths, radius, type_kernel, size):
+
+	kernel = _create_kernel(radius, type_kernel, size)	
+
+	if type(img_paths) == ImageVolume:
+
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
+
+		new_imgs = img_paths.volume
+
+		for img in new_imgs:
+			_blur_operation(img, kernel)
+
+	elif type(img_paths) == PyifxImage:
+		_blur_operation(img_paths, kernel)
+
+	elif type(img_paths) == list:
+
+		for img in img_paths:
+			if type(img) != PyifxImage:
+				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+			_blur_operation(img, kernel)
+
+def _blur_operation(img, kernel):
+	new_img = _convolute_over_image(img, kernel)
+	_write_file(new_img)
+	return new_img
 
 def _convolute(img, kernel):
 	if kernel.seperable == False:
