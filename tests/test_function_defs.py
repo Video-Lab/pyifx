@@ -199,60 +199,6 @@ def _blur_operation(img, kernel):
 	_write_file(new_img)
 	return new_img
 
-def _convolute(img, kernel):
-	if kernel.seperable == False:
-		return _convolute_over_image(img, [kernel.kernel])
-	else:
-		return _convolute_over_image(img, kernel.seperated_kernel)
-
-def _blur(img_paths, radius, type_kernel, size):
-
-	kernel = _create_kernel(radius, type_kernel, size)	
-
-	if type(img_paths) == ImageVolume:
-
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
-
-		new_imgs = img_paths.volume
-
-		for img in new_imgs:
-			_blur_operation(img, kernel)
-
-	elif type(img_paths) == PyifxImage:
-		_blur_operation(img_paths, kernel)
-
-	elif type(img_paths) == list:
-
-		for img in img_paths:
-			if type(img) != PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
-
-			_blur_operation(img, kernel)
-
-def _blur_operation(img, kernel):
-	new_img = _convolute(img, kernel)
-	_write_file(new_img)
-	return new_img
-
-def _rank(A, atol=1e-13, rtol=0):
-    A = np.atleast_2d(A)
-    s = np.linalg.svd(A, compute_uv=False)
-    tol = max(atol, rtol * s[0])
-    rank = int((s >= tol).sum())
-    return rank
-
-class _Kernel:
-	def __init__(self, kernel, seperable):
-		self.seperable = seperable
-		if seperable == True:
-			self.seperated_kernel = [np.array(kernel[0]), np.array([[c[0]] for c in kernel])]
-			self.kernel = None
-
-		else:
-			self.seperated_kernel = None
-			self.kernel = kernel
-
 # graphics.py
 
 def blur_gaussian(img_paths, radius=1.5, size=None):
