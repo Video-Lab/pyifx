@@ -47,7 +47,7 @@ def _create_kernel(radius, type_kernel, size):
 
 	return kernel
 
-def _convolute_over_image(img, kernel):
+def _convolute_over_image(img, kernel, write=True):
 	new_img = np.empty(shape=img.image.shape)
 	k_height = math.floor(kernel.shape[0]/2)
 	k_width = math.floor(kernel.shape[1]/2)
@@ -67,10 +67,13 @@ def _convolute_over_image(img, kernel):
 
 				new_img[r][p][c] = min(255, max(0, new_pixel_value))	
 
+
 	img.image = new_img
+	if write:
+		_write_file(img)
 	return img
 
-def _blur_handler(img_paths, radius, type_kernel, size):
+def _blur_handler(img_paths, radius, type_kernel, size, write=True):
 
 	kernel = _create_kernel(radius, type_kernel, size)	
 
@@ -82,10 +85,10 @@ def _blur_handler(img_paths, radius, type_kernel, size):
 		new_imgs = img_paths.volume
 
 		for img in new_imgs:
-			return _blur_operation(img, kernel)
+			return _blur_operation(img, kernel, write=write)
 
 	elif type(img_paths) == misc.PyifxImage:
-		return _blur_operation(img_paths, kernel)
+		return _blur_operation(img_paths, kernel, write=write)
 
 	elif type(img_paths) == list:
 
@@ -93,16 +96,17 @@ def _blur_handler(img_paths, radius, type_kernel, size):
 			if type(img) != misc.PyifxImage:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
-			return _blur_operation(img, kernel)
+			return _blur_operation(img, kernel, write=write)
 
-def _blur_operation(img, kernel):
-	new_img = _convolute_over_image(img, kernel)
+def _blur_operation(img, kernel, write=True):
+	new_img = _convolute_over_image(img, kernel, write=False)
 
 	new_img.image = new_img.image.astype(np.uint8)
-	_write_file(new_img)
+	if write:
+		_write_file(new_img)
 	return new_img
 
-def _pixelate_handler(img_paths, factor):
+def _pixelate_handler(img_paths, factor, write=True):
 
 	if type(img_paths) == misc.ImageVolume:
 
@@ -112,10 +116,10 @@ def _pixelate_handler(img_paths, factor):
 		new_imgs = img_paths.volume
 
 		for img in new_imgs:
-			return _pixelate_operation(img, factor)
+			return _pixelate_operation(img, factor, write=write)
 
 	elif type(img_paths) == misc.PyifxImage:
-		return _pixelate_operation(img_paths, factor)
+		return _pixelate_operation(img_paths, factor, write=write)
 
 	elif type(img_paths) == list:
 
@@ -123,9 +127,9 @@ def _pixelate_handler(img_paths, factor):
 			if type(img) != misc.PyifxImage:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
-			return _pixelate_operation(img, factor)
+			return _pixelate_operation(img, factor, write=write)
 
-def _pixelate_operation(img, factor):
+def _pixelate_operation(img, factor, write=True):
 	
 	for r in range(0, len(img.image)-factor, factor+1):
 		for p in range(0, len(img.image[r])-factor, factor+1):
@@ -134,11 +138,12 @@ def _pixelate_operation(img, factor):
 			for row_fill in range(r, r+factor+1):
 				for column_fill in range(p, p+factor+1):
 					img.image[row_fill][column_fill] = value
+	if write:
+		_write_file(img)
 
-	_write_file(img)
 	return img
 
-def _detect_edges_handler(img_paths):
+def _detect_edges_handler(img_paths, write=True):
 	if type(img_paths) == misc.ImageVolume:
 
 		if not os.path.exists(img_paths.odir):
@@ -147,10 +152,10 @@ def _detect_edges_handler(img_paths):
 		new_imgs = img_paths.volume
 
 		for img in new_imgs:
-			return _detect_edges_operation(img)
+			return _detect_edges_operation(img, write=write)
 
 	elif type(img_paths) == misc.PyifxImage:
-		return _detect_edges_operation(img_paths)
+		return _detect_edges_operation(img_paths, write=write)
 
 	elif type(img_paths) == list:
 
@@ -158,9 +163,9 @@ def _detect_edges_handler(img_paths):
 			if type(img) != misc.PyifxImage:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
-			return _detect_edges_operation(img)
+			return _detect_edges_operation(img, write=write)
 
-def _detect_edges_operation(img):
+def _detect_edges_operation(img, write=True):
 	x_dir_kernel = _create_kernel(None, "x-sobel", None)
 	y_dir_kernel = _create_kernel(None, "y-sobel", None)
 
@@ -169,5 +174,8 @@ def _detect_edges_operation(img):
 
 	edge_img = misc.combine(x_dir_img, y_dir_img, img.output_path)
 	edge_img.image = edge_img.image.astype(np.uint8)
-	_write_file(edge_img)
+
+	if write:
+		_write_file(edge_img)
+		
 	return edge_img
