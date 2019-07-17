@@ -4,7 +4,7 @@ in the file named "test_function_defs.py" for the purpose of testing. """
 from test_function_defs import *
 
 out_path_1 = "tests/imgs/blur/__512x512-jpg-1.jpg"
-out_path_2 = "tests/imgs/blur/__512x512-jpeg-1.jpg"
+out_path_2 = "tests/imgs/edge/EDGE-512x512-jpeg-1.jpg"
 
 img_list = [PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/bright/list/__512x512-jpg-1.jpg"),
 PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/bright/list/__512x512-jpeg-1.jpg"),
@@ -20,6 +20,8 @@ img_1 = PyifxImage("tests/imgs/512x512-jpg-1.jpg", out_path_1)
 img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
 
 # TESTS TODO
+
+detect_edges(img_2)
 
 # COMPLETED TESTS
 

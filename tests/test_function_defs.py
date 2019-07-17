@@ -235,6 +235,39 @@ def _pixelate_operation(img, factor):
 	_write_file(img)
 	return img
 
+def _detect_edges_handler(img_paths):
+	if type(img_paths) == ImageVolume:
+
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
+
+		new_imgs = img_paths.volume
+
+		for img in new_imgs:
+			_detect_edges_operation(img)
+
+	elif type(img_paths) == PyifxImage:
+		_detect_edges_operation(img_paths)
+
+	elif type(img_paths) == list:
+
+		for img in img_paths:
+			if type(img) != PyifxImage:
+				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+			_detect_edges_operation(img)
+
+def _detect_edges_operation(img):
+	x_dir_kernel = _create_kernel(None, "x-sobel", None)
+	y_dir_kernel = _create_kernel(None, "y-sobel", None)
+
+	x_dir_img = to_grayscale(_convolute_over_image(img, x_dir_kernel))
+	y_dir_img = to_grayscale(_convolute_over_image(img, y_dir_kernel))
+
+	edge_img = mcombine(x_dir_img, y_dir_img, img.output_path)
+	_write_file(edge_img)
+	return edge_img
+
 # graphics.py
 
 def blur_gaussian(img_paths, radius=1.5, size=None):
@@ -255,3 +288,8 @@ def pixelate(img_paths, factor=4):
 	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
 
 	_pixelate_handler(img_paths, factor)
+
+def detect_edges(img_paths):
+	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
+
+	_detect_edges_handler(img_paths)
