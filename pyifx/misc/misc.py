@@ -45,6 +45,6 @@ def combine(img1, img2, out_path):
 					pass
 
 	img = PyifxImage(None, out_path, False)
-	img.image = new_img.astype(np.uint8)
+	img.image = new_img
 	return img
 
