@@ -199,6 +199,42 @@ def _blur_operation(img, kernel):
 	_write_file(new_img)
 	return new_img
 
+def _pixelate_handler(img_paths, factor):
+
+	if type(img_paths) == ImageVolume:
+
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
+
+		new_imgs = img_paths.volume
+
+		for img in new_imgs:
+			_pixelate_operation(img, factor)
+
+	elif type(img_paths) == PyifxImage:
+		_pixelate_operation(img_paths, factor)
+
+	elif type(img_paths) == list:
+
+		for img in img_paths:
+			if type(img) != PyifxImage:
+				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+			_pixelate_operation(img, factor)
+
+def _pixelate_operation(img, factor):
+	
+	for r in range(0, len(img.image)-factor, factor+1):
+		for p in range(0, len(img.image[r]-factor, factor+1)):
+			value = img.image[r][p]
+
+			for row_fill in range(r, r+factor+1):
+				for column_fill in range(p, p+factor+1):
+					img.image[row_fill][column_fill] = value
+
+	_write_file(img)
+	return img
+
 # graphics.py
 
 def blur_gaussian(img_paths, radius=1.5, size=None):
@@ -213,3 +249,9 @@ def blur_mean(img_paths, radius=3):
 
 	size = (radius, radius)
 	_blur(img_paths, radius=radius, type_kernel="mean", size=size)
+
+def pixelate(img_paths, factor=4):
+	_type_checker(factor, [int])
+	_type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
+
+	_pixelate(img_paths, factor)
