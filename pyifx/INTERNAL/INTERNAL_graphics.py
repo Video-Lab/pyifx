@@ -1,6 +1,4 @@
 from INTERNAL import *
-from INTERNAL_misc import *
-from INTERNAL_hsl import *
 
 
 def _create_kernel(radius, type_kernel, size):
@@ -93,7 +91,7 @@ def _blur_handler(img_paths, radius, type_kernel, size):
 
 def _blur_operation(img, kernel):
 	new_img = _convolute_over_image(img, kernel)
-	INTERNAL_misc._write_file(new_img)
+	_write_file(new_img)
 	return new_img
 
 def _pixelate_handler(img_paths, factor):

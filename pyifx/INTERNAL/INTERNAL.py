@@ -5,10 +5,10 @@ import matplotlib as mpl
 import imageio
 import math
 
-# import hsl
-# import format
-# import graphics
-# import misc
+import hsl
+import format
+import graphics
+import misc
 
 from INTERNAL_hsl import *
 from INTERNAL_misc import *

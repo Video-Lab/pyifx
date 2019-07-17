@@ -1,5 +1,3 @@
-from INTERNAL_misc import *
-from INTERNAL_graphics import *
 from INTERNAL import *
 
 def _brightness_operation(img, percent, method):
@@ -15,7 +13,7 @@ def _brightness_operation(img, percent, method):
 				else:
 					raise Exception("Something went wrong. Please try again.")
 
-	INTERNAL_misc._write_file(img)
+	_write_file(img)
 	return img
 
 def _brightness_handler(img_paths, percent, method):
@@ -87,7 +85,7 @@ def _color_overlay_operation(img, color, opacity):
 				img.image[row][p][v] += diff
 
 
-	INTERNAL_misc._write_file(img)
+	_write_file(img)
 	return img
 
 
@@ -138,5 +136,5 @@ def _saturation_operation(img, percent, method):
 				pixel_change = diff * (type_map[method]*percent)
 				img.image[row][p][v] = max(0, min((img.image[row][p][v]-pixel_change), 255))
 
-	INTERNAL_misc._write_file(img)
+	_write_file(img)
 	return img

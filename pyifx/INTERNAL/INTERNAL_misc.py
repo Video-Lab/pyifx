@@ -1,8 +1,4 @@
-from INTERNAL_hsl import *
-from INTERNAL_graphics import *
 from INTERNAL import *
-
-
 
 def _type_checker(var, types)
 	if type(var) in types:

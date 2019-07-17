@@ -28,7 +28,7 @@ class ImageVolume():
 
 		return new_imgs
 
-def _combine(img1, img2, out_path):
+def combine(img1, img2, out_path):
 	if img1.image.shape[0]*img1.image.shape[0] <= img2.image.shape[0]*img2.image.shape[1]:
 		shape = img1.image.shape
 	else:
