@@ -11,7 +11,8 @@ Most features of this project (eg. docs, contribution guides) will be added once
 0.1.0 - HSL Module Added (CURRENT) <br />
 0.1.1 - Convolutional Framework + Blur functions added <br />
 0.1.2 - Create kernel based on blur type <br />
-<b>0.1.3 - Added pixelation (CURRENT)</b>
+0.1.3 - Added pixelation <br />
+<b>0.1.4 - Added edge detection (CURRENT)</b> <br />
 ## Features
 
 pyifx contains 4 main modules, giving users access to functions such as:
