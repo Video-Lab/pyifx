@@ -131,7 +131,26 @@ def _pixelate_operation(img, factor):
 	return img
 
 def _detect_edges_handler(img_paths):
-	pass
+	if type(img_paths) == misc.ImageVolume:
+
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
+
+		new_imgs = img_paths.volume
+
+		for img in new_imgs:
+			_detect_edges_operation(img)
+
+	elif type(img_paths) == misc.PyifxImage:
+		_detect_edges_operation(img_paths)
+
+	elif type(img_paths) == list:
+
+		for img in img_paths:
+			if type(img) != misc.PyifxImage:
+				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+			_detect_edges_operation(img)
 
 def _detect_edges_operation(img):
 	pass
