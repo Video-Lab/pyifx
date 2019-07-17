@@ -16,4 +16,4 @@ def pixelate(img_paths, factor=4):
 	INTERNAL._type_checker(factor, [int])
 	INTERNAL._type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
 
-	INTERNAL._pixelate(img_paths, factor)
+	INTERNAL._pixelate_handler(img_paths, factor)

@@ -225,7 +225,7 @@ def _pixelate_handler(img_paths, factor):
 def _pixelate_operation(img, factor):
 	
 	for r in range(0, len(img.image)-factor, factor+1):
-		for p in range(0, len(img.image[r]-factor, factor+1)):
+		for p in range(0, len(img.image[r])-factor, factor+1):
 			value = img.image[r][p]
 
 			for row_fill in range(r, r+factor+1):
@@ -252,6 +252,6 @@ def blur_mean(img_paths, radius=3):
 
 def pixelate(img_paths, factor=4):
 	_type_checker(factor, [int])
-	_type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
+	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
 
-	_pixelate(img_paths, factor)
+	_pixelate_handler(img_paths, factor)

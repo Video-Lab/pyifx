@@ -13,15 +13,13 @@ PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/dark/list/__512x512-jpg-1
 PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/dark/list/__512x512-jpeg-1.jpg"),
 PyifxImage("tests/imgs/512x512-png-1.png", "tests/imgs/dark/list/__512x512-png-1.png")]
 
-img_vol = ImageVolume("tests/imgs/", "tests/imgs/bright/vol/", "__")
+img_vol = ImageVolume("tests/imgs/", "tests/imgs/pixelate/vol/", "__")
 img_vol_dark = ImageVolume("tests/imgs", "tests/imgs/dark/vol", "__")
 
 img_1 = PyifxImage("tests/imgs/512x512-jpg-1.jpg", out_path_1)
 img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
 
 # TESTS TODO
-
-blur_gaussian(img_1, 3)
 
 # COMPLETED TESTS
 
