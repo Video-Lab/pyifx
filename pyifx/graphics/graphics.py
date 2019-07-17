@@ -11,3 +11,9 @@ def blur_mean(img_paths, radius=3):
 	INTERNAL._type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
 
 	INTERNAL._blur(img_paths, radius=radius, type_kernel="mean", size=size)
+
+def pixelate(img_paths, factor=4):
+	INTERNAL._type_checker(factor, [int])
+	INTERNAL._type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
+
+	INTERNAL._pixelate(img_paths, factor)

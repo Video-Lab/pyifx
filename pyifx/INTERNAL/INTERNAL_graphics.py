@@ -95,3 +95,9 @@ def _blur_operation(img, kernel):
 	new_img = _convolute_over_image(img, kernel)
 	INTERNAL_misc._write_file(new_img)
 	return new_img
+
+def _pixelate_handler(img_paths, factor):
+	pass
+
+def _pixelate_operation(img, factor):
+	pass
