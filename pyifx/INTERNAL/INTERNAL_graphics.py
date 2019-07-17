@@ -33,6 +33,13 @@ def _create_kernel(radius, type_kernel, size):
 		divider = radius**2
 		kernel = np.array([[1/divider for r in range(radius)] for h in range(radius)])
 
+	elif type_kernel == "y-sobel":
+		return np.array([[-1,-2,-1], [0,0,0], [1,2,1]])
+		
+
+	elif type_kernel = "x-sobel":
+		return np.array([[-1,0,1], [-2,0,2], [-1,0,1]])
+
 	else:
 		raise Exception("Something went wrong. Please try again.")
 
@@ -153,8 +160,8 @@ def _detect_edges_handler(img_paths):
 			_detect_edges_operation(img)
 
 def _detect_edges_operation(img):
-	x_dir_kernel = np.array([[-1,0,1], [-2,0,2], [-1,0,1]])
-	y_dir_kernel = np.array([[-1,-2,-1], [0,0,0], [1,2,1]])
+	x_dir_kernel = _create_kernel(None, "x-sobel", None)
+	y_dir_kernel = _create_kernel(None, "y-sobel", None)
 
 	x_dir_img = hsl.to_grayscale(_convolute_over_image(img, x_dir_kernel))
 	y_dir_img = hsl.to_grayscale(_convolute_over_image(img, y_dir_kernel))
