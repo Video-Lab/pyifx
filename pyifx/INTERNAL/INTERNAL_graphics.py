@@ -104,10 +104,10 @@ def _pixelate_handler(img_paths, factor):
 		new_imgs = img_paths.volume
 
 		for img in new_imgs:
-			_pixelate_operation(img, kernel)
+			_pixelate_operation(img, factor)
 
 	elif type(img_paths) == misc.PyifxImage:
-		_pixelate_operation(img_paths, kernel)
+		_pixelate_operation(img_paths, factor)
 
 	elif type(img_paths) == list:
 
@@ -115,7 +115,17 @@ def _pixelate_handler(img_paths, factor):
 			if type(img) != misc.PyifxImage:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
-			_pixelate_operation(img, kernel)
+			_pixelate_operation(img, factor)
 
 def _pixelate_operation(img, factor):
-	pass
+	
+	for r in range(0, len(img.image)-factor, factor+1):
+		for p in range(0, len(img.image[r]-factor, factor+1)):
+			value = img.image[r][p]
+
+			for row_fill in range(r, r+factor+1):
+				for column_fill in range(p, p+factor+1):
+					img.image[row_fill][column_fill] = value
+
+	_write_file(img)
+	return img
