@@ -56,4 +56,7 @@ img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
 # blur_gaussian(img_1, 6)
 # blur_mean(img_2, 6) - Blur Tests
 
+# pixelate(img_1, 3)
+# pixelate(img_2, 6) - Pixelation tests
+
 # FAILED TESTS
