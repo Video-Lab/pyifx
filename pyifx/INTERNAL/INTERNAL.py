@@ -6,7 +6,6 @@ import imageio
 import math
 
 import hsl
-import format
 import graphics
 import misc
 
