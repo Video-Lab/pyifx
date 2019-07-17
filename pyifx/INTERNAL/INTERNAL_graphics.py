@@ -66,7 +66,7 @@ def _convolute_over_image(img, kernel):
 	img.image = new_img
 	return img
 
-def _blur(img_paths, radius, type_kernel, size):
+def _blur_handler(img_paths, radius, type_kernel, size):
 
 	kernel = _create_kernel(radius, type_kernel, size)	
 
