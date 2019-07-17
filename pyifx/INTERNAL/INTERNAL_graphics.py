@@ -37,7 +37,7 @@ def _create_kernel(radius, type_kernel, size):
 		return np.array([[-1,-2,-1], [0,0,0], [1,2,1]])
 		
 
-	elif type_kernel = "x-sobel":
+	elif type_kernel == "x-sobel":
 		return np.array([[-1,0,1], [-2,0,2], [-1,0,1]])
 
 	else:
@@ -65,9 +65,8 @@ def _convolute_over_image(img, kernel):
 						except IndexError:
 							pass
 
-				new_img[r][p][c] = new_pixel_value	
+				new_img[r][p][c] = min(255, max(0, new_pixel_value))	
 
-	new_img = new_img.astype(np.uint8)
 	img.image = new_img
 	return img
 
@@ -83,10 +82,10 @@ def _blur_handler(img_paths, radius, type_kernel, size):
 		new_imgs = img_paths.volume
 
 		for img in new_imgs:
-			_blur_operation(img, kernel)
+			return _blur_operation(img, kernel)
 
 	elif type(img_paths) == misc.PyifxImage:
-		_blur_operation(img_paths, kernel)
+		return _blur_operation(img_paths, kernel)
 
 	elif type(img_paths) == list:
 
@@ -94,10 +93,12 @@ def _blur_handler(img_paths, radius, type_kernel, size):
 			if type(img) != misc.PyifxImage:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
-			_blur_operation(img, kernel)
+			return _blur_operation(img, kernel)
 
 def _blur_operation(img, kernel):
 	new_img = _convolute_over_image(img, kernel)
+
+	new_img.image = new_img.image.astype(np.uint8)
 	_write_file(new_img)
 	return new_img
 
@@ -111,10 +112,10 @@ def _pixelate_handler(img_paths, factor):
 		new_imgs = img_paths.volume
 
 		for img in new_imgs:
-			_pixelate_operation(img, factor)
+			return _pixelate_operation(img, factor)
 
 	elif type(img_paths) == misc.PyifxImage:
-		_pixelate_operation(img_paths, factor)
+		return _pixelate_operation(img_paths, factor)
 
 	elif type(img_paths) == list:
 
@@ -122,7 +123,7 @@ def _pixelate_handler(img_paths, factor):
 			if type(img) != misc.PyifxImage:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
-			_pixelate_operation(img, factor)
+			return _pixelate_operation(img, factor)
 
 def _pixelate_operation(img, factor):
 	
@@ -146,10 +147,10 @@ def _detect_edges_handler(img_paths):
 		new_imgs = img_paths.volume
 
 		for img in new_imgs:
-			_detect_edges_operation(img)
+			return _detect_edges_operation(img)
 
 	elif type(img_paths) == misc.PyifxImage:
-		_detect_edges_operation(img_paths)
+		return _detect_edges_operation(img_paths)
 
 	elif type(img_paths) == list:
 
@@ -157,7 +158,7 @@ def _detect_edges_handler(img_paths):
 			if type(img) != misc.PyifxImage:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
-			_detect_edges_operation(img)
+			return _detect_edges_operation(img)
 
 def _detect_edges_operation(img):
 	x_dir_kernel = _create_kernel(None, "x-sobel", None)
@@ -169,5 +170,3 @@ def _detect_edges_operation(img):
 	edge_img = misc.combine(x_dir_img, y_dir_img, img.output_path)
 	_write_file(edge_img)
 	return edge_img
-
-

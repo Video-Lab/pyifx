@@ -84,7 +84,7 @@ class ImageVolume():
 
 		return new_imgs
 
-def _combine(img1, img2, out_path):
+def combine(img1, img2, out_path):
 	if img1.image.shape[0]*img1.image.shape[0] <= img2.image.shape[0]*img2.image.shape[1]:
 		shape = img1.image.shape
 	else:
@@ -138,6 +138,13 @@ def _create_kernel(radius, type_kernel, size):
 		divider = radius**2
 		kernel = np.array([[1/divider for r in range(radius)] for h in range(radius)])
 
+	elif type_kernel == "y-sobel":
+		return np.array([[-1,-2,-1], [0,0,0], [1,2,1]])
+		
+
+	elif type_kernel == "x-sobel":
+		return np.array([[-1,0,1], [-2,0,2], [-1,0,1]])
+
 	else:
 		raise Exception("Something went wrong. Please try again.")
 
@@ -163,9 +170,8 @@ def _convolute_over_image(img, kernel):
 						except IndexError:
 							pass
 
-				new_img[r][p][c] = new_pixel_value	
+				new_img[r][p][c] = min(255, max(0, new_pixel_value))
 
-	new_img = new_img.astype(np.uint8)
 	img.image = new_img
 	return img
 
@@ -196,6 +202,8 @@ def _blur(img_paths, radius, type_kernel, size):
 
 def _blur_operation(img, kernel):
 	new_img = _convolute_over_image(img, kernel)
+
+	new_img.image = new_img.image.astype(np.uint8)
 	_write_file(new_img)
 	return new_img
 
@@ -264,7 +272,7 @@ def _detect_edges_operation(img):
 	x_dir_img = to_grayscale(_convolute_over_image(img, x_dir_kernel))
 	y_dir_img = to_grayscale(_convolute_over_image(img, y_dir_kernel))
 
-	edge_img = mcombine(x_dir_img, y_dir_img, img.output_path)
+	edge_img = combine(x_dir_img, y_dir_img, img.output_path)
 	_write_file(edge_img)
 	return edge_img
 
@@ -293,3 +301,64 @@ def detect_edges(img_paths):
 	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
 
 	_detect_edges_handler(img_paths)
+
+
+
+# hsl.py 
+
+def to_grayscale(img_paths):
+	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
+
+	return _saturation_handler(img_paths, 1, "ds")
+
+
+#INTERNAL_hsl.py
+
+def _saturation_handler(img_paths, percent, method):
+	if type(img_paths) == ImageVolume:
+
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
+
+		new_imgs = img_paths.volume
+
+		for img in new_imgs:
+			if method == "s" or method == "ds":
+				return _saturation_operation(img, percent, method)
+			else:
+				raise Exception("Something went wrong. Please try again.")
+
+	elif type(img_paths) == PyifxImage:
+		if method == "s" or method == "ds":
+			return _saturation_operation(img_paths, percent, method)
+		else:
+			raise Exception("Something went wrong. Please try again.")
+
+	elif type(img_paths) == list:
+
+		for img in img_paths:
+			if type(img) != PyifxImage:
+				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+			if method == "s" or method == "ds":
+				return _saturation_operation(img, percent, method)
+			else:
+				raise Exception("Something went wrong. Please try again.")
+
+		else:
+			raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+def _saturation_operation(img, percent, method):
+	type_map = {"s": 1, "ds": -1}
+
+	for row in range(len(img.image)):
+		for p in range(len(img.image[row])):
+
+			gray_val = sum(img.image[row][p])/3
+			for v in range(len(img.image[row][p])):
+
+				value = img.image[row][p][v]
+				diff = gray_val - value
+				pixel_change = diff * (type_map[method]*percent)
+				img.image[row][p][v] = max(0, min((img.image[row][p][v]-pixel_change), 255))
+
+	return img

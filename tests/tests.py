@@ -21,8 +21,6 @@ img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
 
 # TESTS TODO
 
-detect_edges(img_2)
-
 # COMPLETED TESTS
 
 # brighten(ImageVolume("tests/imgs/", "tests/imgs/brightenedImages", "_"), 0.6) - Image volume class test
@@ -60,5 +58,8 @@ detect_edges(img_2)
 
 # pixelate(img_1, 3)
 # pixelate(img_2, 6) - Pixelation tests
+
+# detect_edges(img_1)
+# detect_edges(img_2) - Edge detection tests
 
 # FAILED TESTS

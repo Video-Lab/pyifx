@@ -26,13 +26,13 @@ def _brightness_handler(img_paths, percent, method):
 
 			for img in new_imgs:
 				if method == "b" or method == "d":
-					_brightness_operation(img, percent, method)
+					return _brightness_operation(img, percent, method)
 				else:
 					raise Exception("Something went wrong. Please try again.")
 
 		elif type(img_paths) == misc.PyifxImage:
 				if method == "b" or method == "d":
-					_brightness_operation(img_paths, percent, method)
+					return _brightness_operation(img_paths, percent, method)
 				else:
 					raise Exception("Something went wrong. Please try again.")
 
@@ -42,7 +42,7 @@ def _brightness_handler(img_paths, percent, method):
 				if type(img) != misc.PyifxImage:
 					raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 				if method == "b" or method == "d":
-					_brightness_operation(img, percent, method)
+					return _brightness_operation(img, percent, method)
 				else:
 					raise Exception("Something went wrong. Please try again.")
 
@@ -58,10 +58,10 @@ def _color_overlay_handler(img_paths, color, opacity):
 				new_imgs = img_paths.volume
 
 				for img in new_imgs:
-					_color_overlay_operation(img, color, opacity)
+					return _color_overlay_operation(img, color, opacity)
 
 			elif type(img_paths) == misc.PyifxImage:
-				_color_overlay_operation(img_paths, color, opacity)
+				return _color_overlay_operation(img_paths, color, opacity)
 
 			elif type(img_paths) == list:
 
@@ -69,7 +69,7 @@ def _color_overlay_handler(img_paths, color, opacity):
 					if type(img) != misc.PyifxImage:
 						raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
-					_color_overlay_operation(img, color, opacity)
+					return _color_overlay_operation(img, color, opacity)
 
 			else:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
@@ -99,13 +99,13 @@ def _saturation_handler(img_paths, percent, method):
 
 		for img in new_imgs:
 			if method == "s" or method == "ds":
-				_saturation_operation(img, percent, method)
+				return _saturation_operation(img, percent, method)
 			else:
 				raise Exception("Something went wrong. Please try again.")
 
 	elif type(img_paths) == misc.PyifxImage:
 		if method == "s" or method == "ds":
-			_saturation_operation(img_paths, percent, method)
+			return _saturation_operation(img_paths, percent, method)
 		else:
 			raise Exception("Something went wrong. Please try again.")
 
@@ -115,7 +115,7 @@ def _saturation_handler(img_paths, percent, method):
 			if type(img) != misc.PyifxImage:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 			if method == "s" or method == "ds":
-				_saturation_operation(img, percent, method)
+				return _saturation_operation(img, percent, method)
 			else:
 				raise Exception("Something went wrong. Please try again.")
 
