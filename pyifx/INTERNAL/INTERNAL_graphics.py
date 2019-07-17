@@ -153,4 +153,14 @@ def _detect_edges_handler(img_paths):
 			_detect_edges_operation(img)
 
 def _detect_edges_operation(img):
-	pass
+	x_dir_kernel = np.array([[-1,0,1], [-2,0,2], [-1,0,1]])
+	y_dir_kernel = np.array([[-1,-2,-1], [0,0,0], [1,2,1]])
+
+	x_dir_img = hsl.to_grayscale(_convolute_over_image(img, x_dir_kernel))
+	y_dir_img = hsl.to_grayscale(_convolute_over_image(img, y_dir_kernel))
+
+	edge_img = misc.combine(x_dir_img, y_dir_img, img.output_path)
+	_write_file(edge_img)
+	return edge_img
+
+
