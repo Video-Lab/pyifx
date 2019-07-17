@@ -129,3 +129,9 @@ def _pixelate_operation(img, factor):
 
 	_write_file(img)
 	return img
+
+def _detect_edges_handler(img_paths):
+	pass
+
+def _detect_edges_operation(img):
+	pass

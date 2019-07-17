@@ -17,3 +17,8 @@ def pixelate(img_paths, factor=4):
 	INTERNAL._type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
 
 	INTERNAL._pixelate_handler(img_paths, factor)
+
+def detect_edges(img_paths):
+	INTERNAL._type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
+
+	INTERNAL._detect_edges_handler(img_paths)
