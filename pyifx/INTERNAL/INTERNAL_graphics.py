@@ -95,7 +95,27 @@ def _blur_operation(img, kernel):
 	return new_img
 
 def _pixelate_handler(img_paths, factor):
-	pass
+
+	if type(img_paths) == misc.ImageVolume:
+
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
+
+		new_imgs = img_paths.volume
+
+		for img in new_imgs:
+			_pixelate_operation(img, kernel)
+
+	elif type(img_paths) == misc.PyifxImage:
+		_pixelate_operation(img_paths, kernel)
+
+	elif type(img_paths) == list:
+
+		for img in img_paths:
+			if type(img) != misc.PyifxImage:
+				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+			_pixelate_operation(img, kernel)
 
 def _pixelate_operation(img, factor):
 	pass
