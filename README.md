@@ -8,13 +8,13 @@ Most features of this project (eg. docs, contribution guides) will be added once
 0.0.1 - InDev <br />
 0.0.2 - Brightness module added, main classes, internal + misc functions <br />
 0.0.3 - Color overlay module added <br />
-0.1.0 - HSL Module Added (CURRENT) <br />
+0.1.0 - HSL Module Added <br />
 0.1.1 - Convolutional Framework + Blur functions added <br />
 0.1.2 - Create kernel based on blur type <br />
 0.1.3 - Added pixelation <br />
 <b>0.1.4 - Added edge detection (CURRENT)</b> <br />
-## Features
 
+## Features
 pyifx contains 4 main modules, giving users access to functions such as:
 	* Image brightening
 	* Color overlay

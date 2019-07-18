@@ -15,6 +15,9 @@ class PyifxImage():
 		i.image = image
 		return i
 
+
+
+
 class ImageVolume():
 	def __init__(self, i, o, p="_"):
 		self.idir = i
@@ -27,6 +30,9 @@ class ImageVolume():
 		new_imgs = [PyifxImage(img, os.path.join(self.odir,f"{self.prefix}{os.path.split(img)[1]}")) for img in old_imgs]
 
 		return new_imgs
+
+
+
 
 def combine(img1, img2, out_path):
 	if img1.image.shape[0]*img1.image.shape[0] <= img2.image.shape[0]*img2.image.shape[1]:

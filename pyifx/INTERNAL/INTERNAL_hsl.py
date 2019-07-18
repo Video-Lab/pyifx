@@ -1,26 +1,5 @@
 from INTERNAL import *
 
-def _brightness_operation(img, percent, method, write=True):
-	new_img = np.empty(shape=img.image.shape)
-
-	for row in range(len(new_img)):
-		for p in range(len(new_img[row])):
-			for v in range(len(new_img[row][p])):
-				value = img.image[row][p][v]
-				if method == "b":
-					new_img[row][p][v] = min(255, value*(1+percent)-(value/6))
-				elif method == "d":
-					new_img[row][p][v] = max(0, value*(1-percent)-(value/6))
-				else:
-					raise Exception("Something went wrong. Please try again.")
-
-	new_img = misc.PyifxImage(img.path, img.output_path, new_img)
-
-	if write:
-		_write_file(img)
-
-	return new_img
-
 def _brightness_handler(img_paths, percent, method, write=True):
 		if type(img_paths) == misc.ImageVolume:
 
@@ -59,6 +38,31 @@ def _brightness_handler(img_paths, percent, method, write=True):
 		else:
 			raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
+
+def _brightness_operation(img, percent, method, write=True):
+	new_img = np.empty(shape=img.image.shape)
+
+	for row in range(len(new_img)):
+		for p in range(len(new_img[row])):
+			for v in range(len(new_img[row][p])):
+				value = img.image[row][p][v]
+				if method == "b":
+					new_img[row][p][v] = min(255, value*(1+percent)-(value/6))
+				elif method == "d":
+					new_img[row][p][v] = max(0, value*(1-percent)-(value/6))
+				else:
+					raise Exception("Something went wrong. Please try again.")
+
+	new_img = misc.PyifxImage(img.path, img.output_path, new_img)
+
+	if write:
+		_write_file(img)
+
+	return new_img
+
+
+
+
 def _color_overlay_handler(img_paths, color, opacity, write=True):
 
 			if type(img_paths) == misc.ImageVolume:
@@ -88,6 +92,7 @@ def _color_overlay_handler(img_paths, color, opacity, write=True):
 			else:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
+
 def _color_overlay_operation(img, color, opacity, write=True):
 	new_img = np.empty(shape=img.image.shape)
 
@@ -106,6 +111,8 @@ def _color_overlay_operation(img, color, opacity, write=True):
 		_write_file(img)
 
 	return img
+
+
 
 
 def _saturation_handler(img_paths, percent, method, write=True):
@@ -144,6 +151,7 @@ def _saturation_handler(img_paths, percent, method, write=True):
 
 		else:
 			raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
 
 def _saturation_operation(img, percent, method, write=True):
 	type_map = {"s": 1, "ds": -1}
