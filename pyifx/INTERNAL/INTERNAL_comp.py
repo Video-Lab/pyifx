@@ -41,12 +41,6 @@ def _resize_operation(img, new_size, write=True):
 	width_factor = math.floor(img_size[1]/img.image[1])
 	height_factor = math.floor(img_size[0]/img.image[0])
 
-	if width_factor == 0:
-		width_factor = 1
-
-	if height_factor == 0:
-		height_factor = 1
-
 	if (img.image[0]*img.image[1] < img_size[0]*img_size[1]):
 		return _expand_operation(img, img_size, width_factor, height_factor, write=write)
 
@@ -84,4 +78,11 @@ def _compress_operation(img, img_size, width_factor, height_factor, write=True):
 	pass
 
 def _out_of_bounds_check(new_loc, index_range):
-	pass
+	new_loc = [math.floor(i) for i in new_loc]
+
+	for d in range(len(new_loc)):
+
+		if new_loc[d] > index_range[d]-1:
+			new_loc[d] = index_range[d]-1 
+
+	return new_loc
