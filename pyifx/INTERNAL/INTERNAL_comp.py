@@ -61,8 +61,8 @@ def _expand_operation(img, img_size, width_factor, height_factor, write=True):
 			new_loc = [r*height_factor, p*width_factor]
 			new_loc = _out_of_bounds_check(new_loc, img_size)
 
-			for r_new in range(r, new_loc[1]):
-				for p_new in range(p, new_loc[0]):
+			for r_new in range(r, new_loc[1]+1):
+				for p_new in range(p, new_loc[0]+1):
 					new_img[r_new][p_new] = val
 
 	new_img = misc.PyifxImage(img.path, img.output_path, new_img)
@@ -75,7 +75,26 @@ def _expand_operation(img, img_size, width_factor, height_factor, write=True):
 
 
 def _compress_operation(img, img_size, width_factor, height_factor, write=True):
-	pass
+		
+	new_img = np.empty(shape=img_size)
+
+	for r in range(len(img.image)):
+		for p in range(len(img.image[r])):
+
+			val = img.image[r][p]
+			new_loc = [r*height_factor, p*width_factor]
+			new_loc = _out_of_bounds_check(new_loc, img_size)
+
+			for r_new in range(r, new_loc[1]+1):
+				for p_new in range(p, new_loc[0]+1):
+					new_img[r_new][p_new] = val
+
+	new_img = misc.PyifxImage(img.path, img.output_path, new_img)
+
+	if write:
+		_write_file(new_img)
+
+	return new_img
 
 def _out_of_bounds_check(new_loc, index_range):
 	new_loc = [math.floor(i) for i in new_loc]
