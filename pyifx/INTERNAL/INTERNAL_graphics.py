@@ -68,10 +68,10 @@ def _convolute_over_image(img, kernel, write=True):
 				new_img[r][p][c] = min(255, max(0, new_pixel_value))	
 
 
-	img.image = new_img
+	new_img = misc.PyifxImage(img.path, img.output_path, new_img)
 	if write:
-		_write_file(img)
-	return img
+		_write_file(new_img)
+	return new_img
 
 def _blur_handler(img_paths, radius, type_kernel, size, write=True):
 
@@ -82,21 +82,26 @@ def _blur_handler(img_paths, radius, type_kernel, size, write=True):
 		if not os.path.exists(img_paths.odir):
 			os.makedirs(img_paths.odir)
 
-		new_imgs = img_paths.volume
+		new_vol = img_paths
+		new_vol.volume = []
 
 		for img in new_imgs:
-			return _blur_operation(img, kernel, write=write)
+			new_vol.volume.append(_blur_operation(img, kernel, write=write))
+
+		return new_vol
 
 	elif type(img_paths) == misc.PyifxImage:
 		return _blur_operation(img_paths, kernel, write=write)
 
 	elif type(img_paths) == list:
+		new_imgs = []
 
 		for img in img_paths:
 			if type(img) != misc.PyifxImage:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
-			return _blur_operation(img, kernel, write=write)
+			new_imgs.append(_blur_operation(img, kernel, write=write))
+		return new_imgs
 
 def _blur_operation(img, kernel, write=True):
 	new_img = _convolute_over_image(img, kernel, write=False)
@@ -113,35 +118,45 @@ def _pixelate_handler(img_paths, factor, write=True):
 		if not os.path.exists(img_paths.odir):
 			os.makedirs(img_paths.odir)
 
-		new_imgs = img_paths.volume
+		new_vol = img_paths
+		new_vol.volume = []
 
 		for img in new_imgs:
-			return _pixelate_operation(img, factor, write=write)
+			new_vol.volume.append(_pixelate_operation(img, factor, write=write))
+
+		return new_vol
 
 	elif type(img_paths) == misc.PyifxImage:
 		return _pixelate_operation(img_paths, factor, write=write)
 
 	elif type(img_paths) == list:
+		new_imgs = []
 
 		for img in img_paths:
 			if type(img) != misc.PyifxImage:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
-			return _pixelate_operation(img, factor, write=write)
+			new_imgs.append(_pixelate_operation(img, factor, write=write))
+
+		return new_imgs
 
 def _pixelate_operation(img, factor, write=True):
-	
-	for r in range(0, len(img.image)-factor, factor+1):
-		for p in range(0, len(img.image[r])-factor, factor+1):
+	new_img = np.empty(shape=img.image.shape)
+
+	for r in range(0, len(new_img)-factor, factor+1):
+		for p in range(0, len(new_img[r])-factor, factor+1):
 			value = img.image[r][p]
 
 			for row_fill in range(r, r+factor+1):
 				for column_fill in range(p, p+factor+1):
-					img.image[row_fill][column_fill] = value
-	if write:
-		_write_file(img)
+					new_img[row_fill][column_fill] = value
 
-	return img
+	new_img = misc.PyifxImage(img.path, img.output_path, new_img)
+
+	if write:
+		_write_file(new_img)
+
+	return new_img
 
 def _detect_edges_handler(img_paths, write=True):
 	if type(img_paths) == misc.ImageVolume:
@@ -149,21 +164,27 @@ def _detect_edges_handler(img_paths, write=True):
 		if not os.path.exists(img_paths.odir):
 			os.makedirs(img_paths.odir)
 
-		new_imgs = img_paths.volume
+		new_vol = img_paths
+		new_vol.volume = []
 
 		for img in new_imgs:
-			return _detect_edges_operation(img, write=write)
+			new_vol.volume.append(_detect_edges_operation(img, write=write))
+
+		return new_vol
 
 	elif type(img_paths) == misc.PyifxImage:
 		return _detect_edges_operation(img_paths, write=write)
 
 	elif type(img_paths) == list:
+		new_imgs = []
 
 		for img in img_paths:
 			if type(img) != misc.PyifxImage:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
-			return _detect_edges_operation(img, write=write)
+			new_imgs.append(_detect_edges_operation(img, write=write))
+
+		return new_imgs
 
 def _detect_edges_operation(img, write=True):
 	x_dir_kernel = _create_kernel(None, "x-sobel", None)

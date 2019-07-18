@@ -21,6 +21,11 @@ img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
 
 # TESTS TODO
 
+img = PyifxImage("tests/imgs/f/512x512-jpeg-1.jpg", "tests/imgs/f/__512x512-jpeg-1.jpg")
+
+to_grayscale(img)
+pixelate(img, 10)
+
 # COMPLETED TESTS
 
 # brighten(ImageVolume("tests/imgs/", "tests/imgs/brightenedImages", "_"), 0.6) - Image volume class test
