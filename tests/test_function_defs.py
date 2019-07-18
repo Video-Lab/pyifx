@@ -104,261 +104,116 @@ def combine(img1, img2, out_path):
 	img.image = new_img.astype(np.uint8)
 	return img
 
-#INTERNAL_graphics.py
+def _resize_handler(img_paths, new_size, write=True):
 
-def _create_kernel(radius, type_kernel, size):
+	if type(img_paths) == ImageVolume:
 
-	if size != None:
-		if len(size) != 2:
-			raise ValueError("Incorrect tuple dimensions used.")
+				if not os.path.exists(img_paths.odir):
+					os.makedirs(img_paths.odir)
 
-	kernel = None
+				new_vol = img_paths
+				new_vol.volume = [] 
 
-	if type_kernel == "gaussian":
+				for img in img_paths.volume:
+					new_vol.volume.append(_resize_operation(img, new_size, write=write))
 
-		if size == None:
-			size = int(2*radius)
-			if size % 2 == 0:
-				size += 1
+				return new_vol
 
-			size = (size, size)
+			elif type(img_paths) == PyifxImage:
+				return _resize_operation(img_paths, new_size, write=write)
 
-		m,n = [(ss-1.)/2. for ss in size]
-		y,x = np.ogrid[-m:m+1,-n:n+1]
-		kernel = np.exp( -(x*x + y*y) / (2.*radius*radius) )
-		kernel[ kernel < np.finfo(kernel.dtype).eps*kernel.max() ] = 0
-		sumh = kernel.sum()
-		if sumh != 0:
-			kernel /= sumh
+			elif type(img_paths) == list:
+				new_imgs = []
 
-	elif type_kernel == "mean":
-		if radius % 2 == 0:
-			radius += 1
-			
-		divider = radius**2
-		kernel = np.array([[1/divider for r in range(radius)] for h in range(radius)])
+				for img in img_paths:
 
-	elif type_kernel == "y-sobel":
-		return np.array([[-1,-2,-1], [0,0,0], [1,2,1]])
-		
+					if type(img) != PyifxImage:
+						raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
-	elif type_kernel == "x-sobel":
-		return np.array([[-1,0,1], [-2,0,2], [-1,0,1]])
+					return new_imgs.append(_resize_operation(img, new_size, write=write))
+				return new_imgs
+
+			else:
+				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+
+def _resize_operation(img, new_size, write=True):
+	img_size = [int(d) for d in new_size.split('x')]
+	img_size.append(3)
+	img_size[0], img_size[1] = img_size[1], img_size[0]
+
+	width_factor = math.floor(img_size[1]/img.image[1])
+	height_factor = math.floor(img_size[0]/img.image[0])
+
+	if (img.image[0]*img.image[1] < img_size[0]*img_size[1]):
+		return _expand_operation(img, img_size, width_factor, height_factor, write=write)
 
 	else:
-		raise Exception("Something went wrong. Please try again.")
+		return _compress_operation(img, img_size, width_factor, height_factor, write=write)
 
-	kernel = np.flip(kernel, axis=1)
 
-	return kernel
 
-def _convolute_over_image(img, kernel):
-	new_img = np.empty(shape=img.image.shape)
-	k_height = math.floor(kernel.shape[0]/2)
-	k_width = math.floor(kernel.shape[1]/2)
+
+def _expand_operation(img, img_size, width_factor, height_factor, write=True):
+	
+	new_img = np.empty(shape=img_size)
 
 	for r in range(len(img.image)):
 		for p in range(len(img.image[r])):
-			for c in range(len(img.image[r][p])):
 
-				new_pixel_value = 0
-				for row in range(-k_height, k_height+1):
-					for column in range(-k_width, k_width+1):
+			val = img.image[r][p]
+			new_loc = [r*height_factor, p*width_factor]
+			new_loc = _out_of_bounds_check(new_loc, img_size)
 
-						try:
-							new_pixel_value += img.image[r+column][p+row][c]*kernel[row+k_height][column+k_width]
-						except IndexError:
-							pass
+			for r_new in range(r, new_loc[1]+1):
+				for p_new in range(p, new_loc[0]+1):
+					new_img[r_new][p_new] = val
 
-				new_img[r][p][c] = min(255, max(0, new_pixel_value))
+	new_img = PyifxImage(img.path, img.output_path, new_img)
 
-	img.image = new_img
-	return img
+	if write:
+		_write_file(new_img)
 
-def _blur(img_paths, radius, type_kernel, size):
-
-	kernel = _create_kernel(radius, type_kernel, size)	
-
-	if type(img_paths) == ImageVolume:
-
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
-
-		new_imgs = img_paths.volume
-
-		for img in new_imgs:
-			_blur_operation(img, kernel)
-
-	elif type(img_paths) == PyifxImage:
-		_blur_operation(img_paths, kernel)
-
-	elif type(img_paths) == list:
-
-		for img in img_paths:
-			if type(img) != PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
-
-			_blur_operation(img, kernel)
-
-def _blur_operation(img, kernel):
-	new_img = _convolute_over_image(img, kernel)
-
-	new_img.image = new_img.image.astype(np.uint8)
-	_write_file(new_img)
 	return new_img
 
-def _pixelate_handler(img_paths, factor):
 
-	if type(img_paths) == ImageVolume:
 
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
+def _compress_operation(img, img_size, width_factor, height_factor, write=True):
+		
+	new_img = np.empty(shape=img_size)
 
-		new_imgs = img_paths.volume
+	for r in range(len(img.image)):
+		for p in range(len(img.image[r])):
 
-		for img in new_imgs:
-			_pixelate_operation(img, factor)
+			val = img.image[r][p]
+			new_loc = [r*height_factor, p*width_factor]
+			new_loc = _out_of_bounds_check(new_loc, img_size)
 
-	elif type(img_paths) == PyifxImage:
-		_pixelate_operation(img_paths, factor)
+			for r_new in range(r, new_loc[1]+1):
+				for p_new in range(p, new_loc[0]+1):
+					new_img[r_new][p_new] = val
 
-	elif type(img_paths) == list:
+	new_img = PyifxImage(img.path, img.output_path, new_img)
 
-		for img in img_paths:
-			if type(img) != PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+	if write:
+		_write_file(new_img)
 
-			_pixelate_operation(img, factor)
+	return new_img
 
-def _pixelate_operation(img, factor):
-	
-	for r in range(0, len(img.image)-factor, factor+1):
-		for p in range(0, len(img.image[r])-factor, factor+1):
-			value = img.image[r][p]
+def _out_of_bounds_check(new_loc, index_range):
+	new_loc = [math.floor(i) for i in new_loc]
 
-			for row_fill in range(r, r+factor+1):
-				for column_fill in range(p, p+factor+1):
-					img.image[row_fill][column_fill] = value
+	for d in range(len(new_loc)):
 
-	_write_file(img)
-	return img
+		if new_loc[d] > index_range[d]-1:
+			new_loc[d] = index_range[d]-1 
 
-def _detect_edges_handler(img_paths):
-	if type(img_paths) == ImageVolume:
+	return new_loc
 
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
+# comp.py
 
-		new_imgs = img_paths.volume
-
-		for img in new_imgs:
-			_detect_edges_operation(img)
-
-	elif type(img_paths) == PyifxImage:
-		_detect_edges_operation(img_paths)
-
-	elif type(img_paths) == list:
-
-		for img in img_paths:
-			if type(img) != PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
-
-			_detect_edges_operation(img)
-
-def _detect_edges_operation(img):
-	x_dir_kernel = _create_kernel(None, "x-sobel", None)
-	y_dir_kernel = _create_kernel(None, "y-sobel", None)
-
-	x_dir_img = to_grayscale(_convolute_over_image(img, x_dir_kernel))
-	y_dir_img = to_grayscale(_convolute_over_image(img, y_dir_kernel))
-
-	edge_img = combine(x_dir_img, y_dir_img, img.output_path)
-	_write_file(edge_img)
-	return edge_img
-
-# graphics.py
-
-def blur_gaussian(img_paths, radius=1.5, size=None):
-	_type_checker(radius, [int, float])
+def resize(img_paths, new_size, write=True):
+	_type_checker(new_size, [str])
 	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
 
-	_blur(img_paths, radius=radius, type_kernel="gaussian", size=size)
-
-def blur_mean(img_paths, radius=3):
-	_type_checker(radius, [int])
-	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
-
-	size = (radius, radius)
-	_blur(img_paths, radius=radius, type_kernel="mean", size=size)
-
-def pixelate(img_paths, factor=4):
-	_type_checker(factor, [int])
-	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
-
-	_pixelate_handler(img_paths, factor)
-
-def detect_edges(img_paths):
-	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
-
-	_detect_edges_handler(img_paths)
-
-
-
-# hsl.py 
-
-def to_grayscale(img_paths):
-	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
-
-	return _saturation_handler(img_paths, 1, "ds")
-
-
-#INTERNAL_hsl.py
-
-def _saturation_handler(img_paths, percent, method):
-	if type(img_paths) == ImageVolume:
-
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
-
-		new_imgs = img_paths.volume
-
-		for img in new_imgs:
-			if method == "s" or method == "ds":
-				return _saturation_operation(img, percent, method)
-			else:
-				raise Exception("Something went wrong. Please try again.")
-
-	elif type(img_paths) == PyifxImage:
-		if method == "s" or method == "ds":
-			return _saturation_operation(img_paths, percent, method)
-		else:
-			raise Exception("Something went wrong. Please try again.")
-
-	elif type(img_paths) == list:
-
-		for img in img_paths:
-			if type(img) != PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
-			if method == "s" or method == "ds":
-				return _saturation_operation(img, percent, method)
-			else:
-				raise Exception("Something went wrong. Please try again.")
-
-		else:
-			raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
-
-def _saturation_operation(img, percent, method):
-	type_map = {"s": 1, "ds": -1}
-
-	for row in range(len(img.image)):
-		for p in range(len(img.image[row])):
-
-			gray_val = sum(img.image[row][p])/3
-			for v in range(len(img.image[row][p])):
-
-				value = img.image[row][p][v]
-				diff = gray_val - value
-				pixel_change = diff * (type_map[method]*percent)
-				img.image[row][p][v] = max(0, min((img.image[row][p][v]-pixel_change), 255))
-
-	return img
+	return _resize_handler(img_paths, new_size, write)	
