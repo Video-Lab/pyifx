@@ -33,13 +33,31 @@ def _resize_handler(img_paths, new_size, write=True):
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
 
-def _resize_operation(img, new_size):
-	pass
+def _resize_operation(img, new_size, write=True):
+	img_size = [int(d) for d in new_size.split('x')]
+	img_size.append(3)
+	img_size[0], img_size[1] = img_size[1], img_size[0]
+
+	width_factor = math.floor(img_size[1]/img.image[1])
+	height_factor = math.floor(img_size[0]/img.image[0])
+
+	if width_factor == 0:
+		width_factor = 1
+
+	if height_factor == 0:
+		height_factor = 1
+
+	if (img.image[0]*img.image[1] < img_size[0]*img_size[1]):
+		return _expand_operation(img, img_size, width_factor, height_factor, write=write)
+
+	else:
+		return _compress_operation(img, img_size, width_factor, height_factor, write=write)
 
 
-def _expand_operation(img, new_size):
-	pass
 
 
-def _compress_operation(img, new_size):
+def _expand_operation(img, img_size, width_factor, height_factor, write=True):	
+
+
+def _compress_operation(img, img_size, width_factor, height_factor, write=True):
 	pass
