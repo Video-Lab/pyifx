@@ -33,6 +33,9 @@ def _blur_handler(img_paths, radius, type_kernel, size, write=True):
 
 		return new_imgs
 
+	else:
+		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")	
+
 
 def _blur_operation(img, kernel, write=True):
 
@@ -110,6 +113,9 @@ def _pixelate_handler(img_paths, factor, write=True):
 
 		return new_imgs
 
+	else:
+		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
 
 def _pixelate_operation(img, factor, write=True):
 
@@ -166,6 +172,9 @@ def _detect_edges_handler(img_paths, write=True):
 			new_imgs.append(_detect_edges_operation(img, write=write))
 
 		return new_imgs
+
+	else:
+		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
 
 def _detect_edges_operation(img, write=True):

@@ -22,7 +22,7 @@ def _resize_handler(img_paths, new_size, write=True):
 				new_imgs = []
 
 				for img in img_paths:
-					
+
 					if type(img) != misc.PyifxImage:
 						raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
@@ -32,11 +32,14 @@ def _resize_handler(img_paths, new_size, write=True):
 			else:
 				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
+
 def _resize_operation(img, new_size):
 	pass
 
+
 def _expand_operation(img, new_size):
 	pass
+
 
 def _compress_operation(img, new_size):
 	pass
