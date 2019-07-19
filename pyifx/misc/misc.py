@@ -1,12 +1,13 @@
 import INTERNAL
 
 class PyifxImage():
-	def __init__(self, path, out_path=None, create_image=True):
+	def __init__(self, path, out_path=None, img=None, create_image=True):
 		self.path = path
 		self.output_path = out_path
-		self.image = None
+		self.image = img
 		if create_image:
 			self.image = np.asarray(imageio.imread(path))
+		
 
 
 	@classmethod
@@ -14,6 +15,9 @@ class PyifxImage():
 		i = cls(None)
 		i.image = image
 		return i
+
+
+
 
 class ImageVolume():
 	def __init__(self, i, o, p="_"):
@@ -28,6 +32,9 @@ class ImageVolume():
 
 		return new_imgs
 
+
+
+
 def combine(img1, img2, out_path):
 	if img1.image.shape[0]*img1.image.shape[0] <= img2.image.shape[0]*img2.image.shape[1]:
 		shape = img1.image.shape
@@ -40,11 +47,10 @@ def combine(img1, img2, out_path):
 		for p in range(len(img1.image[r])):
 			for c in range(len(img1.image[r][p])):
 				try:
-					new_img[r][p][c] = (img1.image[r][p][c]+img2.image[r][p][c])/2
+					new_img[r][p][c] = min(255, max(0, (img1.image[r][p][c]+img2.image[r][p][c])/2))
 				except IndexError:
 					pass
 
-	img = PyifxImage(None, out_path, False)
-	img.image = new_img
+	img = misc.PyifxImage(None, out_path, new_img, False)
 	return img
 

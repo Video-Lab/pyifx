@@ -3,8 +3,8 @@ in the file named "test_function_defs.py" for the purpose of testing. """
 
 from test_function_defs import *
 
-out_path_1 = "tests/imgs/blur/__512x512-jpg-1.jpg"
-out_path_2 = "tests/imgs/edge/EDGE-512x512-jpeg-1.jpg"
+out_path_1 = "tests/imgs/resize/STRETCHED-512x512-jpg-1.jpg"
+out_path_2 = "tests/imgs/resize/STRETCHED-1024x1024-jpeg-1.jpg"
 
 img_list = [PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/bright/list/__512x512-jpg-1.jpg"),
 PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/bright/list/__512x512-jpeg-1.jpg"),
@@ -13,7 +13,7 @@ PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/dark/list/__512x512-jpg-1
 PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/dark/list/__512x512-jpeg-1.jpg"),
 PyifxImage("tests/imgs/512x512-png-1.png", "tests/imgs/dark/list/__512x512-png-1.png")]
 
-img_vol = ImageVolume("tests/imgs/", "tests/imgs/pixelate/vol/", "__")
+img_vol = ImageVolume("tests/imgs/", "tests/imgs/resize/vol/", "RESIZED-")
 img_vol_dark = ImageVolume("tests/imgs", "tests/imgs/dark/vol", "__")
 
 img_1 = PyifxImage("tests/imgs/512x512-jpg-1.jpg", out_path_1)
@@ -61,5 +61,10 @@ img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
 
 # detect_edges(img_1)
 # detect_edges(img_2) - Edge detection tests
+
+# resize(img_1, "1024x1024")
+# resize(img_1, "512x1024")
+# resize(img_1, "256x256")
+# resize(img_2, "768x2549") - Resize tests
 
 # FAILED TESTS
