@@ -39,32 +39,20 @@ def _resize_operation(img, new_size, write=True):
 	img_size.append(3)
 	img_size[0], img_size[1] = img_size[1], img_size[0]
 
-	width_factor = math.floor(img_size[1]/img.image.shape[1])
-	height_factor = math.floor(img_size[0]/img.image.shape[0])
+	width_factor = img_size[1]/img.image.shape[1]
+	height_factor = img_size[0]/img.image.shape[0]
 
-	if (img.image.shape[0]*img.image.shape[1] < img_size[0]*img_size[1]):
-		return _expand_operation(img, img_size, width_factor, height_factor, write=write)
+	new_img = np.full(shape=img_size, fill_value=None)
 
-	else:
-		return _compress_operation(img, img_size, width_factor, height_factor, write=write)
+	for r in range(len(new_img)):
+		for p in range(len(new_img[r])):
+			for c in range(len(new_img[r][p])):
 
-
-
-
-def _expand_operation(img, img_size, width_factor, height_factor, write=True):
-	
-	new_img = np.empty(shape=img_size)
-
-	for r in range(len(img.image)):
-		for p in range(len(img.image[r])):
-
-			val = img.image[r][p]
-			new_loc = [r*height_factor, p*width_factor]
-			new_loc = _out_of_bounds_check(new_loc, img_size)
-
-			for r_new in range(r, new_loc[1]+1):
-				for p_new in range(p, new_loc[0]+1):
-					new_img[r_new][p_new] = val
+				if new_img[r][p][c] != None:
+						new_img[r][p][c] += img.image[math.floor(r/height_factor)][math.floor(p/width_factor)][c]
+						new_img[r][p][c] = math.floor(new_img[r][p][c]/2)
+				else:
+					new_img[r][p][c] = img.image[math.floor(r/height_factor)][math.floor(p/width_factor)][c]
 
 	new_img = misc.PyifxImage(img.path, img.output_path, new_img, False)
 
@@ -73,36 +61,9 @@ def _expand_operation(img, img_size, width_factor, height_factor, write=True):
 
 	return new_img
 
+def _type_checker(var, types):
+	if type(var) in types:
+		return True
 
-
-def _compress_operation(img, img_size, width_factor, height_factor, write=True):
-
-	new_img = np.empty(shape=img_size)
-
-	for r in range(len(img.image)):
-		for p in range(len(img.image[r])):
-
-			val = img.image[r][p]
-			new_loc = [r*height_factor, p*width_factor]
-			new_loc = _out_of_bounds_check(new_loc, img_size)
-
-			for r_new in range(r, new_loc[1]+1):
-				for p_new in range(p, new_loc[0]+1):
-					new_img[r_new][p_new] = val
-
-	new_img = misc.PyifxImage(img.path, img.output_path, new_img, False)
-
-	if write:
-		_write_file(new_img)
-
-	return new_img
-
-def _out_of_bounds_check(new_loc, index_range):
-	new_loc = [math.floor(i) for i in new_loc]
-
-	for d in range(len(new_loc)):
-
-		if new_loc[d] > index_range[d]-1:
-			new_loc[d] = index_range[d]-1 
-
-	return new_loc
+	raise TypeError("Please use correct variable types.")
+	return False

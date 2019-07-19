@@ -47,10 +47,10 @@ def combine(img1, img2, out_path):
 		for p in range(len(img1.image[r])):
 			for c in range(len(img1.image[r][p])):
 				try:
-					new_img[r][p][c] = (img1.image[r][p][c]+img2.image[r][p][c])/2
+					new_img[r][p][c] = min(255, max(0, (img1.image[r][p][c]+img2.image[r][p][c])/2))
 				except IndexError:
 					pass
 
-	img = PyifxImage(None, out_path, new_img, False)
+	img = misc.PyifxImage(None, out_path, new_img, False)
 	return img
 
