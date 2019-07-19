@@ -13,7 +13,8 @@ Most features of this project (eg. docs, contribution guides) will be added once
 0.1.2 - Create kernel based on blur type <br />
 0.1.3 - Added pixelation <br />
 0.1.4 - Added edge detection <br />
-<b> 0.2.0 - Graphics module added (CURRENT)</b> <br />
+0.2.0 - Graphics module added <br />
+<b>0.2.1 - Resize feature added (CURRENT)</b> <br />
 
 ## Features
 pyifx contains 4 main modules, giving users access to functions such as:
