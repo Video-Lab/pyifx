@@ -1,12 +1,13 @@
 import INTERNAL
 
 class PyifxImage():
-	def __init__(self, path, out_path=None, create_image=True):
+	def __init__(self, path, out_path=None, img=None, create_image=True):
 		self.path = path
 		self.output_path = out_path
-		self.image = None
+		self.image = img
 		if create_image:
 			self.image = np.asarray(imageio.imread(path))
+		
 
 
 	@classmethod
@@ -50,7 +51,6 @@ def combine(img1, img2, out_path):
 				except IndexError:
 					pass
 
-	img = PyifxImage(None, out_path, False)
-	img.image = new_img
+	img = PyifxImage(None, out_path, new_img, False)
 	return img
 

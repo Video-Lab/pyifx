@@ -44,6 +44,7 @@ def _write_file(img):
 		out_path += f" ({file_count})"
 		file_count += 1
 
+	img.image = img.image.astype(np.uint8)
 	imageio.imwrite(out_path + extension, img.image)
 	return img
 
@@ -57,12 +58,13 @@ def _type_checker(var, types):
 # misc.py
 
 class PyifxImage():
-	def __init__(self, path, out_path=None, create_image=True):
+	def __init__(self, path, out_path=None, img=None, create_image=True):
 		self.path = path
 		self.output_path = out_path
-		self.image = None
+		self.image = img
 		if create_image == True:
 			self.image = np.asarray(imageio.imread(path))
+		
 
 
 	@classmethod
@@ -100,41 +102,41 @@ def combine(img1, img2, out_path):
 				except IndexError:
 					pass
 
-	img = PyifxImage(None, out_path, False)
-	img.image = new_img.astype(np.uint8)
+	img = PyifxImage(None, out_path, new_img, False)
 	return img
 
 def _resize_handler(img_paths, new_size, write=True):
 
 	if type(img_paths) == ImageVolume:
 
-				if not os.path.exists(img_paths.odir):
-					os.makedirs(img_paths.odir)
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
 
-				new_vol = img_paths
-				new_vol.volume = [] 
+		new_vol = img_paths
+		new_vol.volume = [] 
 
-				for img in img_paths.volume:
-					new_vol.volume.append(_resize_operation(img, new_size, write=write))
+		for img in img_paths.volume:
+			new_vol.volume.append(_resize_operation(img, new_size, write=write))
 
-				return new_vol
+		return new_vol
 
-			elif type(img_paths) == PyifxImage:
-				return _resize_operation(img_paths, new_size, write=write)
+	elif type(img_paths) == PyifxImage:
+		return _resize_operation(img_paths, new_size, write=write)
 
-			elif type(img_paths) == list:
-				new_imgs = []
+	elif type(img_paths) == list:
+		new_imgs = []
 
-				for img in img_paths:
+		for img in img_paths:
 
-					if type(img) != PyifxImage:
-						raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+			if type(img) != PyifxImage:
+					raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
-					return new_imgs.append(_resize_operation(img, new_size, write=write))
-				return new_imgs
+			new_imgs.append(_resize_operation(img, new_size, write=write))
 
-			else:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+			return new_imgs
+
+	else:
+		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
 
 def _resize_operation(img, new_size, write=True):
@@ -142,74 +144,28 @@ def _resize_operation(img, new_size, write=True):
 	img_size.append(3)
 	img_size[0], img_size[1] = img_size[1], img_size[0]
 
-	width_factor = math.floor(img_size[1]/img.image[1])
-	height_factor = math.floor(img_size[0]/img.image[0])
+	width_factor = img_size[1]/img.image.shape[1]
+	height_factor = img_size[0]/img.image.shape[0]
 
-	if (img.image[0]*img.image[1] < img_size[0]*img_size[1]):
-		return _expand_operation(img, img_size, width_factor, height_factor, write=write)
+	new_img = np.full(shape=img_size, fill_value=None)
 
-	else:
-		return _compress_operation(img, img_size, width_factor, height_factor, write=write)
+	for r in range(len(new_img)):
+		for p in range(len(new_img[r])):
+			for c in range(len(new_img[r][p])):
 
+				if new_img[r][p][c] != None:
+						new_img[r][p][c] += img.image[math.floor(r/height_factor)][math.floor(p/width_factor)][c]
+						new_img[r][p][c] = math.floor(new_img[r][p][c]/2)
+				else:
+					new_img[r][p][c] = img.image[math.floor(r/height_factor)][math.floor(p/width_factor)][c]
 
+	new_img = PyifxImage(img.path, img.output_path, new_img, False)
 
+	if write:
+		_write_file(new_img)
 
-def _expand_operation(img, img_size, width_factor, height_factor, write=True):
+	return new_img
 	
-	new_img = np.empty(shape=img_size)
-
-	for r in range(len(img.image)):
-		for p in range(len(img.image[r])):
-
-			val = img.image[r][p]
-			new_loc = [r*height_factor, p*width_factor]
-			new_loc = _out_of_bounds_check(new_loc, img_size)
-
-			for r_new in range(r, new_loc[1]+1):
-				for p_new in range(p, new_loc[0]+1):
-					new_img[r_new][p_new] = val
-
-	new_img = PyifxImage(img.path, img.output_path, new_img)
-
-	if write:
-		_write_file(new_img)
-
-	return new_img
-
-
-
-def _compress_operation(img, img_size, width_factor, height_factor, write=True):
-		
-	new_img = np.empty(shape=img_size)
-
-	for r in range(len(img.image)):
-		for p in range(len(img.image[r])):
-
-			val = img.image[r][p]
-			new_loc = [r*height_factor, p*width_factor]
-			new_loc = _out_of_bounds_check(new_loc, img_size)
-
-			for r_new in range(r, new_loc[1]+1):
-				for p_new in range(p, new_loc[0]+1):
-					new_img[r_new][p_new] = val
-
-	new_img = PyifxImage(img.path, img.output_path, new_img)
-
-	if write:
-		_write_file(new_img)
-
-	return new_img
-
-def _out_of_bounds_check(new_loc, index_range):
-	new_loc = [math.floor(i) for i in new_loc]
-
-	for d in range(len(new_loc)):
-
-		if new_loc[d] > index_range[d]-1:
-			new_loc[d] = index_range[d]-1 
-
-	return new_loc
-
 # comp.py
 
 def resize(img_paths, new_size, write=True):

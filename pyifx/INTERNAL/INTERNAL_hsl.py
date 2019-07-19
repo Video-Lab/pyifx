@@ -53,7 +53,7 @@ def _brightness_operation(img, percent, method, write=True):
 				else:
 					raise Exception("Something went wrong. Please try again.")
 
-	new_img = misc.PyifxImage(img.path, img.output_path, new_img)
+	new_img = misc.PyifxImage(img.path, img.output_path, new_img, False)
 
 	if write:
 		_write_file(img)
@@ -105,7 +105,7 @@ def _color_overlay_operation(img, color, opacity, write=True):
 				diff *= opacity
 				new_img[row][p][v] += diff
 
-	new_img = misc.PyifxImage(img.path, img.output_path, new_img)
+	new_img = misc.PyifxImage(img.path, img.output_path, new_img, False)
 
 	if write:
 		_write_file(img)
@@ -168,7 +168,7 @@ def _saturation_operation(img, percent, method, write=True):
 				pixel_change = diff * (type_map[method]*percent)
 				new_img[row][p][v] = max(0, min((img.image[row][p][v]-pixel_change), 255))
 
-	new_img = misc.PyifxImage(img.path, img.output_path, new_img)
+	new_img = misc.PyifxImage(img.path, img.output_path, new_img, False)
 	if write:
 		_write_file(img)
 		

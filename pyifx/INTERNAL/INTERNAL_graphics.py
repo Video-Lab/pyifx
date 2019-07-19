@@ -71,7 +71,7 @@ def _convolute_over_image(img, kernel, write=True):
 
 				new_img[r][p][c] = min(255, max(0, new_pixel_value))	
 
-	new_img = misc.PyifxImage(img.path, img.output_path, new_img)
+	new_img = misc.PyifxImage(img.path, img.output_path, new_img, False)
 
 	if write:
 		_write_file(new_img)
@@ -131,7 +131,7 @@ def _pixelate_operation(img, factor, write=True):
 
 					new_img[row_fill][column_fill] = value
 
-	new_img = misc.PyifxImage(img.path, img.output_path, new_img)
+	new_img = misc.PyifxImage(img.path, img.output_path, new_img, False)
 
 	if write:
 		_write_file(new_img)
