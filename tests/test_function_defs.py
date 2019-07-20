@@ -182,7 +182,7 @@ def _change_file_type_handler(img_paths, new_type, write=True):
 		return new_vol
 
 	elif type(img_paths) == PyifxImage:
-		return _change_file_type_operation(img, new_type, write=write)
+		return _change_file_type_operation(img_paths, new_type, write=write)
 
 	elif type(img_paths) == list:
 		new_imgs = []
