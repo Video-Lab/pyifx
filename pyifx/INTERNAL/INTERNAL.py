@@ -59,3 +59,10 @@ def _write_file(img):
 	img.image = img.image.astype(np.uint8)
 	imageio.imwrite(out_path + extension, img.image)
 	return img
+
+def _type_checker(var, types):
+	if type(var) in types:
+		return True
+
+	raise TypeError("Please use correct variable types.")
+	return False

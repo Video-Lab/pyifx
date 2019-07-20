@@ -61,9 +61,11 @@ def _resize_operation(img, new_size, write=True):
 
 	return new_img
 
-def _type_checker(var, types):
-	if type(var) in types:
-		return True
 
-	raise TypeError("Please use correct variable types.")
-	return False
+
+
+def _change_file_type_handler(img_paths, new_type, write=True):
+	pass
+
+def _change_file_type_operation(img, new_type, write=True):
+	pass
