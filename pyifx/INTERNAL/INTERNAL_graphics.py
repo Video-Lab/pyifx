@@ -1,8 +1,8 @@
 from INTERNAL import *
 
-def _blur_handler(img_paths, radius, type_kernel, size, write=True):
+def _blur_handler(img_paths, radius, type_kernel, size, custom=None, write=True):
 
-	kernel = _create_kernel(radius, type_kernel, size)	
+	kernel = _create_kernel(radius, type_kernel, size, custom=custom)	
 
 	if type(img_paths) == misc.ImageVolume:
 
@@ -196,7 +196,10 @@ def _detect_edges_operation(img, write=True):
 
 
 
-def _create_kernel(radius, type_kernel, size):
+def _create_kernel(radius, type_kernel, size, custom=None):
+
+	if custom:
+		return custom
 
 	if size != None:
 

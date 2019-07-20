@@ -22,3 +22,9 @@ def detect_edges(img_paths, write=True):
 	INTERNAL._type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
 
 	return INTERNAL._detect_edges_handler(img_paths, write=write)
+
+def convolute_custom(img_paths, kernel, write=True):
+	INTERNAL._type_checker(kernel, [np.ndarray])
+	INTERNAL._type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
+
+	return INTERNAL._blur_handler(img_paths, radius=None, type_kernel=None, size=None, custom=kernel, write=write)
