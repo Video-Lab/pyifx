@@ -97,4 +97,17 @@ def _change_file_type_handler(img_paths, new_type, write=True):
 		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
 
 def _change_file_type_operation(img, new_type, write=True):
-	pass
+
+	new_img = img
+	accepted_types = ['.jpg', '.png', '.jpeg', 'jpg', 'jpeg', 'png']	
+	if new_type not in accepted_types:
+		raise ValueError("New file type not in accepted file types.")
+
+	if new_type[0] != '.':
+		new_type = f".{new_type}"
+
+	new_img.output_path = os.path.splitext(new_img.output_path)[0] + new_type
+
+	if write:
+		_write_file(new_img)
+	return new_img
