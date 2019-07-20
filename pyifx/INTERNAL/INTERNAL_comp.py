@@ -24,17 +24,18 @@ def _resize_handler(img_paths, new_size, write=True):
 		for img in img_paths:
 
 			if type(img) != misc.PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+				raise TypeError("Input contains non-Pyifx images and/or classes.")
 
 			new_imgs.append(_resize_operation(img, new_size, write=write))
 
 		return new_imgs
 
 	else:
-		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+		raise TypeError("Input contains non-Pyifx images and/or classes.")
 
 
 def _resize_operation(img, new_size, write=True):
+
 	img_size = [int(d) for d in new_size.split('x')]
 	img_size.append(3)
 	img_size[0], img_size[1] = img_size[1], img_size[0]
@@ -87,14 +88,14 @@ def _change_file_type_handler(img_paths, new_type, write=True):
 		for img in img_paths:
 
 			if type(img) != misc.PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+				raise TypeError("Input contains non-Pyifx images and/or classes.")
 
 			new_imgs.append(_change_file_type_operation(img, new_type, write=write))
 
 		return new_imgs
 
 	else:
-		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+		raise TypeError("Input contains non-Pyifx images and/or classes.")
 
 
 def _change_file_type_operation(img, new_type, write=True):
@@ -139,12 +140,12 @@ def _rewrite_file(img_paths):
 		for img in img_paths:
 
 			if type(img) != misc.PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+				raise TypeError("Input contains non-Pyifx images and/or classes.")
 
 			new_imgs.append(_write_file(img))
 
 		return new_imgs
 
 	else:
-		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+		raise TypeError("Input contains non-Pyifx images and/or classes.")
 

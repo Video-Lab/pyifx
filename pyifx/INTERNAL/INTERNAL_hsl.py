@@ -13,7 +13,7 @@ def _brightness_handler(img_paths, percent, method, write=True):
 				if method == "b" or method == "d":
 					new_vol.volume.append(_brightness_operation(img, percent, method, write=write))
 				else:
-					raise Exception("Something went wrong. Please try again.")
+					raise Exception("An internal error occurred.")
 
 			return new_vol
 
@@ -21,22 +21,22 @@ def _brightness_handler(img_paths, percent, method, write=True):
 				if method == "b" or method == "d":
 					return _brightness_operation(img_paths, percent, method, write=write)
 				else:
-					raise Exception("Something went wrong. Please try again.")
+					raise Exception("An internal error occurred.")
 
 		elif type(img_paths) == list:
 			new_imgs = []
 
 			for img in img_paths:
 				if type(img) != misc.PyifxImage:
-					raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+					raise TypeError("Input contains non-Pyifx images and/or classes.")
 				if method == "b" or method == "d":
 					new_imgs.append(_brightness_operation(img, percent, method, write=write))
 				else:
-					raise Exception("Something went wrong. Please try again.")
+					raise Exception("Something went wrong.")
 			return new_imgs
 
 		else:
-			raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+			raise TypeError("Input contains non-Pyifx images and/or classes.")
 
 
 def _brightness_operation(img, percent, method, write=True):
@@ -51,7 +51,7 @@ def _brightness_operation(img, percent, method, write=True):
 				elif method == "d":
 					new_img[row][p][v] = max(0, value*(1-percent)-(value/6))
 				else:
-					raise Exception("Something went wrong. Please try again.")
+					raise Exception("An internal error occurred.")
 
 	new_img = misc.PyifxImage(img.path, img.output_path, new_img, False)
 
@@ -84,13 +84,13 @@ def _color_overlay_handler(img_paths, color, opacity, write=True):
 				new_imgs = []
 				for img in img_paths:
 					if type(img) != misc.PyifxImage:
-						raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+						raise TypeError("Input contains non-Pyifx images and/or classes.")
 
 					return new_imgs.append(_color_overlay_operation(img, color, opacity, write=write))
 				return new_imgs
 
 			else:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+				raise TypeError("Input contains non-Pyifx images and/or classes.")
 
 
 def _color_overlay_operation(img, color, opacity, write=True):
@@ -128,7 +128,7 @@ def _saturation_handler(img_paths, percent, method, write=True):
 			if method == "s" or method == "ds":
 				new_vol.volume.append(_saturation_operation(img, percent, method, write=write))
 			else:
-				raise Exception("Something went wrong. Please try again.")
+				raise Exception("An internal error occurred.")
 
 		return new_vol
 
@@ -136,21 +136,21 @@ def _saturation_handler(img_paths, percent, method, write=True):
 		if method == "s" or method == "ds":
 			return _saturation_operation(img_paths, percent, method, write=write)
 		else:
-			raise Exception("Something went wrong. Please try again.")
+			raise Exception("An internal error occurred.")
 
 	elif type(img_paths) == list:
 		new_imgs = []
 		for img in img_paths:
 			if type(img) != misc.PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+				raise TypeError("Input contains non-Pyifx images and/or classes.")
 			if method == "s" or method == "ds":
 				new_imgs.append(_saturation_operation(img, percent, method, write=write))
 			else:
-				raise Exception("Something went wrong. Please try again.")
+				raise Exception("An internal error occurred.")
 		return new_imgs
 
 		else:
-			raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+			raise TypeError("Input contains non-Pyifx images and/or classes.")
 
 
 def _saturation_operation(img, percent, method, write=True):
