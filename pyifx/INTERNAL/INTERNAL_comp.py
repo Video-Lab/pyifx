@@ -95,6 +95,7 @@ def _change_file_type_handler(img_paths, new_type, write=True):
 
 	else:
 		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+		
 
 def _change_file_type_operation(img, new_type, write=True):
 

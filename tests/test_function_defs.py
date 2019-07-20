@@ -165,6 +165,56 @@ def _resize_operation(img, new_size, write=True):
 		_write_file(new_img)
 
 	return new_img
+
+
+def _change_file_type_handler(img_paths, new_type, write=True):
+	if type(img_paths) == ImageVolume:
+
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
+
+		new_vol = img_paths
+		new_vol.volume = [] 
+
+		for img in img_paths.volume:
+			new_vol.volume.append(_change_file_type_operation(img, new_type, write=write))
+
+		return new_vol
+
+	elif type(img_paths) == PyifxImage:
+		return _change_file_type_operation(img, new_type, write=write)
+
+	elif type(img_paths) == list:
+		new_imgs = []
+
+		for img in img_paths:
+
+			if type(img) != PyifxImage:
+				raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+
+			new_imgs.append(_change_file_type_operation(img, new_type, write=write))
+
+		return new_imgs
+
+	else:
+		raise TypeError("Input contains non-Pyifx images and/or classes. Please try again.")
+		
+
+def _change_file_type_operation(img, new_type, write=True):
+
+	new_img = img
+	accepted_types = ['.jpg', '.png', '.jpeg', 'jpg', 'jpeg', 'png']	
+	if new_type not in accepted_types:
+		raise ValueError("New file type not in accepted file types.")
+
+	if new_type[0] != '.':
+		new_type = f".{new_type}"
+
+	new_img.output_path = os.path.splitext(new_img.output_path)[0] + new_type
+
+	if write:
+		_write_file(new_img)
+	return new_img
 	
 # comp.py
 
@@ -172,4 +222,10 @@ def resize(img_paths, new_size, write=True):
 	_type_checker(new_size, [str])
 	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
 
-	return _resize_handler(img_paths, new_size, write)	
+	return _resize_handler(img_paths, new_size, write)
+
+def change_file_type(img_paths, new_type, write=True):
+	_type_checker(new_type, [str])
+	_type_checker(img_paths, [PyifxImage, ImageVolume, list])
+
+	return _change_file_type_handler(img_paths, new_type, write=write)

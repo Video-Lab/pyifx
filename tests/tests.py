@@ -3,8 +3,8 @@ in the file named "test_function_defs.py" for the purpose of testing. """
 
 from test_function_defs import *
 
-out_path_1 = "tests/imgs/resize/STRETCHED-512x512-jpg-1.jpg"
-out_path_2 = "tests/imgs/resize/STRETCHED-1024x1024-jpeg-1.jpg"
+out_path_1 = "tests/imgs/type_change/512x512-jpeg-1.jpg"
+out_path_2 = "tests/imgs/type_change/512x512-png-1.jpg"
 
 img_list = [PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/bright/list/__512x512-jpg-1.jpg"),
 PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/bright/list/__512x512-jpeg-1.jpg"),
@@ -20,6 +20,11 @@ img_1 = PyifxImage("tests/imgs/512x512-jpg-1.jpg", out_path_1)
 img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
 
 # TESTS TODO
+
+change_file_type(img_1, '.jpeg')
+change_file_type(img_2, 'png')
+
+
 
 # COMPLETED TESTS
 
