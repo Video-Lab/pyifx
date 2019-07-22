@@ -28,7 +28,7 @@ def _brightness_handler(img_paths, percent, method, write=True):
 
 			for img in img_paths:
 				if type(img) != misc.PyifxImage:
-					raise TypeError("Input contains non-Pyifx images and/or classes.")
+					raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 				if method == "b" or method == "d":
 					new_imgs.append(_brightness_operation(img, percent, method, write=write))
 				else:
@@ -36,7 +36,7 @@ def _brightness_handler(img_paths, percent, method, write=True):
 			return new_imgs
 
 		else:
-			raise TypeError("Input contains non-Pyifx images and/or classes.")
+			raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 
 def _brightness_operation(img, percent, method, write=True):
@@ -84,13 +84,13 @@ def _color_overlay_handler(img_paths, color, opacity, write=True):
 				new_imgs = []
 				for img in img_paths:
 					if type(img) != misc.PyifxImage:
-						raise TypeError("Input contains non-Pyifx images and/or classes.")
+						raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 					return new_imgs.append(_color_overlay_operation(img, color, opacity, write=write))
 				return new_imgs
 
 			else:
-				raise TypeError("Input contains non-Pyifx images and/or classes.")
+				raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 
 def _color_overlay_operation(img, color, opacity, write=True):
@@ -142,7 +142,7 @@ def _saturation_handler(img_paths, percent, method, write=True):
 		new_imgs = []
 		for img in img_paths:
 			if type(img) != misc.PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes.")
+				raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 			if method == "s" or method == "ds":
 				new_imgs.append(_saturation_operation(img, percent, method, write=write))
 			else:
@@ -150,7 +150,7 @@ def _saturation_handler(img_paths, percent, method, write=True):
 		return new_imgs
 
 		else:
-			raise TypeError("Input contains non-Pyifx images and/or classes.")
+			raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 
 def _saturation_operation(img, percent, method, write=True):
