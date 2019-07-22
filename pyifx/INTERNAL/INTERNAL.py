@@ -28,6 +28,8 @@ def _check_path_type(path):
 
 
 def _convert_dir_to_images(dirc):
+	INTERNAL._type_checker(dirc, [str])
+	
 	images = []
 	possible_extensions = ['.jpg', '.jpeg', '.png']
 
