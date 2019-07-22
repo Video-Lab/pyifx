@@ -37,6 +37,9 @@ def _resize_handler(img_paths, new_size, write=True):
 def _resize_operation(img, new_size, write=True):
 
 	img_size = [int(d) for d in new_size.split('x')]
+	if len(img_size) != 2:
+		raise ValueError("Invalid size entered. Please use the format: 'WxH'")
+
 	img_size.append(3)
 	img_size[0], img_size[1] = img_size[1], img_size[0]
 
