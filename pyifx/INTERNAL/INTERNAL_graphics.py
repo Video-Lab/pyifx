@@ -199,6 +199,18 @@ def _detect_edges_operation(img, write=True):
 def _create_kernel(radius, type_kernel, size, custom=None):
 
 	if custom:
+		custom = np.array(custom)
+		for d in custom.shape:
+			if d % 2 == 0:
+				raise ValueError("Invalid value used: Kernel must have odd dimension sizes.")
+
+		def _check_if_int(arr):
+			for v in arr:
+				if type(v) == list:
+					_check_if_int(v)
+				INTERNAL._type_checker(v, [int, float])
+
+		_check_if_int(custom)		
 		return custom
 
 	if size != None:
