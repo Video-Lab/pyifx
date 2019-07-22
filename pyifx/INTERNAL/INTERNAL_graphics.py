@@ -27,14 +27,14 @@ def _blur_handler(img_paths, radius, type_kernel, size, custom=None, write=True)
 		for img in img_paths:
 
 			if type(img) != misc.PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes.")
+				raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 			new_imgs.append(_blur_operation(img, kernel, write=write))
 
 		return new_imgs
 
 	else:
-		raise TypeError("Input contains non-Pyifx images and/or classes.")	
+		raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")	
 
 
 def _blur_operation(img, kernel, write=True):
@@ -107,14 +107,14 @@ def _pixelate_handler(img_paths, factor, write=True):
 		for img in img_paths:
 
 			if type(img) != misc.PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes.")
+				raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 			new_imgs.append(_pixelate_operation(img, factor, write=write))
 
 		return new_imgs
 
 	else:
-		raise TypeError("Input contains non-Pyifx images and/or classes.")
+		raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 
 def _pixelate_operation(img, factor, write=True):
@@ -167,14 +167,14 @@ def _detect_edges_handler(img_paths, write=True):
 		for img in img_paths:
 
 			if type(img) != misc.PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes.")
+				raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 			new_imgs.append(_detect_edges_operation(img, write=write))
 
 		return new_imgs
 
 	else:
-		raise TypeError("Input contains non-Pyifx images and/or classes.")
+		raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 
 def _detect_edges_operation(img, write=True):
@@ -199,12 +199,28 @@ def _detect_edges_operation(img, write=True):
 def _create_kernel(radius, type_kernel, size, custom=None):
 
 	if custom:
+		custom = np.array(custom)
+
+		if len(custom.shape) != 2:
+			raise ValueError("Invalid value used: Size of kernel must be 2-dimensional. Use the format (h,w) to achieve this.")
+
+		for d in custom.shape:
+			if d % 2 == 0:
+				raise ValueError("Invalid value used: Kernel must have odd dimension sizes.")
+
+		def _check_if_int(arr):
+			for v in arr:
+				if type(v) == list:
+					_check_if_int(v)
+				INTERNAL._type_checker(v, [int, float])
+
+		_check_if_int(custom)		
 		return custom
 
 	if size != None:
 
 		if len(size) != 2:
-			raise ValueError("Incorrect tuple dimensions used.")
+			raise ValueError("Invalid value used: Size of kernel must be 2-dimensional. Use the format (h,w) to achieve this.")
 
 	kernel = None
 

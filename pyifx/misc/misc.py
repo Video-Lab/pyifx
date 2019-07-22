@@ -2,6 +2,11 @@ import INTERNAL
 
 class PyifxImage():
 	def __init__(self, path, out_path=None, img=None, create_image=True):
+		INTERNAL._type_checker(path, [str, NoneType])
+		INTERNAL._type_checker(out_path, [str, NoneType])
+		INTERNAL._type_checker(img, [np.ndarray, NoneType])
+		INTERNAL._type_checker(create_image, [bool])
+
 		self.path = path
 		self.output_path = out_path
 		self.image = img
@@ -12,6 +17,8 @@ class PyifxImage():
 
 	@classmethod
 	def from_image(cls, image):
+		INTERNAL._type_checker(image, [np.ndarray])
+
 		i = cls(None)
 		i.image = image
 		return i
@@ -21,12 +28,20 @@ class PyifxImage():
 
 class ImageVolume():
 	def __init__(self, i, o, p="_"):
+		INTERNAL._type_checker(i, [str])
+		INTERNAL._type_checker(o, [str])
+		INTERNAL._type_checker(p, [str])
+
 		self.idir = i
 		self.odir = o
 		self.prefix = p
 		self.volume = self.volume_to_list()
 
 	def volume_to_list(self):
+		INTERNAL._type_checker(i, [str])
+		INTERNAL._type_checker(o, [str])
+		INTERNAL._type_checker(p, [str])
+				
 		old_imgs = INTERNAL._convert_dir_to_images(self.idir)
 		new_imgs = [PyifxImage(img, os.path.join(self.odir,f"{self.prefix}{os.path.split(img)[1]}")) for img in old_imgs]
 
@@ -36,6 +51,10 @@ class ImageVolume():
 
 
 def combine(img1, img2, out_path):
+	INTERNAL._type_checker(img1, [INTERNAL.misc.PyifxImage])
+	INTERNAL._type_checker(img2, [INTERNAL.misc.PyifxImage])
+	INTERNAL._type_checker(out_path, [str])
+
 	if img1.image.shape[0]*img1.image.shape[0] <= img2.image.shape[0]*img2.image.shape[1]:
 		shape = img1.image.shape
 	else:

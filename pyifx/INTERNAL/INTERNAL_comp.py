@@ -24,19 +24,22 @@ def _resize_handler(img_paths, new_size, write=True):
 		for img in img_paths:
 
 			if type(img) != misc.PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes.")
+				raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 			new_imgs.append(_resize_operation(img, new_size, write=write))
 
 		return new_imgs
 
 	else:
-		raise TypeError("Input contains non-Pyifx images and/or classes.")
+		raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 
 def _resize_operation(img, new_size, write=True):
 
 	img_size = [int(d) for d in new_size.split('x')]
+	if len(img_size) != 2:
+		raise ValueError("Invalid value used: Invalid size entered. Please use the format: 'WxH'")
+
 	img_size.append(3)
 	img_size[0], img_size[1] = img_size[1], img_size[0]
 
@@ -88,14 +91,14 @@ def _change_file_type_handler(img_paths, new_type, write=True):
 		for img in img_paths:
 
 			if type(img) != misc.PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes.")
+				raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 			new_imgs.append(_change_file_type_operation(img, new_type, write=write))
 
 		return new_imgs
 
 	else:
-		raise TypeError("Input contains non-Pyifx images and/or classes.")
+		raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 
 def _change_file_type_operation(img, new_type, write=True):
@@ -103,7 +106,7 @@ def _change_file_type_operation(img, new_type, write=True):
 	new_img = img
 	accepted_types = ['.jpg', '.png', '.jpeg', 'jpg', 'jpeg', 'png']	
 	if new_type not in accepted_types:
-		raise ValueError("New file type not in accepted file types.")
+		raise ValueError("Invalid value used: New file type not in accepted file types.")
 
 	if new_type[0] != '.':
 		new_type = f".{new_type}"
@@ -140,12 +143,12 @@ def _rewrite_file(img_paths):
 		for img in img_paths:
 
 			if type(img) != misc.PyifxImage:
-				raise TypeError("Input contains non-Pyifx images and/or classes.")
+				raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 			new_imgs.append(_write_file(img))
 
 		return new_imgs
 
 	else:
-		raise TypeError("Input contains non-Pyifx images and/or classes.")
+		raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
