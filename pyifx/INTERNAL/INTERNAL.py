@@ -5,14 +5,15 @@ import matplotlib as mpl
 import imageio
 import math
 
-import hsl
-import graphics
-import misc
+import ..hsl
+import ..graphics
+import ..misc
+import ..comp
 
-from INTERNAL_hsl import *
-from INTERNAL_misc import *
-from INTERNAL_graphics import *
-from INTERNAL_comp import *
+from .INTERNAL_hsl import *
+from .INTERNAL_misc import *
+from .INTERNAL_graphics import *
+from .INTERNAL_comp import *
 
 
 
