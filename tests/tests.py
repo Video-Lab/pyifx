@@ -1,29 +1,25 @@
 """ This is the testing file for the Pyifx library. All function definitions are contained
 in the file named "test_function_defs.py" for the purpose of testing. """
 
-from test_function_defs import *
+import .pyifx
 
 out_path_1 = "tests/imgs/type_change/512x512-jpeg-1.jpg"
 out_path_2 = "tests/imgs/type_change/512x512-png-1.jpg"
 
-img_list = [PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/bright/list/__512x512-jpg-1.jpg"),
-PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/bright/list/__512x512-jpeg-1.jpg"),
-PyifxImage("tests/imgs/512x512-png-1.png", "tests/imgs/bright/list/__512x512-png-1.png"),
-PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/dark/list/__512x512-jpg-1.jpg"),
-PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/dark/list/__512x512-jpeg-1.jpg"),
-PyifxImage("tests/imgs/512x512-png-1.png", "tests/imgs/dark/list/__512x512-png-1.png")]
+img_list = [pyifx.misc.PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/bright/list/__512x512-jpg-1.jpg"),
+pyifx.misc.PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/bright/list/__512x512-jpeg-1.jpg"),
+pyifx.misc.PyifxImage("tests/imgs/512x512-png-1.png", "tests/imgs/bright/list/__512x512-png-1.png"),
+pyifx.misc.PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/dark/list/__512x512-jpg-1.jpg"),
+pyifx.misc.PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/dark/list/__512x512-jpeg-1.jpg"),
+pyifx.misc.PyifxImage("tests/imgs/512x512-png-1.png", "tests/imgs/dark/list/__512x512-png-1.png")]
 
-img_vol = ImageVolume("tests/imgs/", "tests/imgs/resize/vol/", "RESIZED-")
-img_vol_dark = ImageVolume("tests/imgs", "tests/imgs/dark/vol", "__")
+img_vol = pyifx.misc.ImageVolume("tests/imgs/", "tests/imgs/resize/vol/", "RESIZED-")
+img_vol_dark = pyifx.misc.ImageVolume("tests/imgs", "tests/imgs/dark/vol", "__")
 
-img_1 = PyifxImage("tests/imgs/512x512-jpg-1.jpg", out_path_1)
-img_2 = PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
+img_1 = pyifx.misc.PyifxImage("tests/imgs/512x512-jpg-1.jpg", out_path_1)
+img_2 = pyifx.misc.PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
 
 # TESTS TODO
-
-change_file_type(img_1, '.jpeg')
-change_file_type(img_2, 'png')
-
 
 
 # COMPLETED TESTS
@@ -72,4 +68,5 @@ change_file_type(img_2, 'png')
 # resize(img_1, "256x256")
 # resize(img_2, "768x2549") - Resize tests
 
-# FAILED TESTS
+# v1.0 TESTS
+
