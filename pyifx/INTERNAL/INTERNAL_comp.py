@@ -120,7 +120,7 @@ def _change_file_type_operation(img, new_type, write=True):
 
 
 
-def _rewrite_file(img_paths):
+def _rewrite_file_handler(img_paths):
 	if type(img_paths) == misc.ImageVolume:
 
 		if not os.path.exists(img_paths.odir):

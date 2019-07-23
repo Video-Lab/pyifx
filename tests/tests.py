@@ -2,24 +2,105 @@
 in the file named "test_function_defs.py" for the purpose of testing. """
 
 import .pyifx
+import os
+import numpy as np
 
-out_path_1 = "tests/imgs/type_change/512x512-jpeg-1.jpg"
-out_path_2 = "tests/imgs/type_change/512x512-png-1.jpg"
+def set_paths(new_path):
+	for img in img_list:
+		img.set_output_path(os.path.join(new_path, os.path.split(img.get_output_path())[1]))
 
-img_list = [pyifx.misc.PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/bright/list/__512x512-jpg-1.jpg"),
-pyifx.misc.PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/bright/list/__512x512-jpeg-1.jpg"),
-pyifx.misc.PyifxImage("tests/imgs/512x512-png-1.png", "tests/imgs/bright/list/__512x512-png-1.png"),
-pyifx.misc.PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/dark/list/__512x512-jpg-1.jpg"),
-pyifx.misc.PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/dark/list/__512x512-jpeg-1.jpg"),
-pyifx.misc.PyifxImage("tests/imgs/512x512-png-1.png", "tests/imgs/dark/list/__512x512-png-1.png")]
+	img_vol.set_output_path(os.path.join(new_path, os.path.split(vol.get_output_path())[1]))
 
-img_vol = pyifx.misc.ImageVolume("tests/imgs/", "tests/imgs/resize/vol/", "RESIZED-")
-img_vol_dark = pyifx.misc.ImageVolume("tests/imgs", "tests/imgs/dark/vol", "__")
+	img1.set_output_path(os.path.join(new_path, os.path.split(img1.get_output_path())[1])
+	img2.set_output_path(os.path.join(new_path, os.path.split(img2.get_output_path())[1])
 
-img_1 = pyifx.misc.PyifxImage("tests/imgs/512x512-jpg-1.jpg", out_path_1)
-img_2 = pyifx.misc.PyifxImage("tests/imgs/512x512-jpeg-1.jpg", out_path_2)
+img1 = pyifx.misc.PyifxImage("imgs/512x512-jpeg-1.jpg", "imgs/hsl/brightness/512x512-jpeg-1.jpg")
+img2 = pyifx.misc.PyifxImage("imgs/512x512-png-1.png", "imgs/hsl/brightness/512x512-png-1.png")
+
+img_vol = pyifx.misc.ImageVolume("imgs/", "imgs/hsl/brightness", "VOLUME-")
+
+img_list = [pyifx.misc.PyifxImage("imgs/512x512-jpeg-1.jpg", "imgs/hsl/brightness/LIST-512x512-jpeg-1.jpg"), 
+pyifx.misc.PyifxImage("imgs/512x512-png-1.png", "LIST-imgs/hsl/brightness/512x512-png-1.png"),
+pyifx.misc.PyifxImage("imgs/512x512-jpg-1.jpg", "LIST-imgs/hsl/brightness/512x512-jpg-1.jpg")]
 
 # TESTS TODO
+
+# HSL
+
+pyifx.hsl.brighten(img1, percent=50)
+pyifx.hsl.darken(img2, percent=50)
+pyifx.hsl.brighten(img_vol, percent=70)
+pyifx.hsl.darken(img_list, percent=70)
+
+set_paths("imgs/hsl/color_overlay/")
+
+pyifx.hsl.color_overlay(img1, [255,0,0], 60)
+pyifx.hsl.color_overlay(img_vol, [0,255,0], 60)
+pyifx.hsl.color_overlay(img_list, [0,0,255], 60)
+
+set_paths("imgs/hsl/saturation/")
+
+pyifx.hsl.saturate(img1, 70)
+pyifx.hsl.desaturate(img2, 60)
+pyifx.hsl.desaturate(img_vol, 30)
+pyifx.hsl.to_grayscale(img_list)
+
+# Composition
+
+set_paths("imgs/comp/resize/")
+
+pyifx.comp.resize(img1, "1024x1024")
+pyifx.comp.resize(img2, "256x256")
+pyifx.comp.resize(img_list, "694x1440")
+pyifx.comp.resize(img_vol, "1532x393")
+
+set_paths("imgs/comp/file_type/")
+
+pyifx.comp.change_file_type(img1, '.png')
+pyifx.comp.change_file_type(img2, '.jpg')
+pyifx.comp.change_file_type(img_list, 'png')
+pyifx.comp.change_file_type(img_vol, 'jpeg')
+
+# Graphics
+
+set_paths("imgs/graphics/blur")
+
+pyifx.graphics.blur_gaussian(img1,3)
+pyifx.graphics.blur_mean(img2, 3)
+pyifx.graphics.blur_gaussian(img_list, 1)
+pyifx.graphics.blur_mean(img_vol, 1)
+
+set_paths("imgs/graphics/pixelate")
+
+pyifx.graphics.pixelate(img1, 4)
+pyifx.graphics.pixelate(img_list, 2)
+pyifx.graphics.pixelate(img_vol, 3)
+
+set_paths("imgs/graphics/edge")
+
+pyifx.graphics.detect_edges(img1)
+pyifx.graphics.detect_edges(img_list)
+pyifx.graphics.detect_edges(img_vol)
+
+set_paths("imgs/graphics/custom_convolution")
+
+sobel_horizontal_np = np.array([[-1,-2,-1], [0,0,0], [1,2,1]])
+sobel_vertical = [[-1,-2,-1], [0,0,0], [1,2,1]]
+box_blur = np.array([[1/9, 1/9, 1/9], [1/9, 1/9, 1/9], [1/9, 1/9, 1/9]])
+
+pyifx.graphics.convolute_custom(img1, sobel_horizontal_np)
+pyifx.graphics.convolute_custom(img_list, sobel_vertical)
+pyifx.graphics.convolute_custom(img_vol, box_blur)
+
+# Misc
+
+set_paths("imgs/misc/combine/")
+
+pyifx.misc.combine(img1, img2, "imgs/misc/combine") #TBC
+
+set_paths("imgs/misc/class_functions/")
+
+# TBA
 
 
 # COMPLETED TESTS
