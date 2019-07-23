@@ -1,5 +1,5 @@
 # pyifx
-An image editing &amp; handling library in Python.
+An image processing, editing &amp; handling library in Python.
 
 ## A Notice
 Most features of this project (eg. docs, contribution guides) will be added once the project reaches the beta stage.
@@ -20,12 +20,14 @@ Most features of this project (eg. docs, contribution guides) will be added once
 
 ## Features
 pyifx contains 4 main modules, giving users access to functions such as:
-	* Image brightening
-	* Color overlay
-	* Blurring 
-	* And much more.
+<ul>
+	<li>HSL Modification</li>
+	<li>Convolution-based functions</li>
+	<li>Image format conversion & resizing</li>
+	<li>And much more.</li>
+</ul>
 	
-A full list of features is available in the documentation.
+A full list of features is available in the user guide (TBA).
 	
 pyifx also allows for images to be modified both individually and in bulk, giving users the option to automate the image modification processes.
 	
