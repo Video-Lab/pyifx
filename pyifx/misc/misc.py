@@ -1,31 +1,18 @@
 import INTERNAL
 
 class PyifxImage():
-	def __init__(self, path, out_path=None, img=None, create_image=True):
+	def __init__(self, path, output_path=None, img=None, create_image=True):
 		INTERNAL._type_checker(path, [str, NoneType])
 		INTERNAL._type_checker(out_path, [str, NoneType])
 		INTERNAL._type_checker(img, [np.ndarray, NoneType])
 		INTERNAL._type_checker(create_image, [bool])
 
 		self.path = path
-		self.output_path = out_path
+		self.output_path = output_path
 		self.image = img
 		if create_image:
 			self.image = np.asarray(imageio.imread(path))
-		
-
-
-	@classmethod
-	def from_image(cls, image):
-		INTERNAL._type_checker(image, [np.ndarray])
-
-		i = cls(None)
-		i.image = image
-		return i
-
-
-
-
+	
 class ImageVolume():
 	def __init__(self, i, o, p="_"):
 		INTERNAL._type_checker(i, [str])
