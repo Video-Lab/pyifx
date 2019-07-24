@@ -48,6 +48,8 @@ call_error_test("pyifx.hsl.brighten", [img1, 50, 's'])
 call_error_test("pyifx.hsl.darken", [img1, 50, 's'])
 call_error_test("pyifx.hsl.darken", ['s', 50])
 call_error_test("pyifx.hsl.darken", [img1, 50, 's'])
+call_error_test("pyifx.hsl.brighten", [img1, 200])
+call_error_test("pyifx.hsl.darken", [img1, -10])
 
 set_paths("imgs/hsl/color_overlay/")
 
@@ -57,7 +59,10 @@ pyifx.hsl.color_overlay(img_list, [0,0,255], 60)
 
 call_error_test("pyifx.hsl.color_overlay", ["asdf", [255,0,0], 60])
 call_error_test("pyifx.hsl.color_overlay", [img1, [255,0], 60])
+call_error_test("pyifx.hsl.color_overlay", [img1, [255,0, 'e'], 60])
 call_error_test("pyifx.hsl.color_overlay", [img1, [255,0,0], "s"])
+call_error_test("pyifx.hsl.color_overlay", [img1, [255,0,0], 200])
+call_error_test("pyifx.hsl.color_overlay", [img1, [255,0], -10])
 call_error_test("pyifx.hsl.color_overlay", [img1, [255,0,0], 60, "s"])
 
 set_paths("imgs/hsl/saturation/")
@@ -72,6 +77,7 @@ call_error_test("pyifx.hsl.desaturate", ["asdf", 70])
 call_error_test("pyifx.hsl.to_grayscale", [10000])
 call_error_test("pyifx.hsl.saturate", [img1, "s"])
 call_error_test("pyifx.hsl.desaturate", [img1, "s"])
+call_error_test("pyifx.hsl.desaturate", [img1, -10])
 
 
 # Composition
@@ -86,6 +92,7 @@ pyifx.comp.resize(img_vol, "1532x393")
 call_error_test("pyifx.comp.resize", [img1, "10241024"])
 call_error_test("pyifx.comp.resize", [img1, "1024xs"])
 call_error_test("pyifx.comp.resize", ["s", "1024x1024"])
+call_error_test("pyifx.comp.resize", [img1, "1024x1024x1024"])
 call_error_test("pyifx.comp.resize", [img1, 2])
 call_error_test("pyifx.comp.resize", [img1, "1024x1024", "s"])
 
