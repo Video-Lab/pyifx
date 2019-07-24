@@ -1,1 +1,1 @@
-import comp
+from pyifx.comp import comp

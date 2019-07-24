@@ -1,4 +1,4 @@
-from INTERNAL import *
+from pyifx import *
 
 def _brightness_handler(img_paths, percent, method, write=True):
 		if type(img_paths) == misc.ImageVolume:
@@ -149,8 +149,8 @@ def _saturation_handler(img_paths, percent, method, write=True):
 				raise Exception("An internal error occurred.")
 		return new_imgs
 
-		else:
-			raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
+	else:
+		raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 
 def _saturation_operation(img, percent, method, write=True):

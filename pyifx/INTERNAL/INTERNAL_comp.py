@@ -1,4 +1,4 @@
-from INTERNAL import *
+from pyifx import *
 
 def _resize_handler(img_paths, new_size, write=True):
 

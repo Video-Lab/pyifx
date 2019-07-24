@@ -1,22 +1,3 @@
-import os
-import sys
-import numpy as np
-import matplotlib as mpl
-import imageio
-import math
-
-import ..hsl
-import ..graphics
-import ..misc
-import ..comp
-
-from .INTERNAL_hsl import *
-from .INTERNAL_misc import *
-from .INTERNAL_graphics import *
-from .INTERNAL_comp import *
-
-
-
 def _check_path_type(path):
 	if os.path.isdir(path):
 		return 'dir'

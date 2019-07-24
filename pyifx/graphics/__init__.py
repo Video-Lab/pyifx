@@ -1,1 +1,1 @@
-import graphics
+from pyifx.graphics import graphics

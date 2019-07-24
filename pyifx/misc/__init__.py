@@ -1,1 +1,1 @@
-import misc
+from pyifx.misc import misc

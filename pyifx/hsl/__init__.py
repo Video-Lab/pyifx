@@ -1,1 +1,1 @@
-import hsl
+from pyifx.hsl import hsl

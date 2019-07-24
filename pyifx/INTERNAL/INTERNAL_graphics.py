@@ -1,4 +1,4 @@
-from INTERNAL import *
+from pyifx import *
 
 def _blur_handler(img_paths, radius, type_kernel, size, custom=None, write=True):
 

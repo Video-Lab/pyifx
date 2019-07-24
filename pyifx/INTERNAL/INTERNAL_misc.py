@@ -1,6 +1,6 @@
-from INTERNAL import *
+from pyifx import *
 
-def _type_checker(var, types)
+def _type_checker(var, types):
 	if type(var) in types:
 		return True
 
