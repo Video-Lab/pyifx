@@ -12,7 +12,7 @@ def _check_path_type(path):
 
 
 def _convert_dir_to_images(dirc):
-	INTERNAL._type_checker(dirc, [str])
+	_type_checker(dirc, [str])
 	
 	images = []
 	possible_extensions = ['.jpg', '.jpeg', '.png']
@@ -588,7 +588,7 @@ def _create_kernel(radius, type_kernel, size, custom=None):
 			for v in arr:
 				if type(v) == list:
 					_check_if_int(v)
-				INTERNAL._type_checker(v, [int, float])
+				_type_checker(v, [int, float])
 
 		_check_if_int(custom)		
 		return custom
