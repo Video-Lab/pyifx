@@ -1,9 +1,9 @@
-import pyifx.INTERNAL as INTERNAL
+from pyifx import *
 
 class PyifxImage():
 	def __init__(self, path, output_path=None, img=None, create_image=True):
 		INTERNAL._type_checker(path, [str, None])
-		INTERNAL._type_checker(out_path, [str, None])
+		INTERNAL._type_checker(output_path, [str, None])
 		INTERNAL._type_checker(img, [np.ndarray, None])
 		INTERNAL._type_checker(create_image, [bool])
 
@@ -25,9 +25,9 @@ class ImageVolume():
 		self.volume = self.volume_to_list()
 
 	def volume_to_list(self):
-		INTERNAL._type_checker(i, [str])
-		INTERNAL._type_checker(o, [str])
-		INTERNAL._type_checker(p, [str])
+		INTERNAL._type_checker(self.idir, [str])
+		INTERNAL._type_checker(self.odir, [str])
+		INTERNAL._type_checker(self.prefix, [str])
 				
 		old_imgs = INTERNAL._convert_dir_to_images(self.idir)
 		new_imgs = [PyifxImage(img, os.path.join(self.odir,f"{self.prefix}{os.path.split(img)[1]}")) for img in old_imgs]

@@ -1,3 +1,5 @@
+from pyifx import *
+
 def _check_path_type(path):
 	if os.path.isdir(path):
 		return 'dir'
