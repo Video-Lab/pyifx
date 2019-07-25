@@ -5,7 +5,7 @@ import imageio
 import math
 
 import pyifx.INTERNAL
+import pyifx.misc
 import pyifx.hsl
 import pyifx.graphics
 import pyifx.comp
-import pyifx.misc

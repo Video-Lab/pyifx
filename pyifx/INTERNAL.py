@@ -1,7 +1,8 @@
-import pyifx.hsl as hsl
-import pyifx.comp as comp
-import pyifx.graphics as graphics
-import pyifx.misc as misc
+import os
+import sys
+import numpy as np
+import imageio
+import math
 
 def _check_path_type(path):
 	if os.path.isdir(path):
@@ -38,45 +39,47 @@ def _convert_dir_to_images(dirc):
 
 
 def _brightness_handler(img_paths, percent, method, write=True):
-		if type(img_paths) == misc.ImageVolume:
+	import pyifx.misc as misc
+	if type(img_paths) == misc.ImageVolume:
 
-			if not os.path.exists(img_paths.odir):
-				os.makedirs(img_paths.odir)
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
 
-			new_vol = img_paths
-			new_vol.volume = []
+		new_vol = img_paths
+		new_vol.volume = []
 
-			for img in img_paths.volume:
-				if method == "b" or method == "d":
-					new_vol.volume.append(_brightness_operation(img, percent, method, write=write))
-				else:
-					raise Exception("An internal error occurred.")
+		for img in img_paths.volume:
+			if method == "b" or method == "d":
+				new_vol.volume.append(_brightness_operation(img, percent, method, write=write))
+			else:
+				raise Exception("An internal error occurred.")
 
-			return new_vol
+		return new_vol
 
-		elif type(img_paths) == misc.PyifxImage:
-				if method == "b" or method == "d":
-					return _brightness_operation(img_paths, percent, method, write=write)
-				else:
-					raise Exception("An internal error occurred.")
+	elif type(img_paths) == misc.PyifxImage:
+			if method == "b" or method == "d":
+				return _brightness_operation(img_paths, percent, method, write=write)
+			else:
+				raise Exception("An internal error occurred.")
 
-		elif type(img_paths) == list:
-			new_imgs = []
+	elif type(img_paths) == list:
+		new_imgs = []
 
-			for img in img_paths:
-				if type(img) != misc.PyifxImage:
-					raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
-				if method == "b" or method == "d":
-					new_imgs.append(_brightness_operation(img, percent, method, write=write))
-				else:
-					raise Exception("Something went wrong.")
-			return new_imgs
+		for img in img_paths:
+			if type(img) != misc.PyifxImage:
+				raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
+			if method == "b" or method == "d":
+				new_imgs.append(_brightness_operation(img, percent, method, write=write))
+			else:
+				raise Exception("Something went wrong.")
+		return new_imgs
 
-		else:
-			raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
+	else:
+		raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 
 def _brightness_operation(img, percent, method, write=True):
+	import pyifx.misc as misc
 	new_img = np.empty(shape=img.image.shape)
 
 	for row in range(len(new_img)):
@@ -101,36 +104,37 @@ def _brightness_operation(img, percent, method, write=True):
 
 
 def _color_overlay_handler(img_paths, color, opacity, write=True):
+	import pyifx.misc as misc
+	if type(img_paths) == misc.ImageVolume:
+		if not os.path.exists(img_paths.odir):
+			os.makedirs(img_paths.odir)
 
-			if type(img_paths) == misc.ImageVolume:
-				if not os.path.exists(img_paths.odir):
-					os.makedirs(img_paths.odir)
+		new_vol = img_paths
+		new_vol.volume = [] 
 
-				new_vol = img_paths
-				new_vol.volume = [] 
+		for img in img_paths.volume:
+			new_vol.volume.append(_color_overlay_operation(img, color, opacity, write=write))
 
-				for img in img_paths.volume:
-					new_vol.volume.append(_color_overlay_operation(img, color, opacity, write=write))
+		return new_vol
 
-				return new_vol
+	elif type(img_paths) == misc.PyifxImage:
+		return _color_overlay_operation(img_paths, color, opacity, write=write)
 
-			elif type(img_paths) == misc.PyifxImage:
-				return _color_overlay_operation(img_paths, color, opacity, write=write)
-
-			elif type(img_paths) == list:
-				new_imgs = []
-				for img in img_paths:
-					if type(img) != misc.PyifxImage:
-						raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
-
-					return new_imgs.append(_color_overlay_operation(img, color, opacity, write=write))
-				return new_imgs
-
-			else:
+	elif type(img_paths) == list:
+		new_imgs = []
+		for img in img_paths:
+			if type(img) != misc.PyifxImage:
 				raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
+
+			return new_imgs.append(_color_overlay_operation(img, color, opacity, write=write))
+		return new_imgs
+
+	else:
+		raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
 
 def _color_overlay_operation(img, color, opacity, write=True):
+	import pyifx.misc as misc
 	new_img = np.empty(shape=img.image.shape)
 
 	for row in range(len(new_img)):
@@ -153,6 +157,7 @@ def _color_overlay_operation(img, color, opacity, write=True):
 
 
 def _saturation_handler(img_paths, percent, method, write=True):
+	import pyifx.misc as misc
 	if type(img_paths) == misc.ImageVolume:
 
 		if not os.path.exists(img_paths.odir):
@@ -191,6 +196,7 @@ def _saturation_handler(img_paths, percent, method, write=True):
 
 
 def _saturation_operation(img, percent, method, write=True):
+	import pyifx.misc as misc
 	type_map = {"s": 1, "ds": -1}
 	new_img = np.empty(shape=img.image.shape)
 
@@ -221,6 +227,7 @@ def _saturation_operation(img, percent, method, write=True):
 from pyifx import *
 
 def _resize_handler(img_paths, new_size, write=True):
+	import pyifx.misc as misc
 
 	if type(img_paths) == misc.ImageVolume:
 
@@ -255,6 +262,7 @@ def _resize_handler(img_paths, new_size, write=True):
 
 
 def _resize_operation(img, new_size, write=True):
+	import pyifx.misc as misc
 
 	img_size = [int(d) for d in new_size.split('x')]
 	if len(img_size) != 2:
@@ -289,6 +297,7 @@ def _resize_operation(img, new_size, write=True):
 
 
 def _change_file_type_handler(img_paths, new_type, write=True):
+	import pyifx.misc as misc
 	if type(img_paths) == misc.ImageVolume:
 
 		if not os.path.exists(img_paths.odir):
@@ -341,6 +350,7 @@ def _change_file_type_operation(img, new_type, write=True):
 
 
 def _rewrite_file_handler(img_paths):
+	import pyifx.misc as misc
 	if type(img_paths) == misc.ImageVolume:
 
 		if not os.path.exists(img_paths.odir):
@@ -380,6 +390,7 @@ def _rewrite_file_handler(img_paths):
 
 
 def _blur_handler(img_paths, radius, type_kernel, size, custom=None, write=True):
+	import pyifx.misc as misc
 
 	kernel = _create_kernel(radius, type_kernel, size, custom=custom)	
 
@@ -428,6 +439,7 @@ def _blur_operation(img, kernel, write=True):
 
 
 def _convolute_over_image(img, kernel, write=True):
+	import pyifx.misc as misc
 
 	new_img = np.empty(shape=img.image.shape)
 	k_height = math.floor(kernel.shape[0]/2)
@@ -461,7 +473,7 @@ def _convolute_over_image(img, kernel, write=True):
 
 
 def _pixelate_handler(img_paths, factor, write=True):
-
+	import pyifx.misc as misc
 	if type(img_paths) == misc.ImageVolume:
 
 		if not os.path.exists(img_paths.odir):
@@ -497,6 +509,7 @@ def _pixelate_handler(img_paths, factor, write=True):
 
 
 def _pixelate_operation(img, factor, write=True):
+	import pyifx.misc as misc
 
 	new_img = np.empty(shape=img.image.shape)
 
@@ -521,7 +534,7 @@ def _pixelate_operation(img, factor, write=True):
 
 
 def _detect_edges_handler(img_paths, write=True):
-
+	import pyifx.misc as misc
 	if type(img_paths) == misc.ImageVolume:
 
 		if not os.path.exists(img_paths.odir):
@@ -557,6 +570,7 @@ def _detect_edges_handler(img_paths, write=True):
 
 
 def _detect_edges_operation(img, write=True):
+	import pyifx.misc as misc
 
 	x_dir_kernel = _create_kernel(None, "x-sobel", None)
 	y_dir_kernel = _create_kernel(None, "y-sobel", None)
