@@ -1,4 +1,4 @@
-import INTERNAL
+import pyifx.INTERNAL as INTERNAL
 
 class PyifxImage():
 	def __init__(self, path, output_path=None, img=None, create_image=True):

@@ -1,4 +1,4 @@
-import INTERNAL
+import pyifx.INTERNAL as INTERNAL
 
 def blur_gaussian(img_paths, radius=3, size=None, write=True):
 	INTERNAL._type_checker(radius, [int, float])

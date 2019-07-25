@@ -4,8 +4,8 @@ import numpy as np
 import imageio
 import math
 
-import INTERNAL
-import hsl
-import graphics
-import comp
-import misc
+import pyifx.INTERNAL
+import pyifx.hsl
+import pyifx.graphics
+import pyifx.comp
+import pyifx.misc

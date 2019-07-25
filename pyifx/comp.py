@@ -1,4 +1,4 @@
-import INTERNAL
+import pyifx.INTERNAL as INTERNAL
 
 def resize(img_paths, new_size, write=True):
 	INTERNAL._type_checker(write, [bool])
