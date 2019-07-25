@@ -1,8 +1,9 @@
-from pyifx import *
+import pyifx.INTERNAL as INTERNAL
+import pyifx.misc as misc
 
 def brighten(img_paths,percent=45, write=True):
 	INTERNAL._type_checker(percent, [float, int])
-	INTERNAL._type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
+	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
 
 	if percent < 0 or percent > 100:
@@ -13,7 +14,7 @@ def brighten(img_paths,percent=45, write=True):
 
 def darken(img_paths,percent=45, write=True):
 	INTERNAL._type_checker(percent, [float, int])
-	INTERNAL._type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
+	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
 
 	if percent < 0 or percent > 100:
@@ -24,7 +25,7 @@ def darken(img_paths,percent=45, write=True):
 
 def color_overlay(img_paths, color, opacity=30, write=True):
 	INTERNAL._type_checker(opacity, [float, int])
-	INTERNAL._type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
+	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
 
 	if len(color) != 3:
@@ -43,7 +44,7 @@ def color_overlay(img_paths, color, opacity=30, write=True):
 
 def saturate(img_paths, percent=30, write=True):
 	INTERNAL._type_checker(percent, [float, int])
-	INTERNAL._type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
+	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
 
 	if percent < 0:
@@ -54,7 +55,7 @@ def saturate(img_paths, percent=30, write=True):
 
 def desaturate(img_paths, percent=30, write=True):
 	INTERNAL._type_checker(percent, [float, int])
-	INTERNAL._type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
+	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
 
 	if percent < 0 or percent > 100:
@@ -64,7 +65,7 @@ def desaturate(img_paths, percent=30, write=True):
 
 
 def to_grayscale(img_paths, write=True):
-	INTERNAL._type_checker(img_paths, [INTERNAL.misc.PyifxImage, INTERNAL.misc.ImageVolume, list])
+	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
 
 	return INTERNAL._saturation_handler(img_paths, 1, "ds", write=write)

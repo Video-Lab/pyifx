@@ -1,4 +1,4 @@
-from pyifx import *
+import pyifx.INTERNAL as INTERNAL
 
 class PyifxImage():
 	def __init__(self, path, output_path=None, img=None, create_image=True):
@@ -38,8 +38,8 @@ class ImageVolume():
 
 
 def combine(img1, img2, out_path):
-	INTERNAL._type_checker(img1, [INTERNAL.misc.PyifxImage])
-	INTERNAL._type_checker(img2, [INTERNAL.misc.PyifxImage])
+	INTERNAL._type_checker(img1, [PyifxImage])
+	INTERNAL._type_checker(img2, [PyifxImage])
 	INTERNAL._type_checker(out_path, [str])
 
 	if img1.image.shape[0]*img1.image.shape[0] <= img2.image.shape[0]*img2.image.shape[1]:
@@ -57,6 +57,6 @@ def combine(img1, img2, out_path):
 				except IndexError:
 					pass
 
-	img = misc.PyifxImage(None, out_path, new_img, False)
+	img = PyifxImage(None, out_path, new_img, False)
 	return img
 

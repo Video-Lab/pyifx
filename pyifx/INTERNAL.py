@@ -1,4 +1,7 @@
-from pyifx import *
+import pyifx.hsl as hsl
+import pyifx.comp as comp
+import pyifx.graphics as graphics
+import pyifx.misc as misc
 
 def _check_path_type(path):
 	if os.path.isdir(path):
