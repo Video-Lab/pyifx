@@ -17,6 +17,32 @@ class PyifxImage():
 		self.image = img
 		if create_image:
 			self.image = np.asarray(imageio.imread(path))
+
+	def refresh_image(self):
+		self.image = np.asarray(imageio.imread(self.path))
+
+	def get_input_path(self):
+		return self.path
+
+	def set_input_path(self, new_input_path):
+		self.path = new_input_path
+		self.refresh_image()
+		return self
+
+	def get_output_path(self):
+		return self.output_path
+
+	def set_output_path(self, new_output_path):
+		self.output_path = new_output_path
+		return self
+
+	def get_image(self):
+		return self.image
+
+	def set_image(self, new_image):
+		self.image = new_image
+		return self
+
 	
 class ImageVolume():
 	def __init__(self, i, o, p="_"):
@@ -47,10 +73,10 @@ def combine(img1, img2, out_path):
 	INTERNAL._type_checker(img2, [PyifxImage])
 	INTERNAL._type_checker(out_path, [str])
 
-	if img1.image.shape[0]*img1.image.shape[0] <= img2.image.shape[0]*img2.image.shape[1]:
-		shape = img1.image.shape
+	if img1.get_image().shape[0]*img1.get_image().shape[0] <= img2.get_image().shape[0]*img2.get_image().shape[1]:
+		shape = img1.get_image().shape
 	else:
-		shape = img2.image.shape
+		shape = img2.get_image().shape
 
 	new_img = np.empty(shape)
 
@@ -58,7 +84,7 @@ def combine(img1, img2, out_path):
 		for p in range(len(img1.image[r])):
 			for c in range(len(img1.image[r][p])):
 				try:
-					new_img[r][p][c] = min(255, max(0, (img1.image[r][p][c]+img2.image[r][p][c])/2))
+					new_img[r][p][c] = min(255, max(0, (img1.get_image()[r][p][c]+img2.get_image()[r][p][c])/2))
 				except IndexError:
 					pass
 

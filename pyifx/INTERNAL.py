@@ -80,12 +80,12 @@ def _brightness_handler(img_paths, percent, method, write=True):
 
 def _brightness_operation(img, percent, method, write=True):
 	import pyifx.misc as misc
-	new_img = np.empty(shape=img.image.shape)
+	new_img = np.empty(shape=img.get_image().shape)
 
 	for row in range(len(new_img)):
 		for p in range(len(new_img[row])):
 			for v in range(len(new_img[row][p])):
-				value = img.image[row][p][v]
+				value = img.get_image()[row][p][v]
 				if method == "b":
 					new_img[row][p][v] = min(255, value*(1+percent)-(value/6))
 				elif method == "d":
@@ -93,10 +93,10 @@ def _brightness_operation(img, percent, method, write=True):
 				else:
 					raise Exception("An internal error occurred.")
 
-	new_img = misc.PyifxImage(img.path, img.output_path, new_img, False)
+	new_img = misc.PyifxImage(img.get_input_path(), img.get_output_path(), new_img, False)
 
 	if write:
-		_write_file(img)
+		_write_file(new_img)
 
 	return new_img
 
@@ -135,18 +135,18 @@ def _color_overlay_handler(img_paths, color, opacity, write=True):
 
 def _color_overlay_operation(img, color, opacity, write=True):
 	import pyifx.misc as misc
-	new_img = np.empty(shape=img.image.shape)
+	new_img = np.empty(shape=img.get_image().shape)
 
 	for row in range(len(new_img)):
 		for p in range(len(new_img[row])):
 			for v in range(len(new_img[row][p])):
 
-				val = img.image[row][p][v]
+				val = img.get_image()[row][p][v]
 				diff = color[v] - val
 				diff *= opacity
 				new_img[row][p][v] += diff
 
-	new_img = misc.PyifxImage(img.path, img.output_path, new_img, False)
+	new_img = misc.PyifxImage(img.get_input_path(), img.get_output_path(), new_img, False)
 
 	if write:
 		_write_file(img)
@@ -198,20 +198,20 @@ def _saturation_handler(img_paths, percent, method, write=True):
 def _saturation_operation(img, percent, method, write=True):
 	import pyifx.misc as misc
 	type_map = {"s": 1, "ds": -1}
-	new_img = np.empty(shape=img.image.shape)
+	new_img = np.empty(shape=img.get_image().shape)
 
 	for row in range(len(new_img)):
 		for p in range(len(new_img[row])):
 
-			gray_val = sum(img.image[row][p])/3
+			gray_val = sum(img.get_image()[row][p])/3
 			for v in range(len(new_img[row][p])):
 
-				value = img.image[row][p][v]
+				value = img.get_image()[row][p][v]
 				diff = gray_val - value
 				pixel_change = diff * (type_map[method]*percent)
-				new_img[row][p][v] = max(0, min((img.image[row][p][v]-pixel_change), 255))
+				new_img[row][p][v] = max(0, min((img.get_image()[row][p][v]-pixel_change), 255))
 
-	new_img = misc.PyifxImage(img.path, img.output_path, new_img, False)
+	new_img = misc.PyifxImage(img.get_input_path(), img.get_output_path(), new_img, False)
 	if write:
 		_write_file(img)
 		
@@ -271,8 +271,8 @@ def _resize_operation(img, new_size, write=True):
 	img_size.append(3)
 	img_size[0], img_size[1] = img_size[1], img_size[0]
 
-	width_factor = img_size[1]/img.image.shape[1]
-	height_factor = img_size[0]/img.image.shape[0]
+	width_factor = img_size[1]/img.get_image().shape[1]
+	height_factor = img_size[0]/img.get_image().shape[0]
 
 	new_img = np.full(shape=img_size, fill_value=None)
 
@@ -281,12 +281,12 @@ def _resize_operation(img, new_size, write=True):
 			for c in range(len(new_img[r][p])):
 
 				if new_img[r][p][c] != None:
-						new_img[r][p][c] += img.image[math.floor(r/height_factor)][math.floor(p/width_factor)][c]
+						new_img[r][p][c] += img.get_image()[math.floor(r/height_factor)][math.floor(p/width_factor)][c]
 						new_img[r][p][c] = math.floor(new_img[r][p][c]/2)
 				else:
-					new_img[r][p][c] = img.image[math.floor(r/height_factor)][math.floor(p/width_factor)][c]
+					new_img[r][p][c] = img.get_image()[math.floor(r/height_factor)][math.floor(p/width_factor)][c]
 
-	new_img = misc.PyifxImage(img.path, img.output_path, new_img, False)
+	new_img = misc.PyifxImage(img.get_input_path(), img.get_output_path(), new_img, False)
 
 	if write:
 		_write_file(new_img)
@@ -340,7 +340,7 @@ def _change_file_type_operation(img, new_type, write=True):
 	if new_type[0] != '.':
 		new_type = f".{new_type}"
 
-	new_img.output_path = os.path.splitext(new_img.output_path)[0] + new_type
+	new_img.set_output_path(os.path.splitext(new_img.get_output_path())[0] + new_type)
 
 	if write:
 		_write_file(new_img)
@@ -430,7 +430,7 @@ def _blur_handler(img_paths, radius, type_kernel, size, custom=None, write=True)
 def _blur_operation(img, kernel, write=True):
 
 	new_img = _convolute_over_image(img, kernel, write=False)
-	new_img.image = new_img.image.astype(np.uint8)
+	new_img.set_image(new_img.get_image().astype(np.uint8))
 
 	if write:
 		_write_file(new_img)
@@ -441,13 +441,13 @@ def _blur_operation(img, kernel, write=True):
 def _convolute_over_image(img, kernel, write=True):
 	import pyifx.misc as misc
 
-	new_img = np.empty(shape=img.image.shape)
+	new_img = np.empty(shape=img.get_image().shape)
 	k_height = math.floor(kernel.shape[0]/2)
 	k_width = math.floor(kernel.shape[1]/2)
 
-	for r in range(len(img.image)):
-		for p in range(len(img.image[r])):
-			for c in range(len(img.image[r][p])):
+	for r in range(len(img.get_image())):
+		for p in range(len(img.get_image()[r])):
+			for c in range(len(img.get_image()[r][p])):
 
 				new_pixel_value = 0
 
@@ -455,14 +455,14 @@ def _convolute_over_image(img, kernel, write=True):
 					for column in range(-k_width, k_width+1):
 
 						try:
-							new_pixel_value += img.image[r+column][p+row][c]*kernel[row+k_height][column+k_width]
+							new_pixel_value += img.get_image()[r+column][p+row][c]*kernel[row+k_height][column+k_width]
 
 						except IndexError:
 							pass
 
 				new_img[r][p][c] = min(255, max(0, new_pixel_value))	
 
-	new_img = misc.PyifxImage(img.path, img.output_path, new_img, False)
+	new_img = misc.PyifxImage(img.get_input_path(), img.get_output_path(), new_img, False)
 
 	if write:
 		_write_file(new_img)
@@ -511,19 +511,19 @@ def _pixelate_handler(img_paths, factor, write=True):
 def _pixelate_operation(img, factor, write=True):
 	import pyifx.misc as misc
 
-	new_img = np.empty(shape=img.image.shape)
+	new_img = np.empty(shape=img.get_image().shape)
 
 	for r in range(0, len(new_img)-factor, factor+1):
 		for p in range(0, len(new_img[r])-factor, factor+1):
 
-			value = img.image[r][p]
+			value = img.get_image()[r][p]
 
 			for row_fill in range(r, r+factor+1):
 				for column_fill in range(p, p+factor+1):
 
 					new_img[row_fill][column_fill] = value
 
-	new_img = misc.PyifxImage(img.path, img.output_path, new_img, False)
+	new_img = misc.PyifxImage(img.get_input_path(), img.get_output_path(), new_img, False)
 
 	if write:
 		_write_file(new_img)
@@ -578,8 +578,8 @@ def _detect_edges_operation(img, write=True):
 	x_dir_img = hsl.to_grayscale(_convolute_over_image(img, x_dir_kernel), write=False)
 	y_dir_img = hsl.to_grayscale(_convolute_over_image(img, y_dir_kernel), write=False)
 
-	edge_img = misc.combine(x_dir_img, y_dir_img, img.output_path)
-	edge_img.image = edge_img.image.astype(np.uint8)
+	edge_img = misc.combine(x_dir_img, y_dir_img, img.get_output_path())
+	edge_img.set_image(edge_img.get_image().astype(np.uint8))
 
 	if write:
 		_write_file(edge_img)
@@ -670,10 +670,10 @@ def _type_checker(var, types):
 	return False
 
 def _write_file(img):
-	out_path, extension = os.path.splitext(img.output_path)
+	out_path, extension = os.path.splitext(img.get_output_path())
 
-	if not os.path.exists(os.path.split(img.output_path)[0]):
-		os.makedirs(os.path.split(img.output_path)[0])
+	if not os.path.exists(os.path.split(img.get_output_path())[0]):
+		os.makedirs(os.path.split(img.get_output_path())[0])
 
 	file_count = 1
 	temp_path = out_path
@@ -683,5 +683,5 @@ def _write_file(img):
 		out_path += f" ({file_count})"
 		file_count += 1
 
-	imageio.imwrite(out_path + extension, img.image)
+	imageio.imwrite(out_path + extension, img.get_image())
 	return img
