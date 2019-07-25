@@ -1,9 +1,6 @@
 """ This is the testing file for the Pyifx library. All function definitions are contained
 in the file named "test_function_defs.py" for the purpose of testing. """
-import sys
 import pyifx
-import os
-import numpy as np
 
 def set_paths(new_path):
 	for img in img_list:
@@ -23,10 +20,6 @@ def call_error_test(function, args):
 
 	print(f"ERROR NOT CAUGHT: {function}({args})")
 	return False
-
-
-for i in dir(pyifx):
-	print(pyifx.__loader__)
 
 img1 = pyifx.misc.PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "imgs/hsl/brightness/512x512-jpeg-1.jpg")
 img2 = pyifx.misc.PyifxImage("tests/imgs/512x512-png-1.png", "imgs/hsl/brightness/512x512-png-1.png")
