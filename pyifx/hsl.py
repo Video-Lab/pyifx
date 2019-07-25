@@ -1,4 +1,4 @@
-from pyifx import *
+import INTERNAL
 
 def brighten(img_paths,percent=45, write=True):
 	INTERNAL._type_checker(percent, [float, int])
