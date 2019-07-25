@@ -2,9 +2,9 @@ import pyifx.INTERNAL as INTERNAL
 
 class PyifxImage():
 	def __init__(self, path, output_path=None, img=None, create_image=True):
-		INTERNAL._type_checker(path, [str, NoneType])
-		INTERNAL._type_checker(out_path, [str, NoneType])
-		INTERNAL._type_checker(img, [np.ndarray, NoneType])
+		INTERNAL._type_checker(path, [str, None])
+		INTERNAL._type_checker(out_path, [str, None])
+		INTERNAL._type_checker(img, [np.ndarray, None])
 		INTERNAL._type_checker(create_image, [bool])
 
 		self.path = path

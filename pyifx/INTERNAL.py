@@ -643,7 +643,8 @@ def _create_kernel(radius, type_kernel, size, custom=None):
 
 
 def _type_checker(var, types):
-	if type(var) in types:
+
+	if type(var) in types or (var == None and None in types):
 		return True
 
 	raise TypeError("Please use correct variable types.")
