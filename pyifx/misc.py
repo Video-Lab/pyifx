@@ -57,6 +57,7 @@ class ImageVolume():
 		self.volume = self.volume_to_list(convert)
 
 	def volume_to_list(self, convert=False): # Add if conversion needed, if create image needed
+
 		INTERNAL._type_checker(self.get_input_path(), [str])
 		INTERNAL._type_checker(self.get_output_path(), [str])
 		INTERNAL._type_checker(self.get_prefix(), [str])
@@ -92,8 +93,9 @@ class ImageVolume():
 		return self.volume
 
 	def set_volume(self, new_volume):
-		for img in new_volume:
-			INTERNAL._type_checker(img, [PyifxImage])
+		if new_volume != []:
+			for img in new_volume:
+				INTERNAL._type_checker(img, [PyifxImage])
 		self.volume = new_volume
 		return self
 

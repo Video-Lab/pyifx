@@ -28,9 +28,9 @@ def _brightness_handler(img_paths, percent, method, write=True):
 			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
-		new_vol.volume = []
+		new_vol.set_volume([])
 
-		for img in img_paths.volume:
+		for img in img_paths.get_volume():
 			if method == "b" or method == "d":
 				new_vol.volume.append(_brightness_operation(img, percent, method, write=write))
 			else:
@@ -92,9 +92,9 @@ def _color_overlay_handler(img_paths, color, opacity, write=True):
 			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
-		new_vol.volume = [] 
+		new_vol.set_volume([])
 
-		for img in img_paths.volume:
+		for img in img_paths.get_volume():
 			new_vol.volume.append(_color_overlay_operation(img, color, opacity, write=write))
 
 		return new_vol
@@ -146,9 +146,9 @@ def _saturation_handler(img_paths, percent, method, write=True):
 			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
-		new_vol.volume = []
+		new_vol.set_volume([])
 
-		for img in new_imgs:
+		for img in img_paths.get_volume():
 			if method == "s" or method == "ds":
 				new_vol.volume.append(_saturation_operation(img, percent, method, write=write))
 			else:
@@ -217,9 +217,9 @@ def _resize_handler(img_paths, new_size, write=True):
 			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
-		new_vol.volume = [] 
+		new_vol.set_volume([])
 
-		for img in img_paths.volume:
+		for img in img_paths.get_volume():
 			new_vol.volume.append(_resize_operation(img, new_size, write=write))
 
 		return new_vol
@@ -286,9 +286,9 @@ def _change_file_type_handler(img_paths, new_type, write=True):
 			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
-		new_vol.volume = [] 
+		new_vol.set_volume([])
 
-		for img in img_paths.volume:
+		for img in img_paths.get_volume():
 			new_vol.volume.append(_change_file_type_operation(img, new_type, write=write))
 
 		return new_vol
@@ -339,9 +339,9 @@ def _rewrite_file_handler(img_paths):
 			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
-		new_vol.volume = [] 
+		new_vol.set_volume([])
 
-		for img in img_paths.volume:
+		for img in img_paths.get_volume():
 			new_vol.volume.append(_write_file(img_paths))
 
 		return new_vol
@@ -382,9 +382,9 @@ def _blur_handler(img_paths, radius, type_kernel, size, custom=None, write=True)
 			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
-		new_vol.volume = []
+		new_vol.set_volume([])
 
-		for img in new_imgs:
+		for img in img_paths.get_volume():
 			new_vol.volume.append(_blur_operation(img, kernel, write=write))
 
 		return new_vol
@@ -462,9 +462,9 @@ def _pixelate_handler(img_paths, factor, write=True):
 			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
-		new_vol.volume = []
+		new_vol.set_volume([])
 
-		for img in new_imgs:
+		for img in img_paths.get_volume():
 			new_vol.volume.append(_pixelate_operation(img, factor, write=write))
 
 		return new_vol
@@ -523,9 +523,9 @@ def _detect_edges_handler(img_paths, write=True):
 			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
-		new_vol.volume = []
+		new_vol.set_volume([])
 
-		for img in new_imgs:
+		for img in img_paths.get_volume():
 			new_vol.volume.append(_detect_edges_operation(img, write=write))
 
 		return new_vol
@@ -699,7 +699,7 @@ def _combine_handler(img1, img2, out_path, write=True):
 			new_img = img1
 			new_img.set_input_path(None)
 			new_img.set_output_path(out_path)
-			new_img.volume = new_imgs
+			new_img.set_volume(new_imgs)
 			return new_img
 
 		elif type(img1) == list:
