@@ -98,28 +98,14 @@ class ImageVolume():
 		return self
 
 
-def combine(img1, img2, out_path):
-	INTERNAL._type_checker(img1, [PyifxImage])
-	INTERNAL._type_checker(img2, [PyifxImage])
-	INTERNAL._type_checker(out_path, [str])
+def combine(img1, img2, out_path, write=True):
+	INTERNAL._type_checker(img1, [PyifxImage, ImageVolume, list])
+	INTERNAL._type_checker(img2, [PyifxImage, ImageVolume, list])
+	INTERNAL._type_checler(out_path, [str])
+	INTERNAL._type_checker(write, [bool])
 
-	if img1.get_image().shape[0]*img1.get_image().shape[0] <= img2.get_image().shape[0]*img2.get_image().shape[1]:
-		shape = img1.get_image().shape
-	else:
-		shape = img2.get_image().shape
+	return INTERNAL._combine_handler(img1, img2, out_path, write=write)
 
-	new_img = np.empty(shape)
-
-	for r in range(len(img1.image)):
-		for p in range(len(img1.image[r])):
-			for c in range(len(img1.image[r][p])):
-				try:
-					new_img[r][p][c] = min(255, max(0, (img1.get_image()[r][p][c]+img2.get_image()[r][p][c])/2))
-				except IndexError:
-					pass
-
-	img = PyifxImage(None, out_path, new_img, False)
-	return img
 
 
 def convert_dir_to_images(input_dir, convert=False):

@@ -11,7 +11,7 @@ def _check_path_type(path):
 		return 'file'
 	else:
 		return None
-		
+
 
 
 
@@ -661,4 +661,83 @@ def _write_file(img):
 		file_count += 1
 
 	imageio.imwrite(out_path + extension, img.get_image())
+	return img
+
+def _combine_handler(img1, img2, out_path, write=True):
+	import pyifx.misc as misc
+
+	old_imgs = [img1, img2]
+	imgs = []
+
+	for img in old_imgs:
+		if type(img) == misc.PyifxImage:
+			imgs.append(img)
+		elif type(img) == misc.ImageVolume:
+			imgs.append(img.get_volume())
+		elif type(img) == list:
+			for i in img:
+				_type_checker(i, [misc.PyifxImage])
+			imgs.append(img)
+
+	if len(list(filter(lambda i: type(i) != list, old_imgs))) == 1:
+		raise TypeError("Incorrect type used: Images must be a combination of types ImageVolume and list OR PyifxImage.")
+
+	if (type(imgs[0]) == list and type(imgs[1]) == list):
+
+		if len(imgs[0]) !== len(imgs[1]):
+			raise ValueError("Invalid value used: Lengths of image volumes and/or lists must be equal.")
+
+		if not os.path.exists(out_path):
+			os.makedirs(out_path)
+
+		new_imgs = []
+
+		for i in range(len(imgs[0]))
+			new_imgs.append(_combine_operation(imgs[0][i], imgs[1][i], out_path, write=write))
+
+		if type(img1) == misc.ImageVolume:
+			new_img = img1
+			new_img.set_input_path(None)
+			new_img.set_output_path(out_path)
+			new_img.volume = new_imgs
+			return new_img
+
+		elif type(img1) == list:
+			return new_imgs
+
+	elif type(imgs[0]) == misc.PyifxImage and type(imgs[1]) == misc.PyifxImage:
+
+		return _combine_operation(imgs[0], imgs[1], out_path, write=write)
+
+	else:
+		raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
+	
+
+def _combine_operation(img1, img2, out_path, write=True):
+	import pyifx.misc as misc
+
+	_type_checker(img1, [misc.PyifxImage])
+	_type_checker(img2, [misc.PyifxImage])
+	_type_checker(out_path, [str])
+
+	if img1.get_image().shape[0]*img1.get_image().shape[0] <= img2.get_image().shape[0]*img2.get_image().shape[1]:
+		shape = img1.get_image().shape
+	else:
+		shape = img2.get_image().shape
+
+	new_img = np.empty(shape)
+
+	for r in range(len(img1.get_image())):
+		for p in range(len(img1.get_image()[r])):
+			for c in range(len(img1.get_image()[r][p])):
+				try:
+					new_img[r][p][c] = min(255, max(0, (img1.get_image()[r][p][c]+img2.get_image()[r][p][c])/2))
+				except IndexError:
+					pass
+
+	img = misc.PyifxImage(None, out_path, new_img, False)
+
+	if write:
+		_write_file(img)
+
 	return img
