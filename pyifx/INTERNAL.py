@@ -42,8 +42,8 @@ def _brightness_handler(img_paths, percent, method, write=True):
 	import pyifx.misc as misc
 	if type(img_paths) == misc.ImageVolume:
 
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
+		if not os.path.exists(img_paths.get_output_path()):
+			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
 		new_vol.volume = []
@@ -106,8 +106,8 @@ def _brightness_operation(img, percent, method, write=True):
 def _color_overlay_handler(img_paths, color, opacity, write=True):
 	import pyifx.misc as misc
 	if type(img_paths) == misc.ImageVolume:
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
+		if not os.path.exists(img_paths.get_output_path()):
+			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
 		new_vol.volume = [] 
@@ -160,8 +160,8 @@ def _saturation_handler(img_paths, percent, method, write=True):
 	import pyifx.misc as misc
 	if type(img_paths) == misc.ImageVolume:
 
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
+		if not os.path.exists(img_paths.get_output_path()):
+			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
 		new_vol.volume = []
@@ -231,8 +231,8 @@ def _resize_handler(img_paths, new_size, write=True):
 
 	if type(img_paths) == misc.ImageVolume:
 
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
+		if not os.path.exists(img_paths.get_output_path()):
+			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
 		new_vol.volume = [] 
@@ -300,8 +300,8 @@ def _change_file_type_handler(img_paths, new_type, write=True):
 	import pyifx.misc as misc
 	if type(img_paths) == misc.ImageVolume:
 
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
+		if not os.path.exists(img_paths.get_output_path()):
+			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
 		new_vol.volume = [] 
@@ -353,8 +353,8 @@ def _rewrite_file_handler(img_paths):
 	import pyifx.misc as misc
 	if type(img_paths) == misc.ImageVolume:
 
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
+		if not os.path.exists(img_paths.get_output_path()):
+			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
 		new_vol.volume = [] 
@@ -396,8 +396,8 @@ def _blur_handler(img_paths, radius, type_kernel, size, custom=None, write=True)
 
 	if type(img_paths) == misc.ImageVolume:
 
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
+		if not os.path.exists(img_paths.get_output_path()):
+			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
 		new_vol.volume = []
@@ -476,8 +476,8 @@ def _pixelate_handler(img_paths, factor, write=True):
 	import pyifx.misc as misc
 	if type(img_paths) == misc.ImageVolume:
 
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
+		if not os.path.exists(img_paths.get_output_path()):
+			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
 		new_vol.volume = []
@@ -537,8 +537,8 @@ def _detect_edges_handler(img_paths, write=True):
 	import pyifx.misc as misc
 	if type(img_paths) == misc.ImageVolume:
 
-		if not os.path.exists(img_paths.odir):
-			os.makedirs(img_paths.odir)
+		if not os.path.exists(img_paths.get_output_path()):
+			os.makedirs(img_paths.get_output_path())
 
 		new_vol = img_paths
 		new_vol.volume = []

@@ -45,25 +45,48 @@ class PyifxImage():
 
 	
 class ImageVolume():
-	def __init__(self, i, o, p="_"):
+	def __init__(self, input_path, output_path, prefix="_"):
 		INTERNAL._type_checker(i, [str])
 		INTERNAL._type_checker(o, [str])
 		INTERNAL._type_checker(p, [str])
 
-		self.idir = i
-		self.odir = o
-		self.prefix = p
+		self.input_path = input_path
+		self.onput_path = output_path
+		self.prefix = prefix
 		self.volume = self.volume_to_list()
 
-	def volume_to_list(self):
-		INTERNAL._type_checker(self.idir, [str])
-		INTERNAL._type_checker(self.odir, [str])
-		INTERNAL._type_checker(self.prefix, [str])
+	def volume_to_list(self): # Add if conversion needed, if create image needed
+		INTERNAL._type_checker(self.get_input_path(), [str])
+		INTERNAL._type_checker(self.get_output_path(), [str])
+		INTERNAL._type_checker(self.get_prefix(), [str])
 				
-		old_imgs = INTERNAL._convert_dir_to_images(self.idir)
-		new_imgs = [PyifxImage(img, os.path.join(self.odir,f"{self.prefix}{os.path.split(img)[1]}")) for img in old_imgs]
+		old_imgs = INTERNAL._convert_dir_to_images(self.get_input_path())
+		new_imgs = [PyifxImage(img, os.path.join(self.get_output_path(),f"{self.get_prefix()}{os.path.split(img)[1]}")) for img in old_imgs]
 
 		return new_imgs
+
+	def get_input_path(self):
+		return self.input_path
+
+	def set_input_path(self, new_input_path):
+		self.input_path = new_input_path
+		self.volume = self.volume_to_list()
+		return self
+
+	def get_output_path(self):
+		return self.output_path
+
+	def set_output_path(self, new_output_path):
+		self.output_path = new_output_path
+		self.volume = self.volume_to_list()
+		return self
+
+	def get_prefix(self):
+		return self.prefix
+
+	def set_prefix(self, new_prefix):
+		self.prefix = new_prefix
+		return self
 
 
 
