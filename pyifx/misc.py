@@ -55,12 +55,12 @@ class ImageVolume():
 		self.prefix = prefix
 		self.volume = self.volume_to_list()
 
-	def volume_to_list(self): # Add if conversion needed, if create image needed
+	def volume_to_list(self, convert=False): # Add if conversion needed, if create image needed
 		INTERNAL._type_checker(self.get_input_path(), [str])
 		INTERNAL._type_checker(self.get_output_path(), [str])
 		INTERNAL._type_checker(self.get_prefix(), [str])
-				
-		old_imgs = INTERNAL._convert_dir_to_images(self.get_input_path())
+		
+		old_imgs = INTERNAL._convert_dir_to_images(self.get_input_path(), convert)
 		new_imgs = [PyifxImage(img, os.path.join(self.get_output_path(),f"{self.get_prefix()}{os.path.split(img)[1]}")) for img in old_imgs]
 
 		return new_imgs
@@ -88,7 +88,14 @@ class ImageVolume():
 		self.prefix = new_prefix
 		return self
 
+	def get_volume(self):
+		return self.volume
 
+	def set_volume(self, new_volume):
+		for img in new_volume:
+			INTERNAL._type_checker(img, [PyifxImage])
+		self.volume = new_volume
+		return self
 
 
 def combine(img1, img2, out_path):

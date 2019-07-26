@@ -15,18 +15,20 @@ def _check_path_type(path):
 
 
 
-def _convert_dir_to_images(dirc):
-	_type_checker(dirc, [str])
+def _convert_dir_to_images(input_dir, recursive=False):
+	_type_checker(input_dir, [str])
 	
 	images = []
 	possible_extensions = ['.jpg', '.jpeg', '.png']
 
-	def add_to_images(idirc):
-		for f in os.listdir(idirc):
+	def add_to_images(internal_input_dir):
+		for f in os.listdir(internal_input_dir):
 		 	if os.path.splitext(f)[1] in possible_extensions:
-		 		images.append(os.path.join(idirc,f))
-		 	elif os.path.isdir(f):
-		 		add_to_images(f)
+		 		images.append(os.path.join(internal_input_dir,f))
+
+		 	if recursive:
+			 	if os.path.isdir(f):
+			 		add_to_images(f)
 
 	add_to_images(dirc)
 	return images
@@ -571,6 +573,7 @@ def _detect_edges_handler(img_paths, write=True):
 
 def _detect_edges_operation(img, write=True):
 	import pyifx.misc as misc
+	import pyifx.hsl as hsl
 
 	x_dir_kernel = _create_kernel(None, "x-sobel", None)
 	y_dir_kernel = _create_kernel(None, "y-sobel", None)
