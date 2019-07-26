@@ -12,7 +12,7 @@ class PyifxImage():
 		INTERNAL._type_checker(img, [np.ndarray, None])
 		INTERNAL._type_checker(create_image, [bool])
 
-		self.path = path
+		self.input_path = path
 		self.output_path = output_path
 		self.image = img
 		if create_image:
@@ -22,10 +22,10 @@ class PyifxImage():
 		self.image = np.asarray(imageio.imread(self.path))
 
 	def get_input_path(self):
-		return self.path
+		return self.input_path
 
 	def set_input_path(self, new_input_path):
-		self.path = new_input_path
+		self.input_path = new_input_path
 		self.refresh_image()
 		return self
 

@@ -655,12 +655,6 @@ def _create_kernel(radius, type_kernel, size, custom=None):
 	return kernel
 
 
-
-
-
-
-
-
 def _type_checker(var, types):
 
 	if type(var) in types or (var == None and None in types):
