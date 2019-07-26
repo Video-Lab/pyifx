@@ -45,22 +45,23 @@ class PyifxImage():
 
 	
 class ImageVolume():
-	def __init__(self, input_path, output_path, prefix="_"):
-		INTERNAL._type_checker(i, [str])
-		INTERNAL._type_checker(o, [str])
-		INTERNAL._type_checker(p, [str])
+	def __init__(self, input_path, output_path, prefix="_", convert=False):
+		INTERNAL._type_checker(input_path, [str])
+		INTERNAL._type_checker(output_path, [str])
+		INTERNAL._type_checker(prefix, [str])
+		INTERNAL._type_checker(convert, [bool])
 
 		self.input_path = input_path
 		self.onput_path = output_path
 		self.prefix = prefix
-		self.volume = self.volume_to_list()
+		self.volume = self.volume_to_list(convert)
 
 	def volume_to_list(self, convert=False): # Add if conversion needed, if create image needed
 		INTERNAL._type_checker(self.get_input_path(), [str])
 		INTERNAL._type_checker(self.get_output_path(), [str])
 		INTERNAL._type_checker(self.get_prefix(), [str])
 		
-		old_imgs = INTERNAL._convert_dir_to_images(self.get_input_path(), convert)
+		old_imgs = convert_dir_to_images(self.get_input_path(), convert)
 		new_imgs = [PyifxImage(img, os.path.join(self.get_output_path(),f"{self.get_prefix()}{os.path.split(img)[1]}")) for img in old_imgs]
 
 		return new_imgs
@@ -68,9 +69,9 @@ class ImageVolume():
 	def get_input_path(self):
 		return self.input_path
 
-	def set_input_path(self, new_input_path):
+	def set_input_path(self, new_input_path, convert=False):
 		self.input_path = new_input_path
-		self.volume = self.volume_to_list()
+		self.volume = self.volume_to_list(convert)
 		return self
 
 	def get_output_path(self):
@@ -78,7 +79,6 @@ class ImageVolume():
 
 	def set_output_path(self, new_output_path):
 		self.output_path = new_output_path
-		self.volume = self.volume_to_list()
 		return self
 
 	def get_prefix(self):
@@ -121,3 +121,21 @@ def combine(img1, img2, out_path):
 	img = PyifxImage(None, out_path, new_img, False)
 	return img
 
+
+def convert_dir_to_images(input_dir, convert=False):
+	_type_checker(input_dir, [str])
+	
+	images = []
+	possible_extensions = ['.jpg', '.jpeg', '.png']
+
+	def add_to_images(internal_input_dir):
+		for f in os.listdir(internal_input_dir):
+		 	if os.path.splitext(f)[1] in possible_extensions:
+		 		images.append(os.path.join(internal_input_dir,f))
+
+		 	if convert:
+			 	if os.path.isdir(f):
+			 		add_to_images(f)
+
+	add_to_images(dirc)
+	return images
