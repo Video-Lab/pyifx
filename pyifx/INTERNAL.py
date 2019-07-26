@@ -607,7 +607,11 @@ def _create_kernel(radius, type_kernel, size, custom=None):
 			if size % 2 == 0:
 				size += 1
 
-			size = (size, size)
+		elif type(size) == int:
+			size = [size, size]
+		elif type(size) == list:
+			if len(size) != 2:
+				raise ValueError("Invalid value used: Size either be in the format [W, H] or S (S -> [S,S]).")
 
 		m,n = [(ss-1.)/2. for ss in size]
 		y,x = np.ogrid[-m:m+1,-n:n+1]
@@ -643,7 +647,7 @@ def _type_checker(var, types):
 	if type(var) in types or (var == None and None in types):
 		return True
 
-	raise TypeError("Please use correct variable types.")
+	raise TypeError("Invalid parameter type.")
 	return False
 
 def _write_file(img):
