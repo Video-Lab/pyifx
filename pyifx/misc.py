@@ -6,6 +6,65 @@ import math
 import pyifx.INTERNAL as INTERNAL
 
 class PyifxImage():
+	""" A class used to create packages of images & their properties created for use with the Pyifx library.
+
+	Attributes:
+		input_path (str, NoneType): The path to where the image is located. If the image does not have an input path,
+		it means that the instance is a result of combining two or more images.
+
+		output_path (str, NoneType): The path to where edited images should be created. If the image does not have an
+		output path, it means the instance is used for read-only purposes.
+
+		image (numpy.ndarray, NoneType): The image located at the input path in the form of a numpy n-dimensional array.
+		If the instance does not have an image property, it means that the image had not been read.
+
+	Methods:
+		__init__(self, path, output_path=None, img=None, create_image=True)
+			The PyifxImage constructor method.
+
+			Parameters:
+			path (str, NoneType): The path to where the image is located. Only use None as a value if the image property of the 
+			instace is being specified.
+
+			output_path(str, NoneType): The path to where the edited image should be saved. Only use None as a value if the instance 
+			is not going to be saved to a file.
+
+			img (numpy.ndarray, NoneType): The data used for image editing & processing. The image property of the class will be
+			set based on the input path unless this parameter is set to a value other than None.
+
+			create_image (bool): Specify whether the image property should be read from the input path. If this is set to true,
+			the image at the input path will override the specified image parameter.
+
+		refresh_image(self):
+			Re-reads image based on input path & overrides the current image property, then returns the instance.
+
+		get_input_path(self):
+			Gets the instances input path and returns it.
+
+		set_input_path(self, new_input_path):
+			Sets the instances input path and returns the instance.
+
+			Parameters:
+			new_input_path (str): What the input path will be set to.
+
+		get_output_path(self):
+			Gets the instances output path and returns it.
+
+		set_output_path(self, new_output_path):
+			Sets the instances output path and returns the instance.
+
+			Parameters:
+			new_output_path (str): What the output path will be set to.
+
+		get_image(self):
+			Gets the instances image data and returns it.
+
+		set_image(self, new_image):
+			Sets the instances image data and returns it.
+
+			Parameters:
+			new_image (numpy.ndarray): What the image property will be set to.
+	"""
 	def __init__(self, path, output_path=None, img=None, create_image=True):
 		INTERNAL._type_checker(path, [str, None])
 		INTERNAL._type_checker(output_path, [str, None])
@@ -20,6 +79,7 @@ class PyifxImage():
 
 	def refresh_image(self):
 		self.image = np.asarray(imageio.imread(self.path))
+		return self
 
 	def get_input_path(self):
 		return self.input_path
