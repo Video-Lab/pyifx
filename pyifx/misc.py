@@ -105,6 +105,79 @@ class PyifxImage():
 
 	
 class ImageVolume():
+	"""A class used to import images from a directory into Python, creating a list of PyifxImage instances.
+
+	Attributes:
+		input_path (str): The path to the directory where the images are located.
+
+		output_path (str): The path where images in the volume should be saved.
+
+		prefix (str): The prefix for edited image file names.
+
+		volume (list): The list of images imported from the input path.
+
+	Methods:
+		__init__(self, input_path, output_path, prefix="_", convert=False)
+			The ImageVolume constructor method.
+
+			Parameters:
+			input_path (str): The path to the directory where the images are located.
+
+			output_path (str): The path where images in the volume should be saved.
+
+			prefix (str): The prefix for edited image file names. If nothing is entered, this parameter will default to "_".
+
+			convert (bool): Whether the instance should also read in images from subdirectories. If nothing is entered, this
+			value will default to false.
+
+
+		volume_to_list(self, convert=False)
+			The method used to create a list of PyifxImage instances based on the arguments entered in the constructor method.
+			The volume property will be set based on the return value of this function.
+
+			Parameters:
+			convert (bool): Whether to import images from subdirectories. If nothing is entered, this value will default to False.
+
+		get_input_path(self):
+			Gets the instances input path and returns it.
+
+		set_input_path(self, new_input_path, convert=False):
+			Sets the instances input path and returns it.
+
+			Parameters:
+			new_input_path (str): What the input path will be set to.
+
+			convert (bool): Whether the instance should also read in images from subdirectories. If nothing is entered, this
+			value will default to false.
+
+		get_output_path(self):
+			Gets the instances output path and returns it.
+
+		set_output_path(self, new_output_path):
+			Sets the instances output path and returns the instance.
+
+			Parameters:
+			new_output_path (str): What the output path will be set to.
+
+		get_prefix(self):
+			Gets the instances prefix property and returns it.
+
+		set_prefix(self, new_prefix):
+			Sets the instances prefix property and returns the instance.
+
+			Parameters:
+
+			new_prefix (str): What the instances prefix property will be set to.
+
+		get_volume(self):
+			Gets the instances volume and returns it.
+
+		set_volume(self, new_volume):
+			Sets the instances volume property and returns the volume.
+
+			Parameters:
+			new_volume (list): What the instances volume will be set to.
+	"""
 	def __init__(self, input_path, output_path, prefix="_", convert=False):
 		INTERNAL._type_checker(input_path, [str])
 		INTERNAL._type_checker(output_path, [str])
@@ -112,7 +185,7 @@ class ImageVolume():
 		INTERNAL._type_checker(convert, [bool])
 
 		self.input_path = input_path
-		self.onput_path = output_path
+		self.output_path = output_path
 		self.prefix = prefix
 		self.volume = self.volume_to_list(convert)
 
