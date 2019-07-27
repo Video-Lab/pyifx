@@ -699,12 +699,7 @@ def _combine_handler(img1, img2, out_path, write=True):
 		for i in range(len(imgs[0]))
 			new_imgs.append(_combine_operation(imgs[0][i], imgs[1][i], out_path, write=write))
 
-		if type(img1) == misc.ImageVolume:
-			new_img = img1
-			new_img.set_input_path(None)
-			new_img.set_output_path(out_path)
-			new_img.set_volume(new_imgs)
-			return new_img
+			return new_imgs
 
 		elif type(img1) == list:
 			return new_imgs

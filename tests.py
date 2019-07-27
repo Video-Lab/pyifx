@@ -160,8 +160,14 @@ call_error_text("pyifx.graphics.convolute_custom", [img1, sobel_horizontal_np, '
 set_paths("tests/imgs/misc/combine/")
 
 pyifx.misc.combine(img1, img2, "tests/imgs/misc/combine") #TBC
+pyifx.misc.combine([img_list[0]], [img_list[1]], "tests/imgs/misc/combine")
+img_vol_new = pyifx.misc.ImageVolume("tests/imgs/", "tests/imgs/misc/combine/", "VOLUME-")
+img_vol.set_volume([img_list[0]])
+pyifx.misc.combine(img_vol_new, [img_list[1]], "tests/imgs/misc/combine")
+
 
 call_error_test("pyifx.misc.combine", [img1, 's', "tests/imgs/misc/combine"])
+call_error_test("pyifx.misc.combine", [img1, [img_list[0]], "tests/imgs/misc/combine"])
 
 set_paths("tests/imgs/misc/class_functions/")
 
