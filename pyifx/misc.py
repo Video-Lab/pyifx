@@ -35,11 +35,23 @@ class PyifxImage():
 			create_image (bool): Specify whether the image property should be read from the input path. If this is set to true,
 			the image at the input path will override the specified image parameter.
 
+			Returns:
+			PyifxImage instance (pyifx.misc.PyifxImage)
+
+
 		refresh_image(self):
 			Re-reads image based on input path & overrides the current image property, then returns the instance.
 
+			Returns:
+			PyifxImage instance (pyifx.misc.PyifxImage)
+
+
 		get_input_path(self):
 			Gets the instances input path and returns it.
+
+			Returns:
+			Input path (str)
+
 
 		set_input_path(self, new_input_path):
 			Sets the instances input path and returns the instance.
@@ -47,8 +59,16 @@ class PyifxImage():
 			Parameters:
 			new_input_path (str): What the input path will be set to.
 
+			Returns:
+			PyifxImage instance (pyifx.misc.PyifxImage)
+
+
 		get_output_path(self):
 			Gets the instances output path and returns it.
+
+			Returns:
+			Output path (str)
+
 
 		set_output_path(self, new_output_path):
 			Sets the instances output path and returns the instance.
@@ -56,14 +76,25 @@ class PyifxImage():
 			Parameters:
 			new_output_path (str): What the output path will be set to.
 
+			Returns:
+			PyifxImage instance (pyifx.misc.PyifxImage)
+
+
 		get_image(self):
 			Gets the instances image data and returns it.
+
+			Returns:
+			Image data (numpy.ndarray)
+
 
 		set_image(self, new_image):
 			Sets the instances image data and returns it.
 
 			Parameters:
 			new_image (numpy.ndarray): What the image property will be set to.
+
+			Returns:
+			PyifxImage instance (pyifx.misc.PyifxImage)
 	"""
 	def __init__(self, path, output_path=None, img=None, create_image=True):
 		INTERNAL._type_checker(path, [str, None])
@@ -130,6 +161,9 @@ class ImageVolume():
 			convert (bool): Whether the instance should also read in images from subdirectories. If nothing is entered, this
 			value will default to false.
 
+			Returns:
+			ImageVolume instance (pyifx.misc.ImageVolume)
+
 
 		volume_to_list(self, convert=False)
 			The method used to create a list of PyifxImage instances based on the arguments entered in the constructor method.
@@ -138,8 +172,16 @@ class ImageVolume():
 			Parameters:
 			convert (bool): Whether to import images from subdirectories. If nothing is entered, this value will default to False.
 
+			Returns:
+			PyifxImage list (list)
+
+
 		get_input_path(self):
 			Gets the instances input path and returns it.
+
+			Returns:
+			Input path (str)
+			
 
 		set_input_path(self, new_input_path, convert=False):
 			Sets the instances input path and returns it.
@@ -150,8 +192,16 @@ class ImageVolume():
 			convert (bool): Whether the instance should also read in images from subdirectories. If nothing is entered, this
 			value will default to false.
 
+			Returns:
+			ImageVolume instance (pyifx.misc.ImageVolume)
+
+
 		get_output_path(self):
 			Gets the instances output path and returns it.
+
+			Returns:
+			Output path (str)
+
 
 		set_output_path(self, new_output_path):
 			Sets the instances output path and returns the instance.
@@ -159,8 +209,16 @@ class ImageVolume():
 			Parameters:
 			new_output_path (str): What the output path will be set to.
 
+			Returns:
+			ImageVolume instance (pyifx.misc.ImageVolume)
+
+
 		get_prefix(self):
 			Gets the instances prefix property and returns it.
+
+			Returns:
+			Prefix (str)
+
 
 		set_prefix(self, new_prefix):
 			Sets the instances prefix property and returns the instance.
@@ -169,14 +227,25 @@ class ImageVolume():
 
 			new_prefix (str): What the instances prefix property will be set to.
 
+			Returns:
+			ImageVolume instance (pyifx.misc.ImageVolume)
+
+
 		get_volume(self):
 			Gets the instances volume and returns it.
+
+			Returns:
+			List of images of type PyifxImage OR An empty array (list)
+
 
 		set_volume(self, new_volume):
 			Sets the instances volume property and returns the volume.
 
 			Parameters:
 			new_volume (list): What the instances volume will be set to.
+
+			Returns:
+			ImageVolume instance (pyifx.misc.ImageVolume)
 	"""
 	def __init__(self, input_path, output_path, prefix="_", convert=False):
 		INTERNAL._type_checker(input_path, [str])
