@@ -169,9 +169,6 @@ pyifx.misc.combine(img_vol_new, [img_list[1]], "tests/imgs/misc/combine")
 call_error_test("pyifx.misc.combine", [img1, 's', "tests/imgs/misc/combine"])
 call_error_test("pyifx.misc.combine", [img1, [img_list[0]], "tests/imgs/misc/combine"])
 
-set_paths("tests/imgs/misc/class_functions/")
-
-TBA
 
 
 # COMPLETED TESTS
