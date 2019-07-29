@@ -6,7 +6,7 @@ def resize(img_paths, new_size, write=True):
 			Takes image(s) and converts them to a given size.
 
 			Parameters:
-			img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The images to be converted.
+			img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be resized.
 
 			new_size (str): The new size to convert the image(s) to. It must be entered in the form "WidthxHeight".
 
@@ -29,7 +29,7 @@ def change_file_type(img_paths, new_type, write=True):
 			Takes image(s) and converts them to a given file type.
 
 			Parameters:
-			img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The images to be converted.
+			img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be converted.
 
 			new_type (str): The file type that the image(s) should be converted to. Available types: PNG, JPG, JPEG. Can be 
 			entered with/without the dot. Parameter is case-insensitive.
@@ -54,7 +54,7 @@ def rewrite_file(img_paths):
 			to pyifx class instances.
 
 			Parameters:
-			img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The images to be converted.
+			img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be rewritten.
 
 			Returns:
 			PyifxImage instance (pyifx.misc.PyifxImage)

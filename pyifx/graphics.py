@@ -3,10 +3,10 @@ import pyifx.misc as misc
 
 def blur_gaussian(img_paths, radius=3, size=None, write=True):
 	"""blur_gaussian(img_paths, radius=3, size=None, write=True) 
-		Takes images(s) and blurs them using a gaussian kernel.
+		Takes images(s) and blurs them using a gaussian kernel based on a given radius.
 
 		Parameters:
-		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The images to be converted.
+		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be blurred.
 
 		radius (int): The radius of the gaussian kernel. If nothing is entered, this parameter will default to 3.
 
@@ -28,10 +28,10 @@ def blur_gaussian(img_paths, radius=3, size=None, write=True):
 
 def blur_mean(img_paths, radius=3, write=True):
 	"""blur_mean(img_paths, radius=3, write=True) 
-		Takes images(s) and blurs them using a mean kernel.
+		Takes images(s) and blurs them using a mean kernel based on a given radius.
 
 		Parameters:
-		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The images to be converted.
+		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be blurred.
 
 		radius (int): The radius of the mean kernel. If nothing is entered, this parameter will default to 3.
 
@@ -49,6 +49,22 @@ def blur_mean(img_paths, radius=3, write=True):
 	return INTERNAL._blur_handler(img_paths, radius=radius, type_kernel="mean", size=None, write=write)
 
 def pixelate(img_paths, factor=4, write=True):
+	"""pixelate(img_paths, factor=4, write=True)
+		Takes image(s) and pixelates them based on a given factor.
+
+		Parameters:
+		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be pixelated.
+
+		factor (int): How much the image(s) should be pixelated. If nothing is entered, this parameter will default to 4.
+
+		write (bool): Whether to write the resized image(s). 
+
+		Returns:
+		PyifxImage instance (pyifx.misc.PyifxImage)
+		ImageVolume instance (pyifx.misc.ImageVolume)
+		List with elements of type PyifxImage (list)
+
+	"""
 	INTERNAL._type_checker(factor, [int])
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
