@@ -181,7 +181,7 @@ class ImageVolume():
 
 			Returns:
 			Input path (str)
-			
+
 
 		set_input_path(self, new_input_path, convert=False):
 			Sets the instances input path and returns it.
@@ -303,6 +303,23 @@ class ImageVolume():
 
 
 def combine(img1, img2, out_path, write=True):
+	"""combine(img1, img2, out_path, write=True)
+			Combines the data of two PyifxImages, ImageVolumes, or ImageLists to form new PyifxImages.
+
+			Parameters: 
+			img1 (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The first image to be added to the combination.
+
+			img2 (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The second image to be added to the combination.
+			Arguments of type ImageVolume and list can be used in conjunction, but images of type PyifxImage must be used together.
+
+			out_path (str): The path that the combine image(s) will be written to.
+
+			write (bool): Whether to write the image or not.
+
+			Returns:
+			PyifxImage instance (pyifx.misc.PyifxImage)
+			List with elements of type PyifxImage (list)
+	"""
 	INTERNAL._type_checker(img1, [PyifxImage, ImageVolume, list])
 	INTERNAL._type_checker(img2, [PyifxImage, ImageVolume, list])
 	INTERNAL._type_checler(out_path, [str])
