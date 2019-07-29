@@ -2,13 +2,13 @@ import pyifx.INTERNAL as INTERNAL
 import pyifx.misc as misc
 
 def brighten(img_paths,percent=45, write=True):
-	"""brighten(img_paths, percent=45, write=True):
+	"""brighten(img_paths, percent=45, write=True)
 		Takes image(s) and brightens them.
 
 		Parameters:
 		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be brightened.
 
-		percent (int): How much the image should be brightened. If nothing is entered for this parameter,
+		percent (int): How much the image(s) should be brightened. If nothing is entered for this parameter,
 		it will default to 45. The parameter must be between 0 and 100 (inclusive).
 
 		write (bool): Whether to write the brightened image(s).					
@@ -30,6 +30,23 @@ def brighten(img_paths,percent=45, write=True):
 
 
 def darken(img_paths,percent=45, write=True):
+	"""darken(img_paths, percent=45, write=True)
+		Takes image(s) and darkens them.
+
+		Parameters:
+		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be darkened.
+
+		percent (int): How much the image(s) should be darkened. If nothing is entered for this parameter,
+		it will default to 45. The parameter must be between 0 and 100 (inclusive).
+
+		write (bool): Whether to write the darkened image(s).					
+
+		Returns:
+		PyifxImage instance (pyifx.misc.PyifxImage)
+		ImageVolume instance (pyifx.misc.ImageVolume)
+		List with elements of type PyifxImage (list)		
+
+	"""	
 	INTERNAL._type_checker(percent, [float, int])
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
@@ -41,6 +58,26 @@ def darken(img_paths,percent=45, write=True):
 
 
 def color_overlay(img_paths, color, opacity=30, write=True):
+	"""color_overlay(img_paths, color, opacity=30, write=True)
+		Takes image(s) and applies a specified color over it/them.
+
+		Parameters:
+		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be manipulated.
+
+		color (numpy.ndarray, list): The color to be applied over the image(s). This parameter should be specified
+		in the format [Red, Green, Blue], with each component being between 0 and 255 (inclusive).
+
+		opacity (int): How visible the color should be. If nothing is entered for this parameter, it will default to 30. It
+		should be between 0 and 100 (inclusive).
+
+		write (bool): Whether to write the darkened image(s).					
+
+		Returns:
+		PyifxImage instance (pyifx.misc.PyifxImage)
+		ImageVolume instance (pyifx.misc.ImageVolume)
+		List with elements of type PyifxImage (list)		
+	"""	
+	
 	INTERNAL._type_checker(opacity, [float, int])
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
