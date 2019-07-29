@@ -264,10 +264,7 @@ class ImageVolume():
 		INTERNAL._type_checker(self.get_output_path(), [str])
 		INTERNAL._type_checker(self.get_prefix(), [str])
 		
-		old_imgs = convert_dir_to_images(self.get_input_path(), convert)
-		new_imgs = [PyifxImage(img, os.path.join(self.get_output_path(),f"{self.get_prefix()}{os.path.split(img)[1]}")) for img in old_imgs]
-
-		return new_imgs
+		return self.convert_dir_to_images(self.get_input_path(), convert)
 
 	def get_input_path(self):
 		return self.input_path
@@ -301,6 +298,24 @@ class ImageVolume():
 		self.volume = new_volume
 		return self
 
+	def convert_dir_to_images(input_dir, convert=False):
+		INTERNAL._type_checker(input_dir, [str])
+	
+		images = []
+		possible_extensions = ['.jpg', '.jpeg', '.png']
+
+		def add_to_images(internal_input_dir):
+			for f in os.listdir(internal_input_dir):
+			 	if os.path.splitext(f)[1] in possible_extensions:
+			 		images.append(PyifxImage(f, os.path.join(self.get_output_path(),f"{self.get_prefix()}{os.path.split(f)[1]}")))
+
+			 	if convert:
+				 	if os.path.isdir(f):
+				 		add_to_images(f)
+
+		add_to_images(dirc)
+		return images
+
 
 def combine(img1, img2, out_path, write=True):
 	"""combine(img1, img2, out_path, write=True)
@@ -320,6 +335,7 @@ def combine(img1, img2, out_path, write=True):
 			PyifxImage instance (pyifx.misc.PyifxImage)
 			List with elements of type PyifxImage (list)
 	"""
+
 	INTERNAL._type_checker(img1, [PyifxImage, ImageVolume, list])
 	INTERNAL._type_checker(img2, [PyifxImage, ImageVolume, list])
 	INTERNAL._type_checler(out_path, [str])
@@ -329,20 +345,3 @@ def combine(img1, img2, out_path, write=True):
 
 
 
-def convert_dir_to_images(input_dir, convert=False):
-	_type_checker(input_dir, [str])
-	
-	images = []
-	possible_extensions = ['.jpg', '.jpeg', '.png']
-
-	def add_to_images(internal_input_dir):
-		for f in os.listdir(internal_input_dir):
-		 	if os.path.splitext(f)[1] in possible_extensions:
-		 		images.append(os.path.join(internal_input_dir,f))
-
-		 	if convert:
-			 	if os.path.isdir(f):
-			 		add_to_images(f)
-
-	add_to_images(dirc)
-	return images
