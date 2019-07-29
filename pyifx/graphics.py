@@ -12,7 +12,7 @@ def blur_gaussian(img_paths, radius=3, size=None, write=True):
 
 		size (list, NoneType): The dimensions of the gaussian kernel. Must be entered in
 
-		write (bool): Whether to write the resized image(s). 
+		write (bool): Whether to write the blurred image(s). 
 
 		Returns:
 		PyifxImage instance (pyifx.misc.PyifxImage)
@@ -35,7 +35,7 @@ def blur_mean(img_paths, radius=3, write=True):
 
 		radius (int): The radius of the mean kernel. If nothing is entered, this parameter will default to 3.
 
-		write (bool): Whether to write the resized image(s). 
+		write (bool): Whether to write the blurred image(s). 
 
 		Returns:
 		PyifxImage instance (pyifx.misc.PyifxImage)
@@ -57,7 +57,7 @@ def pixelate(img_paths, factor=4, write=True):
 
 		factor (int): How much the image(s) should be pixelated. If nothing is entered, this parameter will default to 4.
 
-		write (bool): Whether to write the resized image(s). 
+		write (bool): Whether to write the pixelated image(s). 
 
 		Returns:
 		PyifxImage instance (pyifx.misc.PyifxImage)
@@ -72,6 +72,20 @@ def pixelate(img_paths, factor=4, write=True):
 	return INTERNAL._pixelate_handler(img_paths, factor, write=write)
 
 def detect_edges(img_paths, write=True):
+	"""detect_edges(img_paths, write=True)
+			Takes image(s) and creates new images focusing on edges.
+
+			Parameters:
+			img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be manipulated.
+
+			write (bool): Whether to write the manipulated image(s).					
+
+			Returns:
+			PyifxImage instance (pyifx.misc.PyifxImage)
+			ImageVolume instance (pyifx.misc.ImageVolume)
+			List with elements of type PyifxImage (list)
+
+	"""
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
 
