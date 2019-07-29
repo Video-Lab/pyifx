@@ -49,6 +49,19 @@ def change_file_type(img_paths, new_type, write=True):
 	return INTERNAL._change_file_type_handler(img_paths, new_type, write=write)
 
 def rewrite_file(img_paths):
+	"""rewrite_file(img_paths):
+			Takes image(s) and writes them to an output destination based on their properties. Intended for use with changes
+			to pyifx class instances.
+
+			Parameters:
+			img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The images to be converted.
+
+			Returns:
+			PyifxImage instance (pyifx.misc.PyifxImage)
+			ImageVolume instance (pyifx.misc.ImageVolume)
+			List with elements of type PyifxImage (list)		
+
+	"""
 	NTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 
 	return INTERNAL._rewrite_file_handler(img_paths)
