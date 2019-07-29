@@ -92,6 +92,24 @@ def detect_edges(img_paths, write=True):
 	return INTERNAL._detect_edges_handler(img_paths, write=write)
 
 def convolute_custom(img_paths, kernel, write=True):
+	"""convolute_custom(img_paths, kernel, write=True)
+		Takes image(s) and creates new images that are convoluted over using a given kernel.
+
+		Parameters:
+		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be convoluted over.
+
+		kernel (numpy.ndarray, list): The kernel to be used for convolution. This can be provided in either a 2-dimensional
+		list or a numpy 2-dimensional array.
+
+		write (bool): Whether to write the convoluted image(s).					
+
+		Returns:
+		PyifxImage instance (pyifx.misc.PyifxImage)
+		ImageVolume instance (pyifx.misc.ImageVolume)
+		List with elements of type PyifxImage (list)
+		
+
+	"""
 	INTERNAL._type_checker(kernel, [np.ndarray, list])
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])

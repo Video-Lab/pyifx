@@ -2,6 +2,9 @@ import pyifx.INTERNAL as INTERNAL
 import pyifx.misc as misc
 
 def brighten(img_paths,percent=45, write=True):
+	"""
+
+	"""
 	INTERNAL._type_checker(percent, [float, int])
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
