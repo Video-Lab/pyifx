@@ -246,6 +246,17 @@ class ImageVolume():
 
 			Returns:
 			ImageVolume instance (pyifx.misc.ImageVolume)
+
+		convert_dir_to_images(input_dir, convert=False):
+			Converts files from a given directory into PyifxImage instances.
+			
+			Parameters:
+			input_dir (str): The directory to read files from.
+
+			convert (bool): Whether to import images from subdirectories as well.
+
+			Returns:
+			List with elements of type PyifxImage (list)
 	"""
 	def __init__(self, input_path, output_path, prefix="_", convert=False):
 		INTERNAL._type_checker(input_path, [str])
