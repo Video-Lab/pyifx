@@ -2,6 +2,22 @@ import pyifx.INTERNAL as INTERNAL
 import pyifx.misc as misc
 
 def resize(img_paths, new_size, write=True):
+	"""resize(img_paths, new_size, write=True):
+			Takes image(s) of multiple types and converts them to a given size.
+
+			Parameters:
+			img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The images to be converted.
+
+			new_size (str): The new size to convert the image(s) to. It must be entered in the form "WidthxHeight".
+
+			write (bool): Whether to write the resized image(s). 
+
+			Returns:
+			PyifxImage instance (pyifx.misc.PyifxImage)
+			ImageVolume instance (pyifx.misc.ImageVolume)
+			List with elements of type PyifxImage (list)
+			
+	"""
 	INTERNAL._type_checker(write, [bool])
 	INTERNAL._type_checker(new_size, [str])
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
