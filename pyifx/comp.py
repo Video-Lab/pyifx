@@ -32,7 +32,7 @@ def change_file_type(img_paths, new_type, write=True):
 			img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The images to be converted.
 
 			new_type (str): The file type that the image(s) should be converted to. Available types: PNG, JPG, JPEG. Can be 
-			entered with/without the dot.
+			entered with/without the dot. Parameter is case-insensitive.
 
 			write (bool): Whether to write the resized image(s). 
 

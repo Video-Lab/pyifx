@@ -316,7 +316,7 @@ def _change_file_type_operation(img, new_type, write=True):
 
 	new_img = img
 	accepted_types = ['.jpg', '.png', '.jpeg', 'jpg', 'jpeg', 'png']	
-	if new_type not in accepted_types:
+	if new_type.lower() not in accepted_types:
 		raise ValueError("Invalid value used: New file type not in accepted file types.")
 
 	if new_type[0] != '.':
