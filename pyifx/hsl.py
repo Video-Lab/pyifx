@@ -2,7 +2,21 @@ import pyifx.INTERNAL as INTERNAL
 import pyifx.misc as misc
 
 def brighten(img_paths,percent=45, write=True):
-	"""
+	"""brighten(img_paths, percent=45, write=True):
+		Takes image(s) and brightens them.
+
+		Parameters:
+		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be brightened.
+
+		percent (int): How much the image should be brightened. If nothing is entered for this parameter,
+		it will default to 45. The parameter must be between 0 and 100 (inclusive).
+
+		write (bool): Whether to write the brightened image(s).					
+
+		Returns:
+		PyifxImage instance (pyifx.misc.PyifxImage)
+		ImageVolume instance (pyifx.misc.ImageVolume)
+		List with elements of type PyifxImage (list)		
 
 	"""
 	INTERNAL._type_checker(percent, [float, int])

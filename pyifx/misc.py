@@ -156,10 +156,11 @@ class ImageVolume():
 
 			output_path (str): The path where images in the volume should be saved.
 
-			prefix (str): The prefix for edited image file names. If nothing is entered, this parameter will default to "_".
+			prefix (str): The prefix for edited image file names. If nothing is entered for this parameter,
+			it will default to "_".
 
-			convert (bool): Whether the instance should also read in images from subdirectories. If nothing is entered, this
-			value will default to false.
+			convert (bool): Whether the instance should also read in images from subdirectories. If nothing is entered for
+			this parameter, it will default to false.
 
 			Returns:
 			ImageVolume instance (pyifx.misc.ImageVolume)
@@ -170,7 +171,8 @@ class ImageVolume():
 			The volume property will be set based on the return value of this function.
 
 			Parameters:
-			convert (bool): Whether to import images from subdirectories. If nothing is entered, this value will default to False.
+			convert (bool): Whether to import images from subdirectories. If nothing is entered for this parameter,
+			it will default to False.
 
 			Returns:
 			PyifxImage list (list)
@@ -189,8 +191,8 @@ class ImageVolume():
 			Parameters:
 			new_input_path (str): What the input path will be set to.
 
-			convert (bool): Whether the instance should also read in images from subdirectories. If nothing is entered, this
-			value will default to false.
+			convert (bool): Whether the instance should also read in images from subdirectories. If nothing is entered for this
+			parameter, it will default to false.
 
 			Returns:
 			ImageVolume instance (pyifx.misc.ImageVolume)

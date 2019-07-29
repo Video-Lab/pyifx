@@ -8,7 +8,8 @@ def blur_gaussian(img_paths, radius=3, size=None, write=True):
 		Parameters:
 		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be blurred.
 
-		radius (int): The radius of the gaussian kernel. If nothing is entered, this parameter will default to 3.
+		radius (int): The radius of the gaussian kernel. If nothing is entered for this parameter,
+		it will default to 3.
 
 		size (list, NoneType): The dimensions of the gaussian kernel. Must be entered in
 
@@ -33,7 +34,7 @@ def blur_mean(img_paths, radius=3, write=True):
 		Parameters:
 		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be blurred.
 
-		radius (int): The radius of the mean kernel. If nothing is entered, this parameter will default to 3.
+		radius (int): The radius of the mean kernel. If nothing is entered for this parameter, it will default to 3.
 
 		write (bool): Whether to write the blurred image(s). 
 
@@ -55,7 +56,8 @@ def pixelate(img_paths, factor=4, write=True):
 		Parameters:
 		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be pixelated.
 
-		factor (int): How much the image(s) should be pixelated. If nothing is entered, this parameter will default to 4.
+		factor (int): How much the image(s) should be pixelated. If nothing is entered for this parameter,
+		it will default to 4.
 
 		write (bool): Whether to write the pixelated image(s). 
 
@@ -107,8 +109,6 @@ def convolute_custom(img_paths, kernel, write=True):
 		PyifxImage instance (pyifx.misc.PyifxImage)
 		ImageVolume instance (pyifx.misc.ImageVolume)
 		List with elements of type PyifxImage (list)
-		
-
 	"""
 	INTERNAL._type_checker(kernel, [np.ndarray, list])
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
