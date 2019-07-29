@@ -113,7 +113,7 @@ def saturate(img_paths, percent=30, write=True):
 		ImageVolume instance (pyifx.misc.ImageVolume)
 		List with elements of type PyifxImage (list)		
 	"""
-	
+
 	INTERNAL._type_checker(percent, [float, int])
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
@@ -125,6 +125,23 @@ def saturate(img_paths, percent=30, write=True):
 
 
 def desaturate(img_paths, percent=30, write=True):
+	"""desaturate(img_paths, percent=30, write=True)
+		Takes image(s) and desaturates them.
+
+		Parameters:
+		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be desaturated.
+
+		percent (int): How much the image(s) should be desaturated. If nothing is entered for this parameter,
+		it will default to 30. The parameter must be between 0 and 100 (inclusive).
+
+		write (bool): Whether to write the desaturated image(s).					
+
+		Returns:
+		PyifxImage instance (pyifx.misc.PyifxImage)
+		ImageVolume instance (pyifx.misc.ImageVolume)
+		List with elements of type PyifxImage (list)	
+	"""
+
 	INTERNAL._type_checker(percent, [float, int])
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
