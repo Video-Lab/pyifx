@@ -77,7 +77,7 @@ def color_overlay(img_paths, color, opacity=30, write=True):
 		ImageVolume instance (pyifx.misc.ImageVolume)
 		List with elements of type PyifxImage (list)		
 	"""	
-	
+
 	INTERNAL._type_checker(opacity, [float, int])
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
@@ -97,6 +97,23 @@ def color_overlay(img_paths, color, opacity=30, write=True):
 
 
 def saturate(img_paths, percent=30, write=True):
+	"""saturate(img_paths, percent=30, write=True)
+		Takes image(s) and saturates them.
+
+		Parameters:
+		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be saturated.
+
+		percent (int): How much the image(s) should be saturated. If nothing is entered for this parameter,
+		it will default to 30. The parameter must be between 0 and 100 (inclusive).
+
+		write (bool): Whether to write the saturated image(s).					
+
+		Returns:
+		PyifxImage instance (pyifx.misc.PyifxImage)
+		ImageVolume instance (pyifx.misc.ImageVolume)
+		List with elements of type PyifxImage (list)		
+	"""
+	
 	INTERNAL._type_checker(percent, [float, int])
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])

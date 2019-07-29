@@ -355,6 +355,3 @@ def combine(img1, img2, out_path, write=True):
 	INTERNAL._type_checker(write, [bool])
 
 	return INTERNAL._combine_handler(img1, img2, out_path, write=write)
-
-
-
