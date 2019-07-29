@@ -153,6 +153,20 @@ def desaturate(img_paths, percent=30, write=True):
 
 
 def to_grayscale(img_paths, write=True):
+	"""to_grayscale(img_paths, write=True)
+		Takes image(s) and converts them to grayscale.
+
+		Parameters:
+		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be converted.
+
+		write (bool): Whether to write the grayscale image(s).					
+
+		Returns:
+		PyifxImage instance (pyifx.misc.PyifxImage)
+		ImageVolume instance (pyifx.misc.ImageVolume)
+		List with elements of type PyifxImage (list)
+	"""
+	
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
 
