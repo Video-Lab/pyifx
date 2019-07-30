@@ -10,6 +10,18 @@ Welcome to pyifx's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   Getting Started <getting_started>
+   Image Classes <image_classes>
+   Usage <usage>
+   HSL <hsl>
+   Graphics <graphics>
+   Composition <composition>
+   Modules <modules>
+   Contribution <contribution>
+   Testing <testing>
+   License <license>
+   Enquiries <enquiries>
+
 
 
 Indices and tables
