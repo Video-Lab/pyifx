@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to pyifx's documentation!
-=================================
+Pyifx Documentation
+===================
 
 .. toctree::
    :maxdepth: 2
@@ -16,7 +16,7 @@ Welcome to pyifx's documentation!
    HSL <hsl>
    Graphics <graphics>
    Composition <composition>
-   Modules <modules>
+   General Index <modules>
    Contribution <contribution>
    Testing <testing>
    License <license>
