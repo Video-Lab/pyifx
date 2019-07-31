@@ -38,6 +38,7 @@ The library was created by Jad Khalili, and first released in August 2019.
 
 Get Started
 -----------
+To install the library & begin using it, visit the `Getting Started Guide <getting_started.html>`_.
 
 Indices and tables
 ------------------
