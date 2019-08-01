@@ -23,7 +23,7 @@ def blur_gaussian(img_paths, radius=3, size=None, write=True):
 	INTERNAL._type_checker(radius, [int, float])
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
-	INTERNAL._type_checker(size, [int, list])
+	INTERNAL._type_checker(size, [int, list, None])
 
 	return INTERNAL._blur_handler(img_paths, radius=radius, type_kernel="gaussian", size=size, write=write)
 

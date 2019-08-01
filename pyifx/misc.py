@@ -291,8 +291,9 @@ class ImageVolume():
 	def get_output_path(self):
 		return self.output_path
 
-	def set_output_path(self, new_output_path):
+	def set_output_path(self, new_output_path, convert=False):
 		self.output_path = new_output_path
+		self.volume = self.volume_to_list(convert)
 		return self
 
 	def get_prefix(self):

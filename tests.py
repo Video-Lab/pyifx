@@ -36,10 +36,10 @@ pyifx.misc.PyifxImage("./tests/imgs/512x512-jpg-1.jpg", "./tests/imgs/hsl/bright
 
 # # HSL
 
-# pyifx.hsl.brighten(img1, percent=50)
-# pyifx.hsl.darken(img2, percent=50)
-# pyifx.hsl.brighten(img_vol, percent=70)
-# pyifx.hsl.darken(img_list, percent=70)
+pyifx.hsl.brighten(img1, percent=50)
+pyifx.hsl.darken(img2, percent=50)
+pyifx.hsl.brighten(img_vol, percent=70)
+pyifx.hsl.darken(img_list, percent=70)
 
 # call_error_test("pyifx.hsl.brighten", ["s", 50])
 # call_error_test("pyifx.hsl.brighten", [img1, 's'])
