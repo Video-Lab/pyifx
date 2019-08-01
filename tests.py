@@ -36,10 +36,10 @@ pyifx.misc.PyifxImage("./tests/imgs/512x512-jpg-1.jpg", "./tests/imgs/hsl/bright
 
 # # HSL
 
-pyifx.hsl.brighten(img1, percent=50)
-pyifx.hsl.darken(img2, percent=50)
-pyifx.hsl.brighten(img_vol, percent=70)
-pyifx.hsl.darken(img_list, percent=70)
+# pyifx.hsl.brighten(img1, percent=50)
+# pyifx.hsl.darken(img2, percent=50)
+# pyifx.hsl.brighten(img_vol, percent=70)
+# pyifx.hsl.darken(img_list, percent=70)
 
 # call_error_test("pyifx.hsl.brighten", ["s", 50])
 # call_error_test("pyifx.hsl.brighten", [img1, 's'])
@@ -56,13 +56,13 @@ pyifx.hsl.color_overlay(img1, [255,0,0], 60)
 pyifx.hsl.color_overlay(img_vol, [0,255,0], 60)
 pyifx.hsl.color_overlay(img_list, [0,0,255], 60)
 
-call_error_test("pyifx.hsl.color_overlay", ["asdf", [255,0,0], 60])
-call_error_test("pyifx.hsl.color_overlay", [img1, [255,0], 60])
-call_error_test("pyifx.hsl.color_overlay", [img1, [255,0, 'e'], 60])
-call_error_test("pyifx.hsl.color_overlay", [img1, [255,0,0], "s"])
-call_error_test("pyifx.hsl.color_overlay", [img1, [255,0,0], 200])
-call_error_test("pyifx.hsl.color_overlay", [img1, [255,0], -10])
-call_error_test("pyifx.hsl.color_overlay", [img1, [255,0,0], 60, "s"])
+# call_error_test("pyifx.hsl.color_overlay", ["asdf", [255,0,0], 60])
+# call_error_test("pyifx.hsl.color_overlay", [img1, [255,0], 60])
+# call_error_test("pyifx.hsl.color_overlay", [img1, [255,0, 'e'], 60])
+# call_error_test("pyifx.hsl.color_overlay", [img1, [255,0,0], "s"])
+# call_error_test("pyifx.hsl.color_overlay", [img1, [255,0,0], 200])
+# call_error_test("pyifx.hsl.color_overlay", [img1, [255,0], -10])
+# call_error_test("pyifx.hsl.color_overlay", [img1, [255,0,0], 60, "s"])
 
 set_paths("tests/imgs/hsl/saturation/")
 
@@ -71,41 +71,41 @@ pyifx.hsl.desaturate(img2, 60)
 pyifx.hsl.desaturate(img_vol, 30)
 pyifx.hsl.to_grayscale(img_list)
 
-call_error_test("pyifx.hsl.saturate", ["asdf", 70])
-call_error_test("pyifx.hsl.desaturate", ["asdf", 70])
-call_error_test("pyifx.hsl.to_grayscale", [10000])
-call_error_test("pyifx.hsl.saturate", [img1, "s"])
-call_error_test("pyifx.hsl.desaturate", [img1, "s"])
-call_error_test("pyifx.hsl.desaturate", [img1, -10])
+# call_error_test("pyifx.hsl.saturate", ["asdf", 70])
+# call_error_test("pyifx.hsl.desaturate", ["asdf", 70])
+# call_error_test("pyifx.hsl.to_grayscale", [10000])
+# call_error_test("pyifx.hsl.saturate", [img1, "s"])
+# call_error_test("pyifx.hsl.desaturate", [img1, "s"])
+# call_error_test("pyifx.hsl.desaturate", [img1, -10])
 
 
 # Composition
 
-set_paths("tests/imgs/comp/resize/")
+# set_paths("tests/imgs/comp/resize/")
 
-pyifx.comp.resize(img1, "1024x1024")
-pyifx.comp.resize(img2, "256x256")
-pyifx.comp.resize(img_list, "694x1440")
-pyifx.comp.resize(img_vol, "1532x393")
+# pyifx.comp.resize(img1, "1024x1024")
+# pyifx.comp.resize(img2, "256x256")
+# pyifx.comp.resize(img_list, "694x1440")
+# pyifx.comp.resize(img_vol, "1532x393")
 
-call_error_test("pyifx.comp.resize", [img1, "10241024"])
-call_error_test("pyifx.comp.resize", [img1, "1024xs"])
-call_error_test("pyifx.comp.resize", ["s", "1024x1024"])
-call_error_test("pyifx.comp.resize", [img1, "1024x1024x1024"])
-call_error_test("pyifx.comp.resize", [img1, 2])
-call_error_test("pyifx.comp.resize", [img1, "1024x1024", "s"])
+# call_error_test("pyifx.comp.resize", [img1, "10241024"])
+# call_error_test("pyifx.comp.resize", [img1, "1024xs"])
+# call_error_test("pyifx.comp.resize", ["s", "1024x1024"])
+# call_error_test("pyifx.comp.resize", [img1, "1024x1024x1024"])
+# call_error_test("pyifx.comp.resize", [img1, 2])
+# call_error_test("pyifx.comp.resize", [img1, "1024x1024", "s"])
 
-set_paths("tests/imgs/comp/file_type/")
+# set_paths("tests/imgs/comp/file_type/")
 
-pyifx.comp.change_file_type(img1, '.png')
-pyifx.comp.change_file_type(img2, '.jpg')
-pyifx.comp.change_file_type(img_list, 'png')
-pyifx.comp.change_file_type(img_vol, 'jpeg')
+# pyifx.comp.change_file_type(img1, '.png')
+# pyifx.comp.change_file_type(img2, '.jpg')
+# pyifx.comp.change_file_type(img_list, 'png')
+# pyifx.comp.change_file_type(img_vol, 'jpeg')
 
-call_error_test("pyifx.comp.change_file_type", [img1, "ekr"])
-call_error_test("pyifx.comp.change_file_type", [2, "png"])
-call_error_test("pyifx.comp.change_file_type", [2, "ekr"])
-call_error_test("pyifx.comp.change_file_type", [img1, "png", "s"])
+# call_error_test("pyifx.comp.change_file_type", [img1, "ekr"])
+# call_error_test("pyifx.comp.change_file_type", [2, "png"])
+# call_error_test("pyifx.comp.change_file_type", [2, "ekr"])
+# call_error_test("pyifx.comp.change_file_type", [img1, "png", "s"])
 
 # Graphics
 

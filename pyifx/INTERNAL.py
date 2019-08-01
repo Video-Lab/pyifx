@@ -131,9 +131,9 @@ def _color_overlay_operation(img, color, opacity, write=True):
 	new_img = misc.PyifxImage(img.get_input_path(), img.get_output_path(), new_img, False)
 
 	if write:
-		_write_file(img)
+		_write_file(new_img)
 
-	return img
+	return new_img
 
 
 
@@ -195,9 +195,9 @@ def _saturation_operation(img, percent, method, write=True):
 
 	new_img = misc.PyifxImage(img.get_input_path(), img.get_output_path(), new_img, False)
 	if write:
-		_write_file(img)
+		_write_file(new_img)
 		
-	return img
+	return new_img
 
 
 
