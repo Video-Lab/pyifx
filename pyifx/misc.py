@@ -269,6 +269,7 @@ class ImageVolume():
 		self.input_path = input_path
 		self.output_path = output_path
 		self.prefix = prefix
+		self.convert = convert
 		self.volume = self.volume_to_list(convert)
 
 	def volume_to_list(self, convert=False): # Add if conversion needed, if create image needed

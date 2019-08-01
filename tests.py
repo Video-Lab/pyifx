@@ -8,7 +8,7 @@ def set_paths(new_path):
 	for img in img_list:
 		img.set_output_path(os.path.join(new_path, os.path.split(img.get_output_path())[1]))
 
-	img_vol.set_output_path(os.path.join(new_path, os.path.split(vol.get_output_path())[1]))
+	img_vol.set_output_path(os.path.join(new_path, os.path.split(img_vol.get_output_path())[1]))
 
 	img1.set_output_path(os.path.join(new_path, os.path.split(img1.get_output_path())[1]))
 	img2.set_output_path(os.path.join(new_path, os.path.split(img2.get_output_path())[1]))
@@ -38,17 +38,17 @@ pyifx.misc.PyifxImage("./tests/imgs/512x512-jpg-1.jpg", "./tests/imgs/hsl/bright
 
 # pyifx.hsl.brighten(img1, percent=50)
 # pyifx.hsl.darken(img2, percent=50)
-print(pyifx.hsl.brighten(img_vol, percent=70))
+# pyifx.hsl.brighten(img_vol, percent=70)
 # pyifx.hsl.darken(img_list, percent=70)
 
-call_error_test("pyifx.hsl.brighten", ["s", 50])
-call_error_test("pyifx.hsl.brighten", [img1, 's'])
-call_error_test("pyifx.hsl.brighten", [img1, 50, 's'])
-call_error_test("pyifx.hsl.darken", [img1, 50, 's'])
-call_error_test("pyifx.hsl.darken", ['s', 50])
-call_error_test("pyifx.hsl.darken", [img1, 50, 's'])
-call_error_test("pyifx.hsl.brighten", [img1, 200])
-call_error_test("pyifx.hsl.darken", [img1, -10])
+# call_error_test("pyifx.hsl.brighten", ["s", 50])
+# call_error_test("pyifx.hsl.brighten", [img1, 's'])
+# call_error_test("pyifx.hsl.brighten", [img1, 50, 's'])
+# call_error_test("pyifx.hsl.darken", [img1, 50, 's'])
+# call_error_test("pyifx.hsl.darken", ['s', 50])
+# call_error_test("pyifx.hsl.darken", [img1, 50, 's'])
+# call_error_test("pyifx.hsl.brighten", [img1, 200])
+# call_error_test("pyifx.hsl.darken", [img1, -10])
 
 set_paths("tests/imgs/hsl/color_overlay/")
 

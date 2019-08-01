@@ -27,7 +27,7 @@ def _brightness_handler(img_paths, percent, method, write=True):
 		if not os.path.exists(img_paths.get_output_path()):
 			os.makedirs(img_paths.get_output_path())
 
-		new_vol = img_paths
+		new_vol = misc.ImageVolume(img_paths.get_input_path(), img_paths.get_output_path(), img_paths.get_prefix(), img_paths.convert)
 		new_vol.set_volume([])
 
 		for img in img_paths.get_volume():
@@ -91,7 +91,7 @@ def _color_overlay_handler(img_paths, color, opacity, write=True):
 		if not os.path.exists(img_paths.get_output_path()):
 			os.makedirs(img_paths.get_output_path())
 
-		new_vol = img_paths
+		new_vol = misc.ImageVolume(img_paths.get_input_path(), img_paths.get_output_path(), img_paths.get_prefix(), img_paths.convert)
 		new_vol.set_volume([])
 
 		for img in img_paths.get_volume():
@@ -145,7 +145,7 @@ def _saturation_handler(img_paths, percent, method, write=True):
 		if not os.path.exists(img_paths.get_output_path()):
 			os.makedirs(img_paths.get_output_path())
 
-		new_vol = img_paths
+		new_vol = misc.ImageVolume(img_paths.get_input_path(), img_paths.get_output_path(), img_paths.get_prefix(), img_paths.convert)
 		new_vol.set_volume([])
 
 		for img in img_paths.get_volume():
@@ -216,7 +216,7 @@ def _resize_handler(img_paths, new_size, write=True):
 		if not os.path.exists(img_paths.get_output_path()):
 			os.makedirs(img_paths.get_output_path())
 
-		new_vol = img_paths
+		new_vol = misc.ImageVolume(img_paths.get_input_path(), img_paths.get_output_path(), img_paths.get_prefix(), img_paths.convert)
 		new_vol.set_volume([])
 
 		for img in img_paths.get_volume():
@@ -285,7 +285,7 @@ def _change_file_type_handler(img_paths, new_type, write=True):
 		if not os.path.exists(img_paths.get_output_path()):
 			os.makedirs(img_paths.get_output_path())
 
-		new_vol = img_paths
+		new_vol = misc.ImageVolume(img_paths.get_input_path(), img_paths.get_output_path(), img_paths.get_prefix(), img_paths.convert)
 		new_vol.set_volume([])
 
 		for img in img_paths.get_volume():
@@ -338,7 +338,7 @@ def _rewrite_file_handler(img_paths):
 		if not os.path.exists(img_paths.get_output_path()):
 			os.makedirs(img_paths.get_output_path())
 
-		new_vol = img_paths
+		new_vol = misc.ImageVolume(img_paths.get_input_path(), img_paths.get_output_path(), img_paths.get_prefix(), img_paths.convert)
 		new_vol.set_volume([])
 
 		for img in img_paths.get_volume():
@@ -381,7 +381,7 @@ def _blur_handler(img_paths, radius, type_kernel, size, custom=None, write=True)
 		if not os.path.exists(img_paths.get_output_path()):
 			os.makedirs(img_paths.get_output_path())
 
-		new_vol = img_paths
+		new_vol = misc.ImageVolume(img_paths.get_input_path(), img_paths.get_output_path(), img_paths.get_prefix(), img_paths.convert)
 		new_vol.set_volume([])
 
 		for img in img_paths.get_volume():
@@ -461,7 +461,7 @@ def _pixelate_handler(img_paths, factor, write=True):
 		if not os.path.exists(img_paths.get_output_path()):
 			os.makedirs(img_paths.get_output_path())
 
-		new_vol = img_paths
+		new_vol = misc.ImageVolume(img_paths.get_input_path(), img_paths.get_output_path(), img_paths.get_prefix(), img_paths.convert)
 		new_vol.set_volume([])
 
 		for img in img_paths.get_volume():
@@ -522,7 +522,7 @@ def _detect_edges_handler(img_paths, write=True):
 		if not os.path.exists(img_paths.get_output_path()):
 			os.makedirs(img_paths.get_output_path())
 
-		new_vol = img_paths
+		new_vol = misc.ImageVolume(img_paths.get_input_path(), img_paths.get_output_path(), img_paths.get_prefix(), img_paths.convert)
 		new_vol.set_volume([])
 
 		for img in img_paths.get_volume():
