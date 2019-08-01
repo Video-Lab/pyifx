@@ -123,10 +123,8 @@ def _color_overlay_operation(img, color, opacity, write=True):
 		for p in range(len(new_img[row])):
 			for v in range(len(new_img[row][p])):
 
-				val = img.get_image()[row][p][v]
-				diff = color[v] - val
-				diff *= opacity
-				new_img[row][p][v] += diff
+				diff = (color[v]-img.get_image()[row][p][v])*opacity
+				new_img[row][p][v] = min(255, max(img.get_image()[row][p][v]+diff, 0))
 
 	new_img = misc.PyifxImage(img.get_input_path(), img.get_output_path(), new_img, False)
 
