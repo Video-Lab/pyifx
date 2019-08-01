@@ -320,11 +320,11 @@ class ImageVolume():
 		def add_to_images(internal_input_dir):
 			for f in os.listdir(internal_input_dir):
 			 	if os.path.splitext(f)[1] in possible_extensions:
-			 		images.append(PyifxImage(f, os.path.join(self.get_output_path(),f"{self.get_prefix()}{os.path.split(f)[1]}")))
+			 		images.append(PyifxImage(internal_input_dir + f, os.path.join(self.get_output_path(),f"{self.get_prefix()}{os.path.split(f)[1]}")))
 
 			 	if convert:
 				 	if os.path.isdir(f):
-				 		add_to_images(f)
+				 		add_to_images(internal_input_dir + f)
 
 		add_to_images(input_dir)
 		return images

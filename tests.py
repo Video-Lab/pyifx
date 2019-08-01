@@ -22,14 +22,14 @@ def call_error_test(function, args):
 	print(f"ERROR NOT CAUGHT: {function}({args})")
 	return False
 
-img1 = pyifx.misc.PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "imgs/hsl/brightness/512x512-jpeg-1.jpg")
-img2 = pyifx.misc.PyifxImage("tests/imgs/512x512-png-1.png", "imgs/hsl/brightness/512x512-png-1.png")
+img1 = pyifx.misc.PyifxImage("./tests/imgs/512x512-jpeg-1.jpg", "./tests/imgs/hsl/brightness/512x512-jpeg-1.jpg")
+img2 = pyifx.misc.PyifxImage("./tests/imgs/512x512-png-1.png", "./tests/imgs/hsl/brightness/512x512-png-1.png")
 
-img_vol = pyifx.misc.ImageVolume("tests/imgs/", "tests/imgs/hsl/brightness", "VOLUME-")
+img_vol = pyifx.misc.ImageVolume("./tests/imgs/", "./tests/imgs/hsl/brightness", "VOLUME-")
 
-img_list = [pyifx.misc.PyifxImage("tests/imgs/512x512-jpeg-1.jpg", "tests/imgs/hsl/brightness/LIST-512x512-jpeg-1.jpg"), 
-pyifx.misc.PyifxImage("tests/imgs/512x512-png-1.png", "tests/imgs/hsl/brightness/LIST-512x512-png-1.png"),
-pyifx.misc.PyifxImage("tests/imgs/512x512-jpg-1.jpg", "tests/imgs/hsl/brightness/LIST-512x512-jpg-1.jpg")]
+img_list = [pyifx.misc.PyifxImage("./tests/imgs/512x512-jpeg-1.jpg", "./tests/imgs/hsl/brightness/LIST-512x512-jpeg-1.jpg"), 
+pyifx.misc.PyifxImage("./tests/imgs/512x512-png-1.png", "./tests/imgs/hsl/brightness/LIST-512x512-png-1.png"),
+pyifx.misc.PyifxImage("./tests/imgs/512x512-jpg-1.jpg", "./tests/imgs/hsl/brightness/LIST-512x512-jpg-1.jpg")]
 
 # # TESTS TODO
 
