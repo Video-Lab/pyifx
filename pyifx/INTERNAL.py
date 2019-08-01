@@ -71,7 +71,7 @@ def _brightness_operation(img, percent, method, write=True):
 				if method == "b":
 					new_img[row][p][v] = min(255, value*(1+percent)-(value/6))
 				elif method == "d":
-					new_img[row][p][v] = max(0, value*(1-percent)-(value/6))
+					new_img[row][p][v] = max(0, value*(1-percent)+(value/6))
 				else:
 					raise Exception("An internal error occurred.")
 
@@ -664,7 +664,7 @@ def _write_file(img):
 		out_path += f" ({file_count})"
 		file_count += 1
 
-	imageio.imwrite(out_path + extension, img.get_image())
+	imageio.imwrite(out_path + extension, img.get_image().astype(np.uint8))
 	return img
 
 def _combine_handler(img1, img2, out_path, write=True):
