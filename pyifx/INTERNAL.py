@@ -688,7 +688,7 @@ def _combine_handler(img1, img2, out_path, write=True):
 
 	if (type(imgs[0]) == list and type(imgs[1]) == list):
 
-		if len(imgs[0]) !== len(imgs[1]):
+		if len(imgs[0]) != len(imgs[1]):
 			raise ValueError("Invalid value used: Lengths of image volumes and/or lists must be equal.")
 
 		if not os.path.exists(out_path):
@@ -696,12 +696,9 @@ def _combine_handler(img1, img2, out_path, write=True):
 
 		new_imgs = []
 
-		for i in range(len(imgs[0]))
+		for i in range(len(imgs[0])):
 			new_imgs.append(_combine_operation(imgs[0][i], imgs[1][i], out_path, write=write))
 
-			return new_imgs
-
-		elif type(img1) == list:
 			return new_imgs
 
 	elif type(imgs[0]) == misc.PyifxImage and type(imgs[1]) == misc.PyifxImage:

@@ -311,7 +311,7 @@ class ImageVolume():
 		self.volume = new_volume
 		return self
 
-	def convert_dir_to_images(input_dir, convert=False):
+	def convert_dir_to_images(self, input_dir, convert=False):
 		INTERNAL._type_checker(input_dir, [str])
 	
 		images = []
@@ -326,7 +326,7 @@ class ImageVolume():
 				 	if os.path.isdir(f):
 				 		add_to_images(f)
 
-		add_to_images(dirc)
+		add_to_images(input_dir)
 		return images
 
 
