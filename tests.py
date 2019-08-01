@@ -50,11 +50,11 @@ pyifx.misc.PyifxImage("./tests/imgs/512x512-jpg-1.jpg", "./tests/imgs/hsl/bright
 # call_error_test("pyifx.hsl.brighten", [img1, 200])
 # call_error_test("pyifx.hsl.darken", [img1, -10])
 
-set_paths("tests/imgs/hsl/color_overlay/")
+# set_paths("tests/imgs/hsl/color_overlay/")
 
-pyifx.hsl.color_overlay(img1, [255,0,0], 100)
-pyifx.hsl.color_overlay(img_vol, [0,255,0], 100)
-pyifx.hsl.color_overlay(img_list, [0,0,255], 100)
+# pyifx.hsl.color_overlay(img1, [255,0,0], 100)
+# pyifx.hsl.color_overlay(img_vol, [0,255,0], 100)
+# pyifx.hsl.color_overlay(img_list, [0,0,255], 100)
 
 # call_error_test("pyifx.hsl.color_overlay", ["asdf", [255,0,0], 60])
 # call_error_test("pyifx.hsl.color_overlay", [img1, [255,0], 60])

@@ -108,7 +108,7 @@ def _color_overlay_handler(img_paths, color, opacity, write=True):
 			if type(img) != misc.PyifxImage:
 				raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
-			return new_imgs.append(_color_overlay_operation(img, color, opacity, write=write))
+			new_imgs.append(_color_overlay_operation(img, color, opacity, write=write))
 		return new_imgs
 
 	else:
@@ -605,9 +605,9 @@ def _create_kernel(radius, type_kernel, size, custom=None):
 			if size % 2 == 0:
 				size += 1
 
-		elif type(size) == int:
+		if type(size) == int:
 			size = [size, size]
-		elif type(size) == list:
+		if type(size) == list:
 			if len(size) != 2:
 				raise ValueError("Invalid value used: Size either be in the format [W, H] or S (S -> [S,S]).")
 
