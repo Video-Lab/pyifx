@@ -353,7 +353,7 @@ def combine(img1, img2, out_path, write=True):
 
 	INTERNAL._type_checker(img1, [PyifxImage, ImageVolume, list])
 	INTERNAL._type_checker(img2, [PyifxImage, ImageVolume, list])
-	INTERNAL._type_checler(out_path, [str])
+	INTERNAL._type_checker(out_path, [str])
 	INTERNAL._type_checker(write, [bool])
 
 	return INTERNAL._combine_handler(img1, img2, out_path, write=write)

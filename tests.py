@@ -109,30 +109,30 @@ pyifx.misc.PyifxImage("./tests/imgs/512x512-jpg-1.jpg", "./tests/imgs/hsl/bright
 
 # Graphics
 
-set_paths("tests/imgs/graphics/blur")
+# set_paths("tests/imgs/graphics/blur")
 
-pyifx.graphics.blur_gaussian(img1,3)
-pyifx.graphics.blur_mean(img2, 3)
-pyifx.graphics.blur_gaussian(img_list, 1)
-pyifx.graphics.blur_mean(img_vol, 1)
+# pyifx.graphics.blur_gaussian(img1,3)
+# pyifx.graphics.blur_mean(img2, 3)
+# pyifx.graphics.blur_gaussian(img_list, 1)
+# pyifx.graphics.blur_mean(img_vol, 1)
 
-call_error_test("pyifx.graphics.blur_gaussian", ["s", 3])
-call_error_test("pyifx.graphics.blur_gaussian", [img1, "s"])
-call_error_test("pyifx.graphics.blur_gaussian", [img1, 2, (3,3), "s"])
-call_error_test("pyifx.graphics.blur_mean", ["s", 3])
-call_error_test("pyifx.graphics.blur_mean", [img1, "s"])
-call_error_test("pyifx.graphics.blur_mean", [img1, 2, 's'])
+# call_error_test("pyifx.graphics.blur_gaussian", ["s", 3])
+# call_error_test("pyifx.graphics.blur_gaussian", [img1, "s"])
+# call_error_test("pyifx.graphics.blur_gaussian", [img1, 2, (3,3), "s"])
+# call_error_test("pyifx.graphics.blur_mean", ["s", 3])
+# call_error_test("pyifx.graphics.blur_mean", [img1, "s"])
+# call_error_test("pyifx.graphics.blur_mean", [img1, 2, 's'])
 
 
-set_paths("tests/imgs/graphics/pixelate")
+# set_paths("tests/imgs/graphics/pixelate")
 
-pyifx.graphics.pixelate(img1, 4)
-pyifx.graphics.pixelate(img_list, 2)
-pyifx.graphics.pixelate(img_vol, 3)
+# pyifx.graphics.pixelate(img1, 4)
+# pyifx.graphics.pixelate(img_list, 2)
+# pyifx.graphics.pixelate(img_vol, 3)
 
-call_error_test("pyifx.graphics.pixelate", [img1, 's'])
-call_error_test("pyifx.graphics.pixelate", ['s', 4])
-call_error_test("pyifx.graphics.pixelate", [img1, 4, 's'])
+# call_error_test("pyifx.graphics.pixelate", [img1, 's'])
+# call_error_test("pyifx.graphics.pixelate", ['s', 4])
+# call_error_test("pyifx.graphics.pixelate", [img1, 4, 's'])
 
 set_paths("tests/imgs/graphics/edge")
 

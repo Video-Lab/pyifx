@@ -556,10 +556,10 @@ def _detect_edges_operation(img, write=True):
 	x_dir_kernel = _create_kernel(None, "x-sobel", None)
 	y_dir_kernel = _create_kernel(None, "y-sobel", None)
 
-	x_dir_img = hsl.to_grayscale(_convolute_over_image(img, x_dir_kernel), write=False)
-	y_dir_img = hsl.to_grayscale(_convolute_over_image(img, y_dir_kernel), write=False)
+	x_dir_img = hsl.to_grayscale(_convolute_over_image(img, x_dir_kernel, write=False), write=False)
+	y_dir_img = hsl.to_grayscale(_convolute_over_image(img, y_dir_kernel, write=False), write=False)
 
-	edge_img = misc.combine(x_dir_img, y_dir_img, img.get_output_path())
+	edge_img = misc.combine(x_dir_img, y_dir_img, img.get_output_path(), write=False)
 	edge_img.set_image(edge_img.get_image().astype(np.uint8))
 
 	if write:
