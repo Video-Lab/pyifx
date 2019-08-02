@@ -410,7 +410,6 @@ def _blur_handler(img_paths, radius, type_kernel, size, custom=None, write=True)
 def _blur_operation(img, kernel, write=True):
 
 	new_img = _convolute_over_image(img, kernel, write=False)
-	new_img.set_image(new_img.get_image().astype(np.uint8))
 
 	if write:
 		_write_file(new_img)
@@ -572,7 +571,7 @@ def _detect_edges_operation(img, write=True):
 
 def _create_kernel(radius, type_kernel, size, custom=None):
 
-	if custom:
+	if type(custom) != None:
 		custom = np.array(custom)
 
 		if len(custom.shape) != 2:
@@ -582,13 +581,6 @@ def _create_kernel(radius, type_kernel, size, custom=None):
 			if d % 2 == 0:
 				raise ValueError("Invalid value used: Kernel must have odd dimension sizes.")
 
-		def _check_if_int(arr):
-			for v in arr:
-				if type(v) == list:
-					_check_if_int(v)
-				_type_checker(v, [int, float])
-
-		_check_if_int(custom)		
 		return custom
 
 	if size != None:
@@ -642,8 +634,12 @@ def _create_kernel(radius, type_kernel, size, custom=None):
 
 def _type_checker(var, types):
 
-	if type(var) in types or (var == None and None in types):
-		return True
+	for t in types:
+		if t == None:
+			if var == None:
+				return True
+		elif type(var) is t:
+			return True
 
 	raise TypeError("Invalid parameter type.")
 	return False
