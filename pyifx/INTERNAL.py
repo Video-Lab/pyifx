@@ -716,12 +716,14 @@ def _combine_operation(img1, img2, out_path, write=True):
 		shape = img2.get_image().shape
 
 	new_img = np.empty(shape)
+	count = 0;
 
 	for r in range(len(img1.get_image())):
 		for p in range(len(img1.get_image()[r])):
 			for c in range(len(img1.get_image()[r][p])):
 				try:
-					new_img[r][p][c] = min(255, max(0, (img1.get_image()[r][p][c]+img2.get_image()[r][p][c])/2))
+					new_img[r][p][c] = min(255, max(0, (int(img1.get_image()[r][p][c])+int(img2.get_image()[r][p][c]))/2))
+					
 				except IndexError:
 					pass
 
