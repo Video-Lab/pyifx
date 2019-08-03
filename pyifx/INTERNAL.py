@@ -685,8 +685,8 @@ def _combine_handler(img1, img2, out_path, write=True):
 		if len(imgs[0]) != len(imgs[1]):
 			raise ValueError("Invalid value used: Lengths of image volumes and/or lists must be equal.")
 
-		if not os.path.exists(out_path):
-			os.makedirs(out_path)
+		if not os.path.exists(os.path.split(out_path)[0]):
+			os.makedirs(os.path.split(out_path)[0])
 
 		new_imgs = []
 
