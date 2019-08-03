@@ -24,9 +24,9 @@ def blur_gaussian(img_paths, radius=3, size=None, write=True):
 	INTERNAL._type_checker(radius, [int, float])
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
-	INTERNAL._type_checker(size, [int, list, None])
+	INTERNAL._type_checker(size, [int, list, np.ndarray, None])
 
-	return INTERNAL._blur_handler(img_paths, radius=radius, type_kernel="gaussian", size=size, write=write)
+	return INTERNAL._blur_handler(img_paths, radius=radius, type_kernel="gaussian", size=size, custom=None, write=write)
 
 def blur_mean(img_paths, radius=3, write=True):
 	"""blur_mean(img_paths, radius=3, write=True) 
@@ -48,7 +48,7 @@ def blur_mean(img_paths, radius=3, write=True):
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
 	INTERNAL._type_checker(write, [bool])
 
-	return INTERNAL._blur_handler(img_paths, radius=radius, type_kernel="mean", size=None, write=write)
+	return INTERNAL._blur_handler(img_paths, radius=radius, type_kernel="mean", size=None, custom=None, write=write)
 
 def pixelate(img_paths, factor=4, write=True):
 	"""pixelate(img_paths, factor=4, write=True)

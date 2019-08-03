@@ -571,7 +571,7 @@ def _detect_edges_operation(img, write=True):
 
 def _create_kernel(radius, type_kernel, size, custom=None):
 
-	if type(custom) != None:
+	if custom != None:
 		custom = np.array(custom)
 
 		if len(custom.shape) != 2:
