@@ -369,7 +369,7 @@ def _rewrite_file_handler(img_paths):
 
 
 
-def _blur_handler(img_paths, radius, type_kernel, size, custom=None, write=True):
+def _convolution_handler(img_paths, radius, type_kernel, size, custom=None, write=True):
 	import pyifx.misc as misc
 
 	kernel = _create_kernel(radius, type_kernel, size, custom=custom)	
@@ -383,12 +383,12 @@ def _blur_handler(img_paths, radius, type_kernel, size, custom=None, write=True)
 		new_vol.set_volume([])
 
 		for img in img_paths.get_volume():
-			new_vol.volume.append(_blur_operation(img, kernel, write=write))
+			new_vol.volume.append(_convolution_operation(img, kernel, write=write))
 
 		return new_vol
 
 	elif type(img_paths) == misc.PyifxImage:
-		return _blur_operation(img_paths, kernel, write=write)
+		return _convolution_operation(img_paths, kernel, write=write)
 
 	elif type(img_paths) == list:
 
@@ -399,7 +399,7 @@ def _blur_handler(img_paths, radius, type_kernel, size, custom=None, write=True)
 			if type(img) != misc.PyifxImage:
 				raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")
 
-			new_imgs.append(_blur_operation(img, kernel, write=write))
+			new_imgs.append(_convolution_operation(img, kernel, write=write))
 
 		return new_imgs
 
@@ -407,7 +407,7 @@ def _blur_handler(img_paths, radius, type_kernel, size, custom=None, write=True)
 		raise TypeError("Invalid type used: Input contains non-Pyifx images and/or classes.")	
 
 
-def _blur_operation(img, kernel, write=True):
+def _convolution_operation(img, kernel, write=True):
 
 	new_img = _convolute_over_image(img, kernel, write=False)
 
