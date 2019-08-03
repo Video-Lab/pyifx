@@ -677,7 +677,7 @@ def _combine_handler(img1, img2, out_path, write=True):
 				_type_checker(i, [misc.PyifxImage])
 			imgs.append(img)
 
-	if len(list(filter(lambda i: type(i) != list, old_imgs))) == 1:
+	if len(list(filter(lambda i: type(i) != list, imgs))) == 1:
 		raise TypeError("Incorrect type used: Images must be a combination of types ImageVolume and list OR PyifxImage.")
 
 	if (type(imgs[0]) == list and type(imgs[1]) == list):
@@ -716,14 +716,13 @@ def _combine_operation(img1, img2, out_path, write=True):
 		shape = img2.get_image().shape
 
 	new_img = np.empty(shape)
-	count = 0;
 
 	for r in range(len(img1.get_image())):
 		for p in range(len(img1.get_image()[r])):
 			for c in range(len(img1.get_image()[r][p])):
 				try:
 					new_img[r][p][c] = min(255, max(0, (int(img1.get_image()[r][p][c])+int(img2.get_image()[r][p][c]))/2))
-					
+
 				except IndexError:
 					pass
 
