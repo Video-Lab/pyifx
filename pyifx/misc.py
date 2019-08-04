@@ -96,17 +96,17 @@ class PyifxImage():
 			Returns:
 			PyifxImage instance (pyifx.misc.PyifxImage)
 	"""
-	def __init__(self, path, output_path=None, img=None, create_image=True):
-		INTERNAL._type_checker(path, [str, None])
+	def __init__(self, input_path, output_path=None, img=None, create_image=True):
+		INTERNAL._type_checker(input_path, [str, None])
 		INTERNAL._type_checker(output_path, [str, None])
 		INTERNAL._type_checker(img, [np.ndarray, None])
 		INTERNAL._type_checker(create_image, [bool])
 
-		self.input_path = path
+		self.input_path = input_path
 		self.output_path = output_path
 		self.image = img
 		if create_image:
-			self.image = np.asarray(imageio.imread(path))
+			self.image = np.asarray(imageio.imread(input_path))
 
 	def refresh_image(self):
 		self.image = np.asarray(imageio.imread(self.path))
