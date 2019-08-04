@@ -82,7 +82,9 @@ The array is 3-dimensional, with the first dimension representing each row, the 
 The reason the height comes before width is due to the fact that the first number represents the **number** of rows, which makes up the height of the image due to them being stacked on top of each other. The same goes for the width of the image, as well as the image channels.
 
 The methods of this class include:
-::
+
+.. code-block::
+
 	pyifx.misc.PyifxImage.refresh_image()
 	pyifx.misc.PyifxImage.get_input_path()
 	pyifx.misc.PyifxImage.set_input_path()
@@ -127,5 +129,20 @@ And if we view the output path of the image, we can see where it leads to.
 	>>> "lots/of/images/modified/_image_1.jpg"
 
 This is done for every image in the specified directory, and any subdirectories with images in it (if toggled).
+
+The methods of this class include:
+
+.. code-block::
+
+	pyifx.misc.ImageVolume.volume_to_list()
+	pyifx.misc.ImageVolume.convert_dir_to_images()
+	pyifx.misc.ImageVolume.get_input_path()
+	pyifx.misc.ImageVolume.set_input_path()
+	pyifx.misc.ImageVolume.get_output_path()
+	pyifx.misc.ImageVolume.set_output_path()
+	pyifx.misc.ImageVolume.get_prefix()
+	pyifx.misc.ImageVolume.set_prefix()
+	pyifx.misc.ImageVolume.get_volume()
+	pyifx.misc.ImageVolume.set_volume()
 
 .. note:: As stated before, a full list & description of parameters & methods in the ImageVolume class can be found `here <misc.html>`_ or by visiting the `general index <modules.html>`_.

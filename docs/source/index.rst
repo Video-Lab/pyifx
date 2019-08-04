@@ -16,6 +16,7 @@ Pyifx Documentation
    HSL <hsl>
    Graphics <graphics>
    Composition <composition>
+   Miscellaneous <misc>
    General Index <modules>
    Contribution <contribution>
    License <license>
