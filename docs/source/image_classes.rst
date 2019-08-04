@@ -11,8 +11,11 @@ The PyifxImage class allows for images to be read, modified, and written in comb
 
 Below is an example of what creating instances of the PyifxImage class would look like.
 
-::
+.. code-block::
+
 	import pyifx
+
+	
 
 	image = pyifx.misc.PyifxImage(input_path="path/to/img.png", output_path="path/to/new_img.png")
 
