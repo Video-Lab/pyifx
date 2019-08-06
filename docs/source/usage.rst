@@ -115,3 +115,29 @@ The return value type always matches the image input type, regardless of the fun
 	
 	$ python demo_file.py
 	<class 'list'>
+
+
+Full Code Example
+-----------------
+
+.. code-block ::
+
+	#demo_file.py
+	import pyifx
+
+	# Creating the image
+	image = pyifx.misc.PyifxImage(input_path="path/to/img.png", output_path="path/to/new_img.png")
+
+	# Creating the volume
+	volume = pyifx.misc.ImageVolume(input_path="lots/of/images/", output_path="lots/of/images/modified/", prefix="_")
+
+	#Creating the list 
+	image_2 = pyifx.misc.PyifxImage(input_path="different/path/to/img.png", output_path="different/path/to/new_img.png")
+
+	image_list = [image, image_2]
+
+	brightened_image = pyifx.hsl.brighten(image, 50)
+	print(type(brightened_image))
+
+	brightened_list = pyifx.hsl.brighten(image_list, 50)
+	print(type(brightened_list))	
