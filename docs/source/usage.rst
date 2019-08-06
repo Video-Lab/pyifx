@@ -85,3 +85,33 @@ Once an image is imported into an accepted class instance, it can be used by any
 +------------------------------------+------------------------------+--------------------------------------------------------------------+
 
 .. note :: A full list of functions is available `here <modules.html>`_. To view functions contained in specific categories, visit the category's specific page mentioned in the `table of contents <index.html>`_.
+
+**Function Structure**
+
+pyifx functions accept any of the image classes mentioned in the `import section <#importing-an-image>`_. They return a new, modified instance of the same class or type as provided in the function. What is modified can vary based on what the function does. This is usually the image data; however, functions can also return modified input and output paths, prefixes (for ImageVolume instances), and other properties.
+
+Below is an example of what using a pyifx function would look like.
+
+.. code-block ::
+
+	brightened_image = pyifx.hsl.brighten(image, 50)
+	print(type(brightened_image))
+
+If this file is run, we can see what the return value of this function would look like.
+
+.. code-block :: bash
+
+	$ python demo_file.py
+	<class 'pyifx.misc.PyifxImage'>
+
+The return value type always matches the image input type, regardless of the function.
+
+.. code-block ::
+
+	brightened_list = pyifx.hsl.brighten(image_list, 50)
+	print(type(brightened_list))
+
+.. code-block :: bash
+	
+	$ python demo_file.py
+	<class 'list'>
