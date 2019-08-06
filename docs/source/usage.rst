@@ -9,7 +9,7 @@ As stated in the previous section, most of pyifx's functionality is based around
 
 The `PyifxImage class <image_classes.html#pyifx-image>`_ allows you to package data about an image into a class instance. This instance can then be passed to functions provided by the library to manipulate image data.
 
-The snippet below shows an example of what creating an instance of this class would look like.
+The snippet below shows an example of what creating an instance of this class would look like. You can view the full code example of this article `here <usage.html#full-code-example>`_.
 
 .. code-block ::
 
@@ -27,7 +27,7 @@ The snippet below shows an example of what creating an instance of this class wo
 
 The `ImageVolume class <image_classes.html#image-volume>`_ allows for the generation of a list of PyifxImage instances based on specified parameters. As with the PyifxImage class, instances of this class can be passed to library-provided functions as well.
 
-Creating an ImageVolume instance is very similar to creating a PyifxImage instance.
+Creating an ImageVolume instance is very similar to creating a PyifxImage instance. You can view the full code example of this article `here <usage.html#full-code-example>`_.
 
 .. code-block ::
 
@@ -35,3 +35,53 @@ Creating an ImageVolume instance is very similar to creating a PyifxImage instan
 	volume = pyifx.misc.ImageVolume(input_path="lots/of/images/", output_path="lots/of/images/modified/", prefix="_")
 
 .. note :: More information about the ImageVolume class is available `here <image_classes.html#image-volume>`_.
+
+**PyifxImage list**
+
+Lists of PyifxImage instances can also be passed directly into pyifx functions. This can be used to import images from multiple directories, or if PyifxImage instances need to have properties that do not share any patterns or sequences.
+
+Below is an example of what creating a PyifxImage instance list would look like. You can view the full code example of this article `here <usage.html#full-code-example>`_.
+
+.. code-block ::
+
+	#Creating the list 
+	image_2 = pyifx.misc.PyifxImage(input_path="different/path/to/img.png", output_path="different/path/to/new_img.png")
+
+	image_list = [image, image_2]
+
+Using Imported Images
+---------------------
+
+**Function Categories**
+
+Once an image is imported into an accepted class instance, it can be used by any of the main functions in the library. Functions are split into 4 categories based on their main purpose. These categories can be accessed based on the module names listed below:
+
+.. code-block ::
+
+	pyifx.hsl
+	pyifx.graphics
+	pyifx.comp
+	pyifx.misc
+
++------------------------------------+------------------------------+--------------------------------------------------------------------+
+| Module name                        | Literal translation          | Description                                                        |
++====================================+==============================+====================================================================+
+| `pyifx.hsl <hsl.html>`_            | HSL (Hue, Saturation, Light) | Functions in this section are focused around color & its           |
+|                                    |                              | manipulation. In simple terms, hue refers to the color itself,     |
+|                                    |                              | saturation to its intensity, and light to how bright or dark the   |
+|                                    |                              | color is.                                                          |
++------------------------------------+------------------------------+--------------------------------------------------------------------+
+| `pyifx.comp <comp.html>`_          | Compositon                   | This section contains functions related to the manipulation of the |
+|                                    |                              | properties of images. This includes its dimensions and file type   |
+|                                    |                              | among other properties.                                            |
++------------------------------------+------------------------------+--------------------------------------------------------------------+
+| `pyifx.graphics <graphics.html>`_  | Graphics                     | This section focuses on the look and composition of images as a    |
+|                                    |                              | whole. Functions in this section mostly apply effects to images to |
+|                                    |                              | change their look, such as blurs and pixelations.                  |
++------------------------------------+------------------------------+--------------------------------------------------------------------+ 
+| `pyifx.misc <misc.html>`_          | Miscellaneous                | Unlike the composition module, this section focuses on managing    |
+|                                    |                              | images instead of editing them. Functions and classes in this      |
+|                                    |                              | module include image classes and image import functions.           | 
++------------------------------------+------------------------------+--------------------------------------------------------------------+
+
+.. note :: A full list of functions is available `here <modules.html>`_. To view functions contained in specific categories, visit the category's specific page mentioned in the `table of contents <index.html>`_.
