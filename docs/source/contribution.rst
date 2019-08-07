@@ -116,7 +116,7 @@ Titles are underlined using ``=``, subtitles use ``-``, and sub-subtitles use ``
 
 New functions are automatically documented as long as they have a docstring. Below is an example of the proper way to format a docstring.
 
-.. code-block ::
+.. code-block :: python
 
 	""" detect_edges(img_paths, write=True)
 		Takes image(s) and creates new images focusing on edges.
