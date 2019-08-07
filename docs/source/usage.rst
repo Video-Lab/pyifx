@@ -2,10 +2,11 @@ Usage
 =====
 
 Importing an Image
------------------
+------------------
 As stated in the previous section, most of pyifx's functionality is based around the use of `image classes <image_classes.html>`_. There are three options to create data that is compatible with the Pyifx library.
 
-**PyifxImage**
+PyifxImage
+**********
 
 The `PyifxImage class <image_classes.html#pyifx-image>`_ allows you to package data about an image into a class instance. This instance can then be passed to functions provided by the library to manipulate image data.
 
@@ -23,7 +24,8 @@ The snippet below shows an example of what creating an instance of this class wo
 
 .. note :: More information about the PyifxImage class is available `here <image_classes.html#pyifx-image>`_.
 
-**ImageVolume**
+ImageVolume
+***********
 
 The `ImageVolume class <image_classes.html#image-volume>`_ allows for the generation of a list of PyifxImage instances based on specified parameters. As with the PyifxImage class, instances of this class can be passed to library-provided functions as well.
 
@@ -36,7 +38,8 @@ Creating an ImageVolume instance is very similar to creating a PyifxImage instan
 
 .. note :: More information about the ImageVolume class is available `here <image_classes.html#image-volume>`_.
 
-**PyifxImage list**
+PyifxImage list
+***************
 
 Lists of PyifxImage instances can also be passed directly into pyifx functions. This can be used to import images from multiple directories, or if PyifxImage instances need to have properties that do not share any patterns or sequences.
 
@@ -52,7 +55,8 @@ Below is an example of what creating a PyifxImage instance list would look like.
 Using Imported Images
 ---------------------
 
-**Function Categories**
+Function Categories
+*******************
 
 Once an image is imported into an accepted class instance, it can be used by any of the main functions in the library. Functions are split into 4 categories based on their main purpose. These categories can be accessed based on the module names listed below:
 
@@ -86,7 +90,8 @@ Once an image is imported into an accepted class instance, it can be used by any
 
 .. note :: A full list of functions is available `here <modules.html>`_. To view functions contained in specific categories, visit the category's specific page mentioned in the `table of contents <index.html>`_.
 
-**Function Structure**
+Function Structure
+******************
 
 pyifx functions accept any of the image classes mentioned in the `import section <#importing-an-image>`_. They return a new, modified instance of the same class or type as provided in the function. What is modified can vary based on what the function does. This is usually the image data; however, functions can also return modified input and output paths, prefixes (for ImageVolume instances), and other properties.
 

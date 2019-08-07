@@ -8,7 +8,8 @@ Suggested Prerequisites
 
 You can contribute in may ways besides helping write the underlying code; testers and technical writers are also very important to this project. Please read the list of suggested prerequisites before starting.
 
-** Library Contribution **
+Library Contribution
+********************
 
 This library is written in Python, so some fundamental understanding of Python can help you navigate the library. Additional libraries (both internal and external) used in the library include:
 
@@ -19,7 +20,8 @@ This library is written in Python, so some fundamental understanding of Python c
 
 Understanding these libraries as a whole is not needed. However, understanding their purpose and what some of their main modules do can help when faced with code that uses them.
 
-** Documentation Contribution **
+Documentation Contribution
+**************************
 
 Our doucmentation is written in Sphinx, a Python-based documentation tool. You can learn more about Sphinx by visiting their `user guide <https://www.sphinx-doc.org/en/master/index.html>`_.
 

@@ -7,7 +7,7 @@ Prerequisites
 pip is required to install this library. If you do not have pip, refer to `this guide <https://pip.pypa.io/en/stable/installing/>`_ regarding installation instructions.
 
 Dependencies
-^^^^^^^^^^^^
+************
 The current dependencies of the library include:
 * NumPy
 * Imageio
