@@ -12,9 +12,6 @@
 #
 import os
 import sys
-import numpy as np
-import imageio
-import math
 sys.path.append(os.path.abspath('../../'))
 
 
