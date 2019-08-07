@@ -7,3 +7,5 @@ This section focuses on the look and composition of images as a whole. Functions
 
 Function List
 -------------
+.. automodule :: pyifx.graphics
+	:members:
