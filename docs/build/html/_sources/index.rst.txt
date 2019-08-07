@@ -13,14 +13,10 @@ Pyifx Documentation
    Getting Started <getting_started>
    Image Classes <image_classes>
    Usage <usage>
-   HSL <hsl>
-   Graphics <graphics>
-   Composition <composition>
-   Miscellaneous <misc>
-   Library Contents <modules>
    Contribution <contribution>
    License <license>
    Enquiries <enquiries>
+   API Reference <modules>
 
 What is Pyifx?
 --------------

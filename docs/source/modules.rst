@@ -1,5 +1,5 @@
-Library Contents
-================
+API Reference
+=============
 
 **pyifx.hsl**
 
