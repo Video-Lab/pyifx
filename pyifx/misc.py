@@ -17,9 +17,9 @@ class PyifxImage():
 
 		image (numpy.ndarray, NoneType): The image located at the input path in the form of a numpy n-dimensional array.
 		If the instance does not have an image property, it means that the image had not been read.
-
-	Methods:
-		__init__(self, path, output_path=None, img=None, create_image=True)
+	"""
+	def __init__(self, input_path, output_path=None, img=None, create_image=True):
+		"""	__init__(self, path, output_path=None, img=None, create_image=True)
 			The PyifxImage constructor method.
 
 			Parameters:
@@ -38,65 +38,7 @@ class PyifxImage():
 			Returns:
 			PyifxImage instance (pyifx.misc.PyifxImage)
 
-
-		refresh_image(self):
-			Re-reads image based on input path & overrides the current image property, then returns the instance.
-
-			Returns:
-			PyifxImage instance (pyifx.misc.PyifxImage)
-
-
-		get_input_path(self):
-			Gets the instances input path and returns it.
-
-			Returns:
-			Input path (str)
-
-
-		set_input_path(self, new_input_path):
-			Sets the instances input path and returns the instance.
-
-			Parameters:
-			new_input_path (str): What the input path will be set to.
-
-			Returns:
-			PyifxImage instance (pyifx.misc.PyifxImage)
-
-
-		get_output_path(self):
-			Gets the instances output path and returns it.
-
-			Returns:
-			Output path (str)
-
-
-		set_output_path(self, new_output_path):
-			Sets the instances output path and returns the instance.
-
-			Parameters:
-			new_output_path (str): What the output path will be set to.
-
-			Returns:
-			PyifxImage instance (pyifx.misc.PyifxImage)
-
-
-		get_image(self):
-			Gets the instances image data and returns it.
-
-			Returns:
-			Image data (numpy.ndarray)
-
-
-		set_image(self, new_image):
-			Sets the instances image data and returns it.
-
-			Parameters:
-			new_image (numpy.ndarray): What the image property will be set to.
-
-			Returns:
-			PyifxImage instance (pyifx.misc.PyifxImage)
-	"""
-	def __init__(self, input_path, output_path=None, img=None, create_image=True):
+		"""
 		INTERNAL._type_checker(input_path, [str, None])
 		INTERNAL._type_checker(output_path, [str, None])
 		INTERNAL._type_checker(img, [np.ndarray, None])
@@ -109,28 +51,86 @@ class PyifxImage():
 			self.image = np.asarray(imageio.imread(input_path))
 
 	def refresh_image(self):
+		"""	refresh_image(self):
+			Re-reads image based on input path & overrides the current image property, then returns the instance.
+
+			Returns:
+			PyifxImage instance (pyifx.misc.PyifxImage)
+
+		"""
 		self.image = np.asarray(imageio.imread(self.path))
 		return self
 
 	def get_input_path(self):
+		""" get_input_path(self):
+			Gets the instances input path and returns it.
+
+			Returns:
+			Input path (str)
+
+		"""
 		return self.input_path
 
 	def set_input_path(self, new_input_path):
+		"""	set_input_path(self, new_input_path):
+			Sets the instances input path and returns the instance.
+
+			Parameters:
+			new_input_path (str): What the input path will be set to.
+
+			Returns:
+			PyifxImage instance (pyifx.misc.PyifxImage)
+
+		"""
 		self.input_path = new_input_path
 		self.refresh_image()
 		return self
 
 	def get_output_path(self):
+		"""	get_output_path(self):
+			Gets the instances output path and returns it.
+
+			Returns:
+			Output path (str)
+
+		"""
 		return self.output_path
 
 	def set_output_path(self, new_output_path):
+		""" set_output_path(self, new_output_path):
+			Sets the instances output path and returns the instance.
+
+			Parameters:
+			new_output_path (str): What the output path will be set to.
+
+			Returns:
+			PyifxImage instance (pyifx.misc.PyifxImage)
+
+		"""
 		self.output_path = new_output_path
 		return self
 
 	def get_image(self):
+		"""	get_image(self):
+			Gets the instances image data and returns it.
+
+			Returns:
+			Image data (numpy.ndarray)
+
+		"""
 		return self.image
 
 	def set_image(self, new_image):
+		"""	set_image(self, new_image):
+			Sets the instances image data and returns it.
+
+			Parameters:
+			new_image (numpy.ndarray): What the image property will be set to.
+
+			Returns:
+			PyifxImage instance (pyifx.misc.PyifxImage)
+
+		"""
 		self.image = new_image
 		return self
 
