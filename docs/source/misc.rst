@@ -7,3 +7,6 @@ Unlike the composition module, this section focuses on managing images instead o
 
 Function List
 -------------
+.. automodule:: pyifx.misc
+	:members:
+	:special-members:
