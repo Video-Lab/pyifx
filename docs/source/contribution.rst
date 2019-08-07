@@ -68,3 +68,40 @@ The root of the project contains files other than the library itself. Below is a
 +-------------------+--------------------------------------------------------------------------------------------------------------------------------+
 |README.md          |The README for the project.                                                                                                     |
 +-------------------+--------------------------------------------------------------------------------------------------------------------------------+
+
+
+Library Contents
+****************
+The main library directory contains files that represent each module. 
+:: 
+	
+	pyifx|
+		 hsl.py
+		 graphics.py
+		 comp.py
+		 misc.py
+		 INTERNAL.py
+
+To reference a module in a python file (after importing the module), add the name of the module after ``pyifx.``. For example, referencing the ``hsl.py`` file can be done by writing ``pyifx.hsl``.
+
+The library is split into 2 main parts; external and internal functions. External functions are found in the main 4 modules of the library (hsl, graphics, comp, misc) and are made to be used outside the library.
+
+On the other hand, internal functions are made to be used by the library itself. It contains handlers and main algorithms for all of the library's features. These functions are located solely in the file ``INTERNAL.py``, and can be referenced the same way as other modules.
+
+.. note :: Currently, no documentation is provided for the INTERNAL module. It will be added in the coming weeks.
+
+Function System
+***************
+All external functions follow a specific system to handle inputs properly. The system follows a set of steps similar to the flow chart below:
+
+::
+
+	External function -----------------> Function handler (INTERNAL) -----------------> Function operation (INTERNAL)
+	 - Type checking                      - Value checking                               - Modifies image
+	                                      - Handles different image types                - Core image
+
+* **External Function** - The function that is called by the user. This is where the user specifies the parameters of the function, and where the function arguments are checked for the correct type.
+* **Function Handler** - This function checks the arguments themselves (ex. percent is between 0 and 100) instead of their type. It also handles the various types of image classes that can be entered and calls the appropriate functions in return.
+* **Function Operation** - This is where the actual modification of the image happens. Unlike their handlers, most of these functions only accept PyifxImage instances, instead of the variety of types that the external functions accept.
+
+Handler functions end with _handler, and operation functions end with _operation. Both handler and operation functions also begin with _, meaning they are internal and private. Any new features added to the library must follow this system.
