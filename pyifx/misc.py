@@ -7,36 +7,36 @@ import pyifx.INTERNAL as INTERNAL
 
 class PyifxImage():
 	""" A class used to create packages of images & their properties created for use with the Pyifx library.
+		
+		:vartype input_path: str, NoneType
+		:ivar input_path: The path to where the image is located. If the image does not have an input path, it means that the instance is a result of combining two or more images.
 
-	Attributes:
-		input_path (str, NoneType): The path to where the image is located. If the image does not have an input path,
-		it means that the instance is a result of combining two or more images.
+		:vartype output_path: str, NoneType 
+		:ivar output_path: The path to where edited images should be created. If the image does not have an output path, it means the instance is used for read-only purposes.
 
-		output_path (str, NoneType): The path to where edited images should be created. If the image does not have an
-		output path, it means the instance is used for read-only purposes.
+		:vartype image: numpy.ndarray, NoneType
+		:ivar image: The image located at the input path in the form of a numpy n-dimensional array. If the instance does not have an image property, it means that the image had not been read.
 
-		image (numpy.ndarray, NoneType): The image located at the input path in the form of a numpy n-dimensional array.
-		If the instance does not have an image property, it means that the image had not been read.
 	"""
+
 	def __init__(self, input_path, output_path=None, img=None, create_image=True):
 		"""	__init__(self, path, output_path=None, img=None, create_image=True)
 			The PyifxImage constructor method.
 
-			Parameters:
-			path (str, NoneType): The path to where the image is located. Only use None as a value if the image property of the 
-			instace is being specified.
+			:type path: str, NoneType
+			:param path: The path to where the image is located. Only use None as a value if the image property of the instace is being specified.
 
-			output_path(str, NoneType): The path to where the edited image should be saved. Only use None as a value if the instance 
-			is not going to be saved to a file.
+			:type output_path: str, NoneType
+			:param output_path: The path to where the edited image should be saved. Only use None as a value if the instance is not going to be saved to a file.
 
-			img (numpy.ndarray, NoneType): The data used for image editing & processing. The image property of the class will be
-			set based on the input path unless this parameter is set to a value other than None.
+			:type img: numpy.ndarray, NoneType
+			:param img: The data used for image editing & processing. The image property of the class will be set based on the input path unless this parameter is set to a value other than None.
 
-			create_image (bool): Specify whether the image property should be read from the input path. If this is set to true,
-			the image at the input path will override the specified image parameter.
+			:type create_image: bool 
+			:param create_image: Specify whether the image property should be read from the input path. If this is set to true, the image at the input path will override the specified image parameter.
 
-			Returns:
-			PyifxImage instance (pyifx.misc.PyifxImage)
+			:return: PyifxImage instance 
+			:rtype: pyifx.misc.PyifxImage
 
 		"""
 		INTERNAL._type_checker(input_path, [str, None])
@@ -54,8 +54,8 @@ class PyifxImage():
 		"""	refresh_image(self):
 			Re-reads image based on input path & overrides the current image property, then returns the instance.
 
-			Returns:
-			PyifxImage instance (pyifx.misc.PyifxImage)
+			:return: PyifxImage instance 
+			:rtype: pyifx.misc.PyifxImage
 
 		"""
 		self.image = np.asarray(imageio.imread(self.path))
@@ -65,8 +65,8 @@ class PyifxImage():
 		""" get_input_path(self):
 			Gets the instances input path and returns it.
 
-			Returns:
-			Input path (str)
+			:return: Input path 
+			:rtype: str
 
 		"""
 		return self.input_path
@@ -75,11 +75,11 @@ class PyifxImage():
 		"""	set_input_path(self, new_input_path):
 			Sets the instances input path and returns the instance.
 
-			Parameters:
-			new_input_path (str): What the input path will be set to.
+			:type new_input_path: str
+			:param new_input_path: What the input path will be set to.
 
-			Returns:
-			PyifxImage instance (pyifx.misc.PyifxImage)
+			:return: PyifxImage instance
+			:rtype: pyifx.misc.PyifxImage
 
 		"""
 		self.input_path = new_input_path
@@ -90,8 +90,8 @@ class PyifxImage():
 		"""	get_output_path(self):
 			Gets the instances output path and returns it.
 
-			Returns:
-			Output path (str)
+			:return: Output path 
+			:rtype: str
 
 		"""
 		return self.output_path
@@ -100,11 +100,11 @@ class PyifxImage():
 		""" set_output_path(self, new_output_path):
 			Sets the instances output path and returns the instance.
 
-			Parameters:
-			new_output_path (str): What the output path will be set to.
+			:type new_output_path: str
+			:param new_output_path: What the output path will be set to.
 
-			Returns:
-			PyifxImage instance (pyifx.misc.PyifxImage)
+			:return: PyifxImage instance 
+			:rtype: pyifx.misc.PyifxImage
 
 		"""
 		self.output_path = new_output_path
@@ -114,8 +114,8 @@ class PyifxImage():
 		"""	get_image(self):
 			Gets the instances image data and returns it.
 
-			Returns:
-			Image data (numpy.ndarray)
+			:return: Image data
+			:rtype: numpy.ndarray
 
 		"""
 		return self.image
@@ -124,11 +124,11 @@ class PyifxImage():
 		"""	set_image(self, new_image):
 			Sets the instances image data and returns it.
 
-			Parameters:
-			new_image (numpy.ndarray): What the image property will be set to.
+			:type new_image: numpy.ndarray
+			:param new_image: What the image property will be set to.
 
-			Returns:
-			PyifxImage instance (pyifx.misc.PyifxImage)
+			:return: PyifxImage instance
+			:rtype: pyifx.misc.PyifxImage
 
 		"""
 		self.image = new_image
