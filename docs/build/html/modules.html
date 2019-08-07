@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Library Contents &#8212; pyifx  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contribution" href="contribution.html" />
+    <link rel="prev" title="Miscellaneous" href="misc.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="library-contents">
+<h1>Library Contents<a class="headerlink" href="#library-contents" title="Permalink to this headline">¶</a></h1>
+<p><strong>pyifx.hsl</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="hsl.html#pyifx.hsl.brighten" title="pyifx.hsl.brighten"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.hsl.brighten</span></code></a>(img_paths[, percent, write])</p></td>
+<td><p>Takes image(s) and brightens them.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="hsl.html#pyifx.hsl.darken" title="pyifx.hsl.darken"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.hsl.darken</span></code></a>(img_paths[, percent, write])</p></td>
+<td><p>Takes image(s) and darkens them.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="hsl.html#pyifx.hsl.color_overlay" title="pyifx.hsl.color_overlay"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.hsl.color_overlay</span></code></a>(img_paths, color[, …])</p></td>
+<td><p>Takes image(s) and applies a specified color over it/them.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="hsl.html#pyifx.hsl.saturate" title="pyifx.hsl.saturate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.hsl.saturate</span></code></a>(img_paths[, percent, write])</p></td>
+<td><p>Takes image(s) and saturates them.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="hsl.html#pyifx.hsl.desaturate" title="pyifx.hsl.desaturate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.hsl.desaturate</span></code></a>(img_paths[, percent, write])</p></td>
+<td><p>Takes image(s) and desaturates them.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="hsl.html#pyifx.hsl.to_grayscale" title="pyifx.hsl.to_grayscale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.hsl.to_grayscale</span></code></a>(img_paths[, write])</p></td>
+<td><p>Takes image(s) and converts them to grayscale.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>pyifx.graphics</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="graphics.html#pyifx.graphics.blur_gaussian" title="pyifx.graphics.blur_gaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.graphics.blur_gaussian</span></code></a>(img_paths[, …])</p></td>
+<td><p>Takes images(s) and blurs them using a gaussian kernel based on a given radius.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="graphics.html#pyifx.graphics.blur_mean" title="pyifx.graphics.blur_mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.graphics.blur_mean</span></code></a>(img_paths[, …])</p></td>
+<td><p>Takes images(s) and blurs them using a mean kernel based on a given radius.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="graphics.html#pyifx.graphics.pixelate" title="pyifx.graphics.pixelate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.graphics.pixelate</span></code></a>(img_paths[, factor, …])</p></td>
+<td><p>Takes image(s) and pixelates them based on a given factor.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="graphics.html#pyifx.graphics.detect_edges" title="pyifx.graphics.detect_edges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.graphics.detect_edges</span></code></a>(img_paths[, write])</p></td>
+<td><p>Takes image(s) and creates new images focusing on edges.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="graphics.html#pyifx.graphics.convolute_custom" title="pyifx.graphics.convolute_custom"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.graphics.convolute_custom</span></code></a>(img_paths, …)</p></td>
+<td><p>Takes image(s) and creates new images that are convoluted over using a given kernel.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>pyifx.comp</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="composition.html#pyifx.comp.resize" title="pyifx.comp.resize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.comp.resize</span></code></a>(img_paths, new_size[, write])</p></td>
+<td><p>Takes image(s) and converts them to a given size.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="composition.html#pyifx.comp.change_file_type" title="pyifx.comp.change_file_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.comp.change_file_type</span></code></a>(img_paths, new_type)</p></td>
+<td><p>Takes image(s) and converts them to a given file type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="composition.html#pyifx.comp.rewrite_file" title="pyifx.comp.rewrite_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.comp.rewrite_file</span></code></a>(img_paths)</p></td>
+<td><p>Takes image(s) and writes them to an output destination based on their properties.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>pyifx.misc</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.misc.PyifxImage</span></code></a>(input_path[, …])</p></td>
+<td><p>A class used to create packages of images &amp; their properties created for use with the Pyifx library.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.misc.ImageVolume</span></code></a>(input_path, output_path)</p></td>
+<td><p>A class used to import images from a directory into Python, creating a list of PyifxImage instances.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="misc.html#pyifx.misc.combine" title="pyifx.misc.combine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyifx.misc.combine</span></code></a>(img1, img2, out_path[, write])</p></td>
+<td><p>Combines the data of two PyifxImages, ImageVolumes, or ImageLists to form new PyifxImages.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyifx</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_classes.html">Image Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsl.html">HSL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphics.html">Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="composition.html">Composition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Library Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribution.html">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enquiries.html">Enquiries</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="misc.html" title="previous chapter">Miscellaneous</a></li>
+      <li>Next: <a href="contribution.html" title="next chapter">Contribution</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Jad Khalili.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/modules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

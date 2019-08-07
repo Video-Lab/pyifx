@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Graphics &#8212; pyifx  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Composition" href="composition.html" />
+    <link rel="prev" title="HSL" href="hsl.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="graphics">
+<h1>Graphics<a class="headerlink" href="#graphics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>This section focuses on the look and composition of images as a whole. Functions in this section mostly apply effects to images to change their look, such as blurs and pixelations. This section covers a wider variety of tools compared to the HSL module.</p>
+</div>
+<div class="section" id="module-pyifx.graphics">
+<span id="function-list"></span><h2>Function List<a class="headerlink" href="#module-pyifx.graphics" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyifx.graphics.blur_gaussian">
+<code class="sig-prename descclassname">pyifx.graphics.</code><code class="sig-name descname">blur_gaussian</code><span class="sig-paren">(</span><em class="sig-param">img_paths</em>, <em class="sig-param">radius=3</em>, <em class="sig-param">size=None</em>, <em class="sig-param">write=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyifx.graphics.blur_gaussian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes images(s) and blurs them using a gaussian kernel based on a given radius.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_paths</strong> (<a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage"><em>pyifx.misc.PyifxImage</em></a><em>, </em><a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume"><em>pyifx.misc.ImageVolume</em></a><em>, </em><em>list</em>) – The image(s) to be blurred.</p></li>
+<li><p><strong>radius</strong> (<em>int</em>) – The radius of the gaussian kernel. If nothing is entered for this parameter, it will default to 3.</p></li>
+<li><p><strong>size</strong> (<em>list</em><em>, </em><em>NoneType</em>) – The dimensions of the gaussian kernel. Must be entered in</p></li>
+<li><p><strong>write</strong> (<em>bool</em>) – Whether to write the blurred image(s).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage">pyifx.misc.PyifxImage</a>, <a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume">pyifx.misc.ImageVolume</a>, list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyifx.graphics.blur_mean">
+<code class="sig-prename descclassname">pyifx.graphics.</code><code class="sig-name descname">blur_mean</code><span class="sig-paren">(</span><em class="sig-param">img_paths</em>, <em class="sig-param">radius=3</em>, <em class="sig-param">write=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyifx.graphics.blur_mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes images(s) and blurs them using a mean kernel based on a given radius.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_paths</strong> (<a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage"><em>pyifx.misc.PyifxImage</em></a><em>, </em><a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume"><em>pyifx.misc.ImageVolume</em></a><em>, </em><em>list</em>) – The image(s) to be blurred.</p></li>
+<li><p><strong>radius</strong> (<em>int</em>) – The radius of the mean kernel. If nothing is entered for this parameter, it will default to 3.</p></li>
+<li><p><strong>write</strong> (<em>bool</em>) – Whether to write the blurred image(s).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage">pyifx.misc.PyifxImage</a>, <a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume">pyifx.misc.ImageVolume</a>, list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyifx.graphics.convolute_custom">
+<code class="sig-prename descclassname">pyifx.graphics.</code><code class="sig-name descname">convolute_custom</code><span class="sig-paren">(</span><em class="sig-param">img_paths</em>, <em class="sig-param">kernel</em>, <em class="sig-param">write=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyifx.graphics.convolute_custom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes image(s) and creates new images that are convoluted over using a given kernel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_paths</strong> (<a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage"><em>pyifx.misc.PyifxImage</em></a><em>, </em><a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume"><em>pyifx.misc.ImageVolume</em></a><em>, </em><em>list</em>) – The image(s) to be convoluted over.</p></li>
+<li><p><strong>kernel</strong> (<em>numpy.ndarray</em><em>, </em><em>list</em>) – The kernel to be used for convolution. This can be provided in either a 2-dimensional list or a numpy 2-dimensional array.</p></li>
+<li><p><strong>write</strong> (<em>bool</em>) – Whether to write the convoluted image(s).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage">pyifx.misc.PyifxImage</a>, <a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume">pyifx.misc.ImageVolume</a>, list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyifx.graphics.detect_edges">
+<code class="sig-prename descclassname">pyifx.graphics.</code><code class="sig-name descname">detect_edges</code><span class="sig-paren">(</span><em class="sig-param">img_paths</em>, <em class="sig-param">write=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyifx.graphics.detect_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes image(s) and creates new images focusing on edges.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_paths</strong> (<a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage"><em>pyifx.misc.PyifxImage</em></a><em>, </em><a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume"><em>pyifx.misc.ImageVolume</em></a><em>, </em><em>list</em>) – The image(s) to be manipulated.</p></li>
+<li><p><strong>write</strong> (<em>bool</em>) – Whether to write the manipulated image(s).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage">pyifx.misc.PyifxImage</a>, <a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume">pyifx.misc.ImageVolume</a>, list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyifx.graphics.pixelate">
+<code class="sig-prename descclassname">pyifx.graphics.</code><code class="sig-name descname">pixelate</code><span class="sig-paren">(</span><em class="sig-param">img_paths</em>, <em class="sig-param">factor=4</em>, <em class="sig-param">write=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyifx.graphics.pixelate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes image(s) and pixelates them based on a given factor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_paths</strong> (<a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage"><em>pyifx.misc.PyifxImage</em></a><em>, </em><a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume"><em>pyifx.misc.ImageVolume</em></a><em>, </em><em>list</em>) – The image(s) to be pixelated.</p></li>
+<li><p><strong>factor</strong> (<em>int</em>) – How much the image(s) should be pixelated. If nothing is entered for this parameter, it will default to 4.</p></li>
+<li><p><strong>write</strong> (<em>bool</em>) – Whether to write the pixelated image(s).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage">pyifx.misc.PyifxImage</a>, <a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume">pyifx.misc.ImageVolume</a>, list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyifx</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_classes.html">Image Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsl.html">HSL</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Graphics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pyifx.graphics">Function List</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="composition.html">Composition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">General Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribution.html">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enquiries.html">Enquiries</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="hsl.html" title="previous chapter">HSL</a></li>
+      <li>Next: <a href="composition.html" title="next chapter">Composition</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Jad Khalili.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/graphics.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

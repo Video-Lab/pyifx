@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Contribution &#8212; pyifx  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="Library Contents" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="contribution">
+<h1>Contribution<a class="headerlink" href="#contribution" title="Permalink to this headline">¶</a></h1>
+<p>Contribution is an essential step to improving and growing this project. If you want to contribute, please read this short guide detailing the steps you need to take to begin collaborating on this project.</p>
+<div class="section" id="suggested-prerequisites">
+<h2>Suggested Prerequisites<a class="headerlink" href="#suggested-prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>You can contribute in may ways besides helping write the underlying code; testers and technical writers are also very important to this project. Please read the list of suggested prerequisites before starting.</p>
+<div class="section" id="library-contribution">
+<h3>Library Contribution<a class="headerlink" href="#library-contribution" title="Permalink to this headline">¶</a></h3>
+<p>This library is written in Python, so some fundamental understanding of Python can help you navigate the library. Additional libraries (both internal and external) used in the library include:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>NumPy</p></li>
+<li><p>Imageio</p></li>
+<li><p>OS</p></li>
+<li><p>Math</p></li>
+</ul>
+</div></blockquote>
+<p>Understanding these libraries as a whole is not needed. However, understanding their purpose and what some of their main modules do can help when faced with code that uses them.</p>
+</div>
+<div class="section" id="documentation-contribution">
+<h3>Documentation Contribution<a class="headerlink" href="#documentation-contribution" title="Permalink to this headline">¶</a></h3>
+<p>Our doucmentation is written in Sphinx, a Python-based documentation tool. You can learn more about Sphinx by visiting their <a class="reference external" href="https://www.sphinx-doc.org/en/master/index.html">user guide</a>.</p>
+<p>For those looking to work on the structure of the documentation, some understanding of Sphinx and RST (reStructuredText) can be helpful. However, if you are more focused on the content of the documentation, then these tools will not be of much use. No matter what you are focusing on, some understanding of these tools is still highly recommended.</p>
+</div>
+</div>
+<div class="section" id="how-to-contribute">
+<h2>How to Contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h2>
+<p>Any contributions to this project must be done through GitHub pull requests. If you aren’t familiar with pull requests, please read <a class="reference external" href="https://help.github.com/en/articles/about-pull-requests">this guide</a> talking more about them.</p>
+<p>All pull request descriptions must include:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A short summary of what the change is doing</p></li>
+<li><p>Why the change is being made</p></li>
+<li><p>Any future expansions or plans to expand on the change (if any at all)</p></li>
+</ul>
+</div></blockquote>
+<p>Any pull requests with insufficient data will be ignored.</p>
+<p>Once a pull request is made, it will be reviewed. If the change is seen as beneficial or needed, it will be merged into the project.</p>
+</div>
+<div class="section" id="library-structure">
+<h2>Library Structure<a class="headerlink" href="#library-structure" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="project-root">
+<h3>Project Root<a class="headerlink" href="#project-root" title="Permalink to this headline">¶</a></h3>
+<p>The root of the project contains files other than the library itself. Below is a table detailing the function of each of these files or directories.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 87%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>File/Directory name</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>docs</p></td>
+<td><p>Contains all the documentation files for the project, including both build and source files</p></td>
+</tr>
+<tr class="row-odd"><td><p>pyifx</p></td>
+<td><p>The main library. Contains all of the source code and required package files. Any contributions to the library can be made here.</p></td>
+</tr>
+<tr class="row-even"><td><p>tests</p></td>
+<td><p>Includes test files and materials.</p></td>
+</tr>
+<tr class="row-odd"><td><p>.gitignore</p></td>
+<td><p>Required for ignoring build files regarding version control.</p></td>
+</tr>
+<tr class="row-even"><td><p>LICENSE</p></td>
+<td><p>The license for the project.</p></td>
+</tr>
+<tr class="row-odd"><td><p>README.md</p></td>
+<td><p>The README for the project.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="library-contents">
+<h3>Library Contents<a class="headerlink" href="#library-contents" title="Permalink to this headline">¶</a></h3>
+<p>The main library directory contains files that represent each module.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pyifx</span><span class="o">|</span>
+         <span class="n">hsl</span><span class="o">.</span><span class="n">py</span>
+         <span class="n">graphics</span><span class="o">.</span><span class="n">py</span>
+         <span class="n">comp</span><span class="o">.</span><span class="n">py</span>
+         <span class="n">misc</span><span class="o">.</span><span class="n">py</span>
+         <span class="n">INTERNAL</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>To reference a module in a python file (after importing the module), add the name of the module after <code class="docutils literal notranslate"><span class="pre">pyifx.</span></code>. For example, referencing the <code class="docutils literal notranslate"><span class="pre">hsl.py</span></code> file can be done by writing <code class="docutils literal notranslate"><span class="pre">pyifx.hsl</span></code>.</p>
+<p>The library is split into 2 main parts; external and internal functions. External functions are found in the main 4 modules of the library (hsl, graphics, comp, misc) and are made to be used outside the library.</p>
+<p>On the other hand, internal functions are made to be used by the library itself. It contains handlers and main algorithms for all of the library’s features. These functions are located solely in the file <code class="docutils literal notranslate"><span class="pre">INTERNAL.py</span></code>, and can be referenced the same way as other modules.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently, no documentation is provided for the INTERNAL module. It will be added in the coming weeks.</p>
+</div>
+</div>
+<div class="section" id="function-system">
+<h3>Function System<a class="headerlink" href="#function-system" title="Permalink to this headline">¶</a></h3>
+<p>All external functions follow a specific system to handle inputs properly. The system follows a set of steps similar to the flow chart below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">External</span> <span class="n">function</span> <span class="o">-----------------&gt;</span> <span class="n">Function</span> <span class="n">handler</span> <span class="p">(</span><span class="n">INTERNAL</span><span class="p">)</span> <span class="o">-----------------&gt;</span> <span class="n">Function</span> <span class="n">operation</span> <span class="p">(</span><span class="n">INTERNAL</span><span class="p">)</span>
+ <span class="o">-</span> <span class="n">Type</span> <span class="n">checking</span>                      <span class="o">-</span> <span class="n">Value</span> <span class="n">checking</span>                               <span class="o">-</span> <span class="n">Modifies</span> <span class="n">image</span>
+                                      <span class="o">-</span> <span class="n">Handles</span> <span class="n">different</span> <span class="n">image</span> <span class="n">types</span>                <span class="o">-</span> <span class="n">Core</span> <span class="n">image</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>External Function</strong> - The function that is called by the user. This is where the user specifies the parameters of the function, and where the function arguments are checked for the correct type.</p></li>
+<li><p><strong>Function Handler</strong> - This function checks the arguments themselves (ex. percent is between 0 and 100) instead of their type. It also handles the various types of image classes that can be entered and calls the appropriate functions in return.</p></li>
+<li><p><strong>Function Operation</strong> - This is where the actual modification of the image happens. Unlike their handlers, most of these functions only accept PyifxImage instances, instead of the variety of types that the external functions accept.</p></li>
+</ul>
+<p>Handler functions end with _handler, and operation functions end with _operation. Both handler and operation functions also begin with _, meaning they are internal and private. Any new features added to the library must follow this system.</p>
+</div>
+</div>
+<div class="section" id="documentation-structure">
+<h2>Documentation Structure<a class="headerlink" href="#documentation-structure" title="Permalink to this headline">¶</a></h2>
+<p>Because the documentation is written in Sphinx &amp; RST, it can mostly be edited using the same rules &amp; syntax as any other project using the same tools. However, there are a few important exceptions to note.</p>
+<p>Titles are underlined using <code class="docutils literal notranslate"><span class="pre">=</span></code>, subtitles use <code class="docutils literal notranslate"><span class="pre">-</span></code>, and sub-subtitles use <code class="docutils literal notranslate"><span class="pre">*</span></code>. No overlining is required.</p>
+<p>New functions are automatically documented as long as they have a docstring. Below is an example of the proper way to format a docstring.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; detect_edges(img_paths, write=True)</span>
+<span class="sd">        Takes image(s) and creates new images focusing on edges.</span>
+
+<span class="sd">        :type img_paths: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list</span>
+<span class="sd">        :param img_paths: The image(s) to be manipulated.</span>
+
+<span class="sd">        :type write: bool</span>
+<span class="sd">        :param write: Whether to write the manipulated image(s).</span>
+
+<span class="sd">        :return: PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage</span>
+<span class="sd">        :rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Classes need to have docstrings for each individual method. However, the class itself can have a docstring to document information about the class as well as its members. Below is an example of a class docstring.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; A class used to create packages of images &amp; their properties created for use with the Pyifx library.</span>
+
+<span class="sd">        :vartype input_path: str, NoneType</span>
+<span class="sd">        :ivar input_path: The path to where the image is located. If the image does not have an input path, it means that the instance is a result of combining two or more images.</span>
+
+<span class="sd">        :vartype output_path: str, NoneType</span>
+<span class="sd">        :ivar output_path: The path to where edited images should be created. If the image does not have an output path, it means the instance is used for read-only purposes.</span>
+
+<span class="sd">        :vartype image: numpy.ndarray, NoneType</span>
+<span class="sd">        :ivar image: The image located at the input path in the form of a numpy n-dimensional array. If the instance does not have an image property, it means that the image had not been read.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Here is a table of some of the common formatting tags used to reference certain parts of docstrings for both functions and classes.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Tag</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:vartype</span> <span class="pre">MEMBER:</span></code></p></td>
+<td><p>The member type (for classes).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">:ivar</span> <span class="pre">MEMBER:</span></code></p></td>
+<td><p>The member description (for classes).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:type</span> <span class="pre">PARAMETER:</span></code></p></td>
+<td><p>The parameter type (for functions).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">:param</span> <span class="pre">PARAMETER:</span></code></p></td>
+<td><p>The parameter description (for functions).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:return:</span></code></p></td>
+<td><p>The return value description (for functions).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">:rtype:</span></code></p></td>
+<td><p>The return value type (for functions).</p></td>
+</tr>
+</tbody>
+</table>
+<p>Although functions can be added to the API reference automatically, they still needed to be added to the ‘Library Contents’ page manually. If a new function has been approved, it needs to be added to the ‘Library Contents’ page manually. This page uses the Sphinx autosummary directive to add functions to the page. Below shows an example of what adding a new function would look like.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">**</span><span class="n">pyifx</span><span class="o">.</span><span class="n">graphics</span><span class="o">**</span>
+
+<span class="o">..</span> <span class="n">autosummary</span> <span class="p">::</span>
+
+        <span class="n">pyifx</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">function_here</span>
+        <span class="n">pyifx</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">Class</span>
+        <span class="n">pyifx</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">new_function</span> <span class="o">&lt;----</span> <span class="n">New</span> <span class="n">function</span> <span class="n">here</span>
+</pre></div>
+</div>
+<p>If the module is new and must be added, write the module name (in the format of the module name above) and bold it. Under that, add an autosummary directive and add the function to the list, making sure to follow the same format as the example above. Classes can be added in the same way.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyifx</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_classes.html">Image Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsl.html">HSL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphics.html">Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="composition.html">Composition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Library Contents</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contribution</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#suggested-prerequisites">Suggested Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#library-contribution">Library Contribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation-contribution">Documentation Contribution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-contribute">How to Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#library-structure">Library Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#project-root">Project Root</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#library-contents">Library Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#function-system">Function System</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation-structure">Documentation Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enquiries.html">Enquiries</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">Library Contents</a></li>
+      <li>Next: <a href="license.html" title="next chapter">License</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Jad Khalili.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/contribution.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

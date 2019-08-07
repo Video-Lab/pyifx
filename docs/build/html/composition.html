@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Composition &#8212; pyifx  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Miscellaneous" href="misc.html" />
+    <link rel="prev" title="Graphics" href="graphics.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="composition">
+<h1>Composition<a class="headerlink" href="#composition" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>This section contains functions related to the manipulation of the properties of images. This includes its dimensions and file type among other properties. In other words, most functions in this section modify the structure of images rather than their contents.</p>
+</div>
+<div class="section" id="module-pyifx.comp">
+<span id="function-list"></span><h2>Function List<a class="headerlink" href="#module-pyifx.comp" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyifx.comp.change_file_type">
+<code class="sig-prename descclassname">pyifx.comp.</code><code class="sig-name descname">change_file_type</code><span class="sig-paren">(</span><em class="sig-param">img_paths</em>, <em class="sig-param">new_type</em>, <em class="sig-param">write=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyifx.comp.change_file_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes image(s) and converts them to a given file type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_paths</strong> (<a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage"><em>pyifx.misc.PyifxImage</em></a><em>, </em><a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume"><em>pyifx.misc.ImageVolume</em></a><em>, </em><em>list</em>) – The image(s) to be converted.</p></li>
+<li><p><strong>new_type</strong> (<em>str</em>) – The file type that the image(s) should be converted to. Available types: PNG, JPG, JPEG. Can be entered with/without the dot. Parameter is case-insensitive.</p></li>
+<li><p><strong>write</strong> (<em>bool</em>) – Whether to write the converted image(s).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage">pyifx.misc.PyifxImage</a>, <a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume">pyifx.misc.ImageVolume</a>, list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyifx.comp.resize">
+<code class="sig-prename descclassname">pyifx.comp.</code><code class="sig-name descname">resize</code><span class="sig-paren">(</span><em class="sig-param">img_paths</em>, <em class="sig-param">new_size</em>, <em class="sig-param">write=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyifx.comp.resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes image(s) and converts them to a given size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_paths</strong> (<a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage"><em>pyifx.misc.PyifxImage</em></a><em>, </em><a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume"><em>pyifx.misc.ImageVolume</em></a><em>, </em><em>list</em>) – The image(s) to be resized.</p></li>
+<li><p><strong>new_size</strong> (<em>str</em>) – The new size to convert the image(s) to. It must be entered in the form “WidthxHeight”.</p></li>
+<li><p><strong>write</strong> (<em>bool</em>) – Whether to write the resized image(s).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage">pyifx.misc.PyifxImage</a>, <a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume">pyifx.misc.ImageVolume</a>, list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyifx.comp.rewrite_file">
+<code class="sig-prename descclassname">pyifx.comp.</code><code class="sig-name descname">rewrite_file</code><span class="sig-paren">(</span><em class="sig-param">img_paths</em><span class="sig-paren">)</span><a class="headerlink" href="#pyifx.comp.rewrite_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes image(s) and writes them to an output destination based on their properties. Intended for use with changes to pyifx class instances.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>img_paths</strong> (<a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage"><em>pyifx.misc.PyifxImage</em></a><em>, </em><a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume"><em>pyifx.misc.ImageVolume</em></a><em>, </em><em>list</em>) – The image(s) to be rewritten.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage">pyifx.misc.PyifxImage</a>, <a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume">pyifx.misc.ImageVolume</a>, list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyifx</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_classes.html">Image Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsl.html">HSL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphics.html">Graphics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Composition</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pyifx.comp">Function List</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Library Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribution.html">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enquiries.html">Enquiries</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="graphics.html" title="previous chapter">Graphics</a></li>
+      <li>Next: <a href="misc.html" title="next chapter">Miscellaneous</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Jad Khalili.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/composition.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
