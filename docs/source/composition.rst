@@ -7,3 +7,5 @@ This section contains functions related to the manipulation of the properties of
 
 Function List
 -------------
+.. automodule:: pyifx.comp
+	:members:
