@@ -134,7 +134,7 @@ New functions are automatically documented as long as they have a docstring. Bel
 
 Classes need to have docstrings for each individual method. However, the class itself can have a docstring to document information about the class as well as its members. Below is an example of a class docstring.
 
-.. code-block ::
+.. code-block :: python
 
 	""" A class used to create packages of images & their properties created for use with the Pyifx library.
 		

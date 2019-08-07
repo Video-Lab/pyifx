@@ -11,7 +11,7 @@ The PyifxImage class allows for images to be read, modified, and written in comb
 
 Below is an example of what creating instances of the PyifxImage class would look like.
 
-.. code-block::
+.. code-block:: python
 
 	>>> import pyifx
 	>>> image = pyifx.misc.PyifxImage(input_path="path/to/img.png", output_path="path/to/new_img.png")
@@ -19,7 +19,7 @@ Below is an example of what creating instances of the PyifxImage class would loo
 
 Once the class is instantiated, it reads the image located at the specified input path and converts it into a NumPy ndarray. This array can be easily manipulated & worked with to manipulate the represented image.
 
-.. code-block::
+.. code-block:: python
 
 	>>> image.get_image()
 	>>> array([[[174, 173, 213],
@@ -74,7 +74,7 @@ Once the class is instantiated, it reads the image located at the specified inpu
 
 The array is 3-dimensional, with the first dimension representing each row, the second for each pixel, and the third for each channel. The dimensions of the image can be viewed by accessing the shape property of the array.
 
-.. code-block::
+.. code-block:: python
 	
 	>>> image.get_image().shape
 	>>> (1080, 1920, 3)
@@ -83,7 +83,7 @@ The reason the height comes before width is due to the fact that the first numbe
 
 The methods of this class include:
 
-.. code-block::
+.. code-block:: python
 
 	pyifx.misc.PyifxImage.refresh_image()
 	pyifx.misc.PyifxImage.get_input_path()
@@ -101,7 +101,7 @@ The ImageVolume class is a tool used to create and collect PyifxImage instances 
 
 On instantiating this class, a 'volume' of images will be created based on the specified arguments. Provided below is an example of what using the class might look like.
 
-.. code-block::
+.. code-block:: python
 
 	>>> import pyifx
 	>>> volume = pyifx.misc.ImageVolume(input_path="lots/of/images/", output_path="lots/of/images/modified/", prefix="_")
@@ -109,13 +109,13 @@ On instantiating this class, a 'volume' of images will be created based on the s
 
 Running this file will show us what the generated list of images looks like.
 
-.. code-block::
+.. code-block:: python
 
 	>>> [<pyifx.misc.PyifxImage object at 0x0CC66E10>, <pyifx.misc.PyifxImage object at 0x0CC70030>, <pyifx.misc.PyifxImage object at 0x0CC66E50>]
 
 Upon closer inspection, we can see what these images are based off of.
 
-.. code-block::
+.. code-block:: python
 
 	>>> image = volume.get_volume()[0]
 	>>> image.get_input_path()
@@ -123,7 +123,7 @@ Upon closer inspection, we can see what these images are based off of.
 
 And if we view the output path of the image, we can see where it leads to.
 
-.. code-block::
+.. code-block:: python
 
 	>>> image.get_output_path()
 	>>> "lots/of/images/modified/_image_1.jpg"
@@ -132,7 +132,7 @@ This is done for every image in the specified directory, and any subdirectories 
 
 The methods of this class include:
 
-.. code-block::
+.. code-block:: python
 
 	pyifx.misc.ImageVolume.volume_to_list()
 	pyifx.misc.ImageVolume.convert_dir_to_images()
