@@ -86,7 +86,7 @@ def detect_edges(img_paths, write=True):
 		:param write: Whether to write the manipulated image(s).
 
 		:return: PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage
-		:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list	
+		:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list
 
 	"""
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
