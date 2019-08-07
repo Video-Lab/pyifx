@@ -138,129 +138,40 @@ class PyifxImage():
 class ImageVolume():
 	"""A class used to import images from a directory into Python, creating a list of PyifxImage instances.
 
-	Attributes:
-		input_path (str): The path to the directory where the images are located.
+		:vartype input_path: str
+		:ivar input_path: The path to the directory where the images are located.
 
-		output_path (str): The path where images in the volume should be saved.
+		:vartype output_path: str
+		:ivar output_path: The path where images in the volume should be saved.
 
-		prefix (str): The prefix for edited image file names.
+		:vartype prefix: str
+		:ivar prefix: The prefix for edited image file names.
 
-		volume (list): The list of images imported from the input path.
+		:vartype volume: list
+		:ivar volume: The list of images imported from the input path.
 
-	Methods:
-		__init__(self, input_path, output_path, prefix="_", convert=False)
+	"""
+
+	def __init__(self, input_path, output_path, prefix="_", convert=False):
+		"""	__init__(self, input_path, output_path, prefix="_", convert=False)
 			The ImageVolume constructor method.
 
-			Parameters:
-			input_path (str): The path to the directory where the images are located.
+			:type input_path: str
+			:param input_path: The path to the directory where the images are located.
 
-			output_path (str): The path where images in the volume should be saved.
+			:type output_path: str
+			:param output_path: The path where images in the volume should be saved.
 
-			prefix (str): The prefix for edited image file names. If nothing is entered for this parameter,
-			it will default to "_".
+			:type prefix: str
+			:param prefix: The prefix for edited image file names. If nothing is entered for this parameter, it will default to "_".
 
-			convert (bool): Whether the instance should also read in images from subdirectories. If nothing is entered for
-			this parameter, it will default to false.
+			:type convert: bool
+			:param convert: Whether the instance should also read in images from subdirectories. If nothing is entered for this parameter, it will default to false.
 
-			Returns:
-			ImageVolume instance (pyifx.misc.ImageVolume)
+			:return: ImageVolume instance
+			:rtype: pyifx.misc.ImageVolume
 
-
-		volume_to_list(self, convert=False)
-			The method used to create a list of PyifxImage instances based on the arguments entered in the constructor method.
-			The volume property will be set based on the return value of this function.
-
-			Parameters:
-			convert (bool): Whether to import images from subdirectories. If nothing is entered for this parameter,
-			it will default to False.
-
-			Returns:
-			PyifxImage list (list)
-
-
-		get_input_path(self):
-			Gets the instances input path and returns it.
-
-			Returns:
-			Input path (str)
-
-
-		set_input_path(self, new_input_path, convert=False):
-			Sets the instances input path and returns it.
-
-			Parameters:
-			new_input_path (str): What the input path will be set to.
-
-			convert (bool): Whether the instance should also read in images from subdirectories. If nothing is entered for this
-			parameter, it will default to false.
-
-			Returns:
-			ImageVolume instance (pyifx.misc.ImageVolume)
-
-
-		get_output_path(self):
-			Gets the instances output path and returns it.
-
-			Returns:
-			Output path (str)
-
-
-		set_output_path(self, new_output_path):
-			Sets the instances output path and returns the instance.
-
-			Parameters:
-			new_output_path (str): What the output path will be set to.
-
-			Returns:
-			ImageVolume instance (pyifx.misc.ImageVolume)
-
-
-		get_prefix(self):
-			Gets the instances prefix property and returns it.
-
-			Returns:
-			Prefix (str)
-
-
-		set_prefix(self, new_prefix):
-			Sets the instances prefix property and returns the instance.
-
-			Parameters:
-
-			new_prefix (str): What the instances prefix property will be set to.
-
-			Returns:
-			ImageVolume instance (pyifx.misc.ImageVolume)
-
-
-		get_volume(self):
-			Gets the instances volume and returns it.
-
-			Returns:
-			List of images of type PyifxImage OR An empty array (list)
-
-
-		set_volume(self, new_volume):
-			Sets the instances volume property and returns the volume.
-
-			Parameters:
-			new_volume (list): What the instances volume will be set to.
-
-			Returns:
-			ImageVolume instance (pyifx.misc.ImageVolume)
-
-		convert_dir_to_images(input_dir, convert=False):
-			Converts files from a given directory into PyifxImage instances.
-			
-			Parameters:
-			input_dir (str): The directory to read files from.
-
-			convert (bool): Whether to import images from subdirectories as well.
-
-			Returns:
-			List with elements of type PyifxImage (list)
-	"""
-	def __init__(self, input_path, output_path, prefix="_", convert=False):
+		"""
 		INTERNAL._type_checker(input_path, [str])
 		INTERNAL._type_checker(output_path, [str])
 		INTERNAL._type_checker(prefix, [str])
@@ -272,7 +183,17 @@ class ImageVolume():
 		self.convert = convert
 		self.volume = self.volume_to_list(convert)
 
-	def volume_to_list(self, convert=False): # Add if conversion needed, if create image needed
+	def volume_to_list(self, convert=False):
+		"""	volume_to_list(self, convert=False)
+			The method used to create a list of PyifxImage instances based on the arguments entered in the constructor method. The volume property will be set based on the return value of this function.
+
+			:type convert: bool
+			:param convert: Whether to import images from subdirectories. If nothing is entered for this parameter, it will default to False.
+
+			:return: PyifxImage list 
+			:rtype: list
+
+		"""
 
 		INTERNAL._type_checker(self.get_input_path(), [str])
 		INTERNAL._type_checker(self.get_output_path(), [str])
@@ -281,32 +202,103 @@ class ImageVolume():
 		return self.convert_dir_to_images(self.get_input_path(), convert)
 
 	def get_input_path(self):
+		"""	get_input_path(self):
+			Gets the instances input path and returns it.
+
+			:return: Input path 
+			:rtype: str
+
+		"""
 		return self.input_path
 
 	def set_input_path(self, new_input_path, convert=False):
+		"""	set_input_path(self, new_input_path, convert=False):
+			Sets the instances input path and returns it.
+
+			:type new_input_path: str
+			:param new_input_path: What the input path will be set to.
+
+			:type convert: bool
+			:param convert: Whether the instance should also read in images from subdirectories. If nothing is entered for this parameter, it will default to false.
+
+			:return: ImageVolume instance 
+			:rtype: pyifx.misc.ImageVolume
+
+		"""
 		self.input_path = new_input_path
 		self.volume = self.volume_to_list(convert)
 		return self
 
 	def get_output_path(self):
+		"""get_output_path(self):
+			Gets the instances output path and returns it.
+
+			:return: Output path 
+			:rtype: str
+
+		"""
 		return self.output_path
 
 	def set_output_path(self, new_output_path, convert=False):
+		"""set_output_path(self, new_output_path):
+			Sets the instances output path and returns the instance.
+
+			:type new_output_path: str
+			:param new_output_path: What the output path will be set to.
+
+			:return: ImageVolume instance
+			:rtype: pyifx.misc.ImageVolume
+
+		"""
 		self.output_path = new_output_path
 		self.volume = self.volume_to_list(convert)
 		return self
 
 	def get_prefix(self):
+		"""get_prefix(self):
+			Gets the instances prefix property and returns it.
+
+			:return: Prefix 
+			:rtype: str
+
+		"""
 		return self.prefix
 
 	def set_prefix(self, new_prefix):
+		"""	set_prefix(self, new_prefix):
+			Sets the instances prefix property and returns the instance.
+
+			:type new_prefix: str
+			:param new_prefix: What the instances prefix property will be set to.
+
+			:return: ImageVolume instance 
+			:rtype: pyifx.misc.ImageVolume
+
+		"""
 		self.prefix = new_prefix
 		return self
 
 	def get_volume(self):
+		"""	get_volume(self):
+			Gets the instances volume and returns it.
+
+			:return: List of images of type PyifxImage OR An empty array 
+			:rtype: list
+
+		"""
 		return self.volume
 
 	def set_volume(self, new_volume):
+		"""set_volume(self, new_volume):
+			Sets the instances volume property and returns the volume.
+
+			:type new_volume: list
+			:param new_volume: What the instances volume will be set to.
+
+			:return: ImageVolume instance 
+			:rtype: pyifx.misc.ImageVolume
+
+		"""
 		if new_volume != []:
 			for img in new_volume:
 				INTERNAL._type_checker(img, [PyifxImage])
@@ -314,6 +306,19 @@ class ImageVolume():
 		return self
 
 	def convert_dir_to_images(self, input_dir, convert=False):
+		"""	convert_dir_to_images(input_dir, convert=False):
+			Converts files from a given directory into PyifxImage instances.
+			
+			:type input_dir: str
+			:param input_dir: The directory to read files from.
+
+			:type convert: bool
+			:param convert: Whether to import images from subdirectories as well.
+
+			:return: List with elements of type PyifxImage
+			:rtype: list
+
+		"""
 		INTERNAL._type_checker(input_dir, [str])
 	
 		images = []
