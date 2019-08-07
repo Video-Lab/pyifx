@@ -12,7 +12,7 @@ The `PyifxImage class <image_classes.html#pyifx-image>`_ allows you to package d
 
 The snippet below shows an example of what creating an instance of this class would look like. You can view the full code example of this article `here <usage.html#full-code-example>`_.
 
-.. code-block ::
+.. code-block :: python
 
 	#demo_file.py
 	import pyifx
@@ -31,7 +31,7 @@ The `ImageVolume class <image_classes.html#image-volume>`_ allows for the genera
 
 Creating an ImageVolume instance is very similar to creating a PyifxImage instance. You can view the full code example of this article `here <usage.html#full-code-example>`_.
 
-.. code-block ::
+.. code-block :: python
 
 	# Creating the volume
 	volume = pyifx.misc.ImageVolume(input_path="lots/of/images/", output_path="lots/of/images/modified/", prefix="_")
@@ -45,7 +45,7 @@ Lists of PyifxImage instances can also be passed directly into pyifx functions. 
 
 Below is an example of what creating a PyifxImage instance list would look like. You can view the full code example of this article `here <usage.html#full-code-example>`_.
 
-.. code-block ::
+.. code-block :: python
 
 	#Creating the list 
 	image_2 = pyifx.misc.PyifxImage(input_path="different/path/to/img.png", output_path="different/path/to/new_img.png")
@@ -60,7 +60,7 @@ Function Categories
 
 Once an image is imported into an accepted class instance, it can be used by any of the main functions in the library. Functions are split into 4 categories based on their main purpose. These categories can be accessed based on the module names listed below:
 
-.. code-block ::
+.. code-block :: python
 
 	pyifx.hsl
 	pyifx.graphics
@@ -97,7 +97,7 @@ pyifx functions accept any of the image classes mentioned in the `import section
 
 Below is an example of what using a pyifx function would look like.
 
-.. code-block ::
+.. code-block :: python
 
 	brightened_image = pyifx.hsl.brighten(image, 50)
 	print(type(brightened_image))
@@ -111,7 +111,7 @@ If this file is run, we can see what the return value of this function would loo
 
 The return value type always matches the image input type, regardless of the function.
 
-.. code-block ::
+.. code-block :: python
 
 	brightened_list = pyifx.hsl.brighten(image_list, 50)
 	print(type(brightened_list))
@@ -125,7 +125,7 @@ The return value type always matches the image input type, regardless of the fun
 Full Code Example
 -----------------
 
-.. code-block ::
+.. code-block :: python
 
 	#demo_file.py
 	import pyifx
