@@ -26,3 +26,20 @@ Documentation Contribution
 Our doucmentation is written in Sphinx, a Python-based documentation tool. You can learn more about Sphinx by visiting their `user guide <https://www.sphinx-doc.org/en/master/index.html>`_.
 
 For those looking to work on the structure of the documentation, some understanding of Sphinx and RST (reStructuredText) can be helpful. However, if you are more focused on the content of the documentation, then these tools will not be of much use. No matter what you are focusing on, some understanding of these tools is still highly recommended.
+
+
+
+How to Contribute
+-----------------
+
+Any contributions to this project must be done through GitHub pull requests. If you aren't familiar with pull requests, please read `this guide <https://help.github.com/en/articles/about-pull-requests>`_ talking more about them.
+
+All pull request descriptions must include:
+
+	* A short summary of what the change is doing
+	* Why the change is being made
+	* Any future expansions or plans to expand on the change (if any at all)
+
+Any pull requests with insufficient data will be ignored. 
+
+Once a pull request is made, it will be reviewed. If the change is seen as beneficial or needed, it will be merged into the project.
