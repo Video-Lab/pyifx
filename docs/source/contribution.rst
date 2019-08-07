@@ -43,3 +43,28 @@ All pull request descriptions must include:
 Any pull requests with insufficient data will be ignored. 
 
 Once a pull request is made, it will be reviewed. If the change is seen as beneficial or needed, it will be merged into the project.
+
+
+Library Structure
+-----------------
+
+Project Root
+************
+
+The root of the project contains files other than the library itself. Below is a table detailing the function of each of these files or directories.
+
++-------------------+--------------------------------------------------------------------------------------------------------------------------------+
+|File/Directory name| Purpose                                                                                                                        |
++===================+================================================================================================================================+
+|docs               |Contains all the documentation files for the project, including both build and source files                                     |
++-------------------+--------------------------------------------------------------------------------------------------------------------------------+
+|pyifx              |The main library. Contains all of the source code and required package files. Any contributions to the library can be made here.|
++-------------------+--------------------------------------------------------------------------------------------------------------------------------+
+|tests              |Includes test files and materials.                                                                                              |
++-------------------+--------------------------------------------------------------------------------------------------------------------------------+
+|.gitignore         |Required for ignoring build files regarding version control.                                                                    |
++-------------------+--------------------------------------------------------------------------------------------------------------------------------+
+|LICENSE            |The license for the project.                                                                                                    |
++-------------------+--------------------------------------------------------------------------------------------------------------------------------+
+|README.md          |The README for the project.                                                                                                     |
++-------------------+--------------------------------------------------------------------------------------------------------------------------------+
