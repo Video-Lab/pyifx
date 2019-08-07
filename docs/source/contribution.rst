@@ -105,3 +105,78 @@ All external functions follow a specific system to handle inputs properly. The s
 * **Function Operation** - This is where the actual modification of the image happens. Unlike their handlers, most of these functions only accept PyifxImage instances, instead of the variety of types that the external functions accept.
 
 Handler functions end with _handler, and operation functions end with _operation. Both handler and operation functions also begin with _, meaning they are internal and private. Any new features added to the library must follow this system.
+
+
+Documentation Structure
+-----------------------
+
+Because the documentation is written in Sphinx & RST, it can mostly be edited using the same rules & syntax as any other project using the same tools. However, there are a few important exceptions to note.
+
+Titles are underlined using ``=``, subtitles use ``-``, and sub-subtitles use ``*``. No overlining is required.
+
+New functions are automatically documented as long as they have a docstring. Below is an example of the proper way to format a docstring.
+
+.. code-block ::
+
+	""" detect_edges(img_paths, write=True)
+		Takes image(s) and creates new images focusing on edges.
+
+		:type img_paths: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list 
+		:param img_paths: The image(s) to be manipulated.
+
+		:type write: bool
+		:param write: Whether to write the manipulated image(s).
+
+		:return: PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage
+		:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list
+
+	"""
+
+Classes need to have docstrings for each individual method. However, the class itself can have a docstring to document information about the class as well as its members. Below is an example of a class docstring.
+
+.. code-block ::
+
+	""" A class used to create packages of images & their properties created for use with the Pyifx library.
+		
+		:vartype input_path: str, NoneType
+		:ivar input_path: The path to where the image is located. If the image does not have an input path, it means that the instance is a result of combining two or more images.
+
+		:vartype output_path: str, NoneType 
+		:ivar output_path: The path to where edited images should be created. If the image does not have an output path, it means the instance is used for read-only purposes.
+
+		:vartype image: numpy.ndarray, NoneType
+		:ivar image: The image located at the input path in the form of a numpy n-dimensional array. If the instance does not have an image property, it means that the image had not been read.
+
+	"""
+
+Here is a table of some of the common formatting tags used to reference certain parts of docstrings for both functions and classes.
+
++-----------------------+---------------------------------------------------+
+|Tag                    | Description                                       |
++=======================+===================================================+
+|``:vartype MEMBER:``   |The member type (for classes).                     |
++-----------------------+---------------------------------------------------+
+|``:ivar MEMBER:``      |The member description (for classes).              |
++-----------------------+---------------------------------------------------+
+|``:type PARAMETER:``   |The parameter type (for functions).                |
++-----------------------+---------------------------------------------------+
+|``:param PARAMETER:``  |The parameter description (for functions).         |
++-----------------------+---------------------------------------------------+
+|``:return:``           |The return value description (for functions).      |
++-----------------------+---------------------------------------------------+
+|``:rtype:``            |The return value type (for functions).             |
++-----------------------+---------------------------------------------------+
+
+Although functions can be added to the API reference automatically, they still needed to be added to the 'Library Contents' page manually. If a new function has been approved, it needs to be added to the 'Library Contents' page manually. This page uses the Sphinx autosummary directive to add functions to the page. Below shows an example of what adding a new function would look like.
+
+::
+
+	**pyifx.graphics**
+
+	.. autosummary ::
+
+		pyifx.graphics.function_here
+		pyifx.graphics.Class
+		pyifx.graphics.new_function <---- New function here
+
+If the module is new and must be added, write the module name (in the format of the module name above) and bold it. Under that, add an autosummary directive and add the function to the list, making sure to follow the same format as the example above. Classes can be added in the same way.
