@@ -32,18 +32,18 @@ def darken(img_paths,percent=45, write=True):
 	"""darken(img_paths, percent=45, write=True)
 		Takes image(s) and darkens them.
 
-		Parameters:
-		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be darkened.
+		:type img_paths: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list 
+		:param img_paths: The image(s) to be darkened.
 
-		percent (int): How much the image(s) should be darkened. If nothing is entered for this parameter,
+		:type percent: int 
+		:param percent: How much the image(s) should be darkened. If nothing is entered for this parameter,
 		it will default to 45. The parameter must be between 0 and 100 (inclusive).
 
-		write (bool): Whether to write the darkened image(s).					
+		:type write: bool 
+		:param write: Whether to write the darkened image(s).					
 
-		Returns:
-		PyifxImage instance (pyifx.misc.PyifxImage)
-		ImageVolume instance (pyifx.misc.ImageVolume)
-		List with elements of type PyifxImage (list)		
+		:return: PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage
+		:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list	
 
 	"""	
 	INTERNAL._type_checker(percent, [float, int])
@@ -60,21 +60,22 @@ def color_overlay(img_paths, color, opacity=30, write=True):
 	"""color_overlay(img_paths, color, opacity=30, write=True)
 		Takes image(s) and applies a specified color over it/them.
 
-		Parameters:
-		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be manipulated.
+		:type img_paths: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list 
+		:param img_paths: The image(s) to be manipulated.
 
-		color (numpy.ndarray, list): The color to be applied over the image(s). This parameter should be specified
+		:type color: numpy.ndarray, list
+		:param color: The color to be applied over the image(s). This parameter should be specified
 		in the format [Red, Green, Blue], with each component being between 0 and 255 (inclusive).
 
-		opacity (int): How visible the color should be. If nothing is entered for this parameter, it will default to 30. It
+		:type opacity: int 
+		:param opacity: How visible the color should be. If nothing is entered for this parameter, it will default to 30. It
 		should be between 0 and 100 (inclusive).
 
-		write (bool): Whether to write the darkened image(s).					
+		:type write: bool
+		:param write: Whether to write the darkened image(s).
 
-		Returns:
-		PyifxImage instance (pyifx.misc.PyifxImage)
-		ImageVolume instance (pyifx.misc.ImageVolume)
-		List with elements of type PyifxImage (list)		
+		:return: PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage
+		:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list		
 	"""	
 
 	INTERNAL._type_checker(opacity, [float, int])
@@ -99,18 +100,18 @@ def saturate(img_paths, percent=30, write=True):
 	"""saturate(img_paths, percent=30, write=True)
 		Takes image(s) and saturates them.
 
-		Parameters:
-		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be saturated.
+		:type img_paths: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list
+		:param img_paths: The image(s) to be saturated.
 
-		percent (int): How much the image(s) should be saturated. If nothing is entered for this parameter,
+		:type percent: int
+		:param percent: How much the image(s) should be saturated. If nothing is entered for this parameter,
 		it will default to 30. The parameter must be between 0 and 100 (inclusive).
 
-		write (bool): Whether to write the saturated image(s).					
+		:type write: bool 
+		:param write: Whether to write the saturated image(s).					
 
-		Returns:
-		PyifxImage instance (pyifx.misc.PyifxImage)
-		ImageVolume instance (pyifx.misc.ImageVolume)
-		List with elements of type PyifxImage (list)		
+		:return: PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage
+		:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list		
 	"""
 
 	INTERNAL._type_checker(percent, [float, int])
@@ -127,18 +128,18 @@ def desaturate(img_paths, percent=30, write=True):
 	"""desaturate(img_paths, percent=30, write=True)
 		Takes image(s) and desaturates them.
 
-		Parameters:
-		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be desaturated.
+		:type img_paths: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list 
+		:param img_paths: The image(s) to be desaturated.
 
-		percent (int): How much the image(s) should be desaturated. If nothing is entered for this parameter,
+		:type percent: int
+		:param percent: How much the image(s) should be desaturated. If nothing is entered for this parameter,
 		it will default to 30. The parameter must be between 0 and 100 (inclusive).
 
-		write (bool): Whether to write the desaturated image(s).					
+		:type write: bool
+		:param write: Whether to write the desaturated image(s).
 
-		Returns:
-		PyifxImage instance (pyifx.misc.PyifxImage)
-		ImageVolume instance (pyifx.misc.ImageVolume)
-		List with elements of type PyifxImage (list)	
+		:return: PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage
+		:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list
 	"""
 
 	INTERNAL._type_checker(percent, [float, int])
@@ -155,15 +156,14 @@ def to_grayscale(img_paths, write=True):
 	"""to_grayscale(img_paths, write=True)
 		Takes image(s) and converts them to grayscale.
 
-		Parameters:
-		img_paths (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The image(s) to be converted.
+		:type img_paths: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list
+		:param img_paths: The image(s) to be converted.
 
-		write (bool): Whether to write the grayscale image(s).					
+		:type write: bool
+		:param write: Whether to write the grayscale image(s).					
 
-		Returns:
-		PyifxImage instance (pyifx.misc.PyifxImage)
-		ImageVolume instance (pyifx.misc.ImageVolume)
-		List with elements of type PyifxImage (list)
+		:return: PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage
+		:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list
 	"""
 	
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
