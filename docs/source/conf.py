@@ -12,9 +12,7 @@
 #
 import os
 import sys
-import numpy as np
 sys.path.append(os.path.abspath('../../'))
-import pyifx
 
 
 # -- Project information -----------------------------------------------------
