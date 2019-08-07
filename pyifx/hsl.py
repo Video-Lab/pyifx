@@ -29,15 +29,14 @@ def brighten(img_paths,percent=45, write=True):
 
 
 def darken(img_paths,percent=45, write=True):
-	"""darken(img_paths, percent=45, write=True)
+	""" darken(img_paths, percent=45, write=True)
 		Takes image(s) and darkens them.
 
 		:type img_paths: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list 
 		:param img_paths: The image(s) to be darkened.
 
 		:type percent: int 
-		:param percent: How much the image(s) should be darkened. If nothing is entered for this parameter,
-		it will default to 45. The parameter must be between 0 and 100 (inclusive).
+		:param percent: How much the image(s) should be darkened. If nothing is entered for this parameter, it will default to 45. The parameter must be between 0 and 100 (inclusive).
 
 		:type write: bool 
 		:param write: Whether to write the darkened image(s).					
@@ -57,25 +56,24 @@ def darken(img_paths,percent=45, write=True):
 
 
 def color_overlay(img_paths, color, opacity=30, write=True):
-	"""color_overlay(img_paths, color, opacity=30, write=True)
+	""" color_overlay(img_paths, color, opacity=30, write=True)
 		Takes image(s) and applies a specified color over it/them.
 
 		:type img_paths: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list 
 		:param img_paths: The image(s) to be manipulated.
 
 		:type color: numpy.ndarray, list
-		:param color: The color to be applied over the image(s). This parameter should be specified
-		in the format [Red, Green, Blue], with each component being between 0 and 255 (inclusive).
+		:param color: The color to be applied over the image(s). This parameter should be specified in the format [Red, Green, Blue], with each component being between 0 and 255 (inclusive).
 
 		:type opacity: int 
-		:param opacity: How visible the color should be. If nothing is entered for this parameter, it will default to 30. It
-		should be between 0 and 100 (inclusive).
+		:param opacity: How visible the color should be. If nothing is entered for this parameter, it will default to 30. It should be between 0 and 100 (inclusive).
 
 		:type write: bool
 		:param write: Whether to write the darkened image(s).
 
 		:return: PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage
-		:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list		
+		:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list
+
 	"""	
 
 	INTERNAL._type_checker(opacity, [float, int])
@@ -97,21 +95,21 @@ def color_overlay(img_paths, color, opacity=30, write=True):
 
 
 def saturate(img_paths, percent=30, write=True):
-	"""saturate(img_paths, percent=30, write=True)
+	""" saturate(img_paths, percent=30, write=True)
 		Takes image(s) and saturates them.
 
 		:type img_paths: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list
 		:param img_paths: The image(s) to be saturated.
 
 		:type percent: int
-		:param percent: How much the image(s) should be saturated. If nothing is entered for this parameter,
-		it will default to 30. The parameter must be between 0 and 100 (inclusive).
+		:param percent: How much the image(s) should be saturated. If nothing is entered for this parameter, it will default to 30. The parameter must be between 0 and 100 (inclusive).
 
 		:type write: bool 
 		:param write: Whether to write the saturated image(s).					
 
 		:return: PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage
-		:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list		
+		:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list	
+
 	"""
 
 	INTERNAL._type_checker(percent, [float, int])
@@ -125,21 +123,21 @@ def saturate(img_paths, percent=30, write=True):
 
 
 def desaturate(img_paths, percent=30, write=True):
-	"""desaturate(img_paths, percent=30, write=True)
+	""" desaturate(img_paths, percent=30, write=True)
 		Takes image(s) and desaturates them.
 
 		:type img_paths: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list 
 		:param img_paths: The image(s) to be desaturated.
 
 		:type percent: int
-		:param percent: How much the image(s) should be desaturated. If nothing is entered for this parameter,
-		it will default to 30. The parameter must be between 0 and 100 (inclusive).
+		:param percent: How much the image(s) should be desaturated. If nothing is entered for this parameter, it will default to 30. The parameter must be between 0 and 100 (inclusive).
 
 		:type write: bool
 		:param write: Whether to write the desaturated image(s).
 
 		:return: PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage
 		:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list
+
 	"""
 
 	INTERNAL._type_checker(percent, [float, int])
@@ -153,7 +151,7 @@ def desaturate(img_paths, percent=30, write=True):
 
 
 def to_grayscale(img_paths, write=True):
-	"""to_grayscale(img_paths, write=True)
+	""" to_grayscale(img_paths, write=True)
 		Takes image(s) and converts them to grayscale.
 
 		:type img_paths: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list
@@ -164,6 +162,7 @@ def to_grayscale(img_paths, write=True):
 
 		:return: PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage
 		:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list
+
 	"""
 	
 	INTERNAL._type_checker(img_paths, [misc.PyifxImage, misc.ImageVolume, list])
