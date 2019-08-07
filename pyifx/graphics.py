@@ -3,7 +3,7 @@ import pyifx.misc as misc
 import numpy as np
 
 def blur_gaussian(img_paths, radius=3, size=None, write=True):
-	""" blur_gaussian(img_paths, radius=3, size=None, write=True) 
+	"""blur_gaussian(img_paths, radius=3, size=None, write=True)
 		Takes images(s) and blurs them using a gaussian kernel based on a given radius.
 
 		:type img_paths: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list
@@ -30,7 +30,7 @@ def blur_gaussian(img_paths, radius=3, size=None, write=True):
 	return INTERNAL._convolution_handler(img_paths, radius=radius, type_kernel="gaussian", size=size, custom=None, write=write)
 
 def blur_mean(img_paths, radius=3, write=True):
-	""" blur_mean(img_paths, radius=3, write=True) 
+	""" blur_mean(img_paths, radius=3, write=True)
 		Takes images(s) and blurs them using a mean kernel based on a given radius.
 
 		:type img_paths: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list

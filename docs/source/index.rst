@@ -17,7 +17,7 @@ Pyifx Documentation
    Graphics <graphics>
    Composition <composition>
    Miscellaneous <misc>
-   General Index <modules>
+   Library Contents <modules>
    Contribution <contribution>
    License <license>
    Enquiries <enquiries>

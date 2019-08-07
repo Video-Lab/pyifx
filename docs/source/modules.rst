@@ -1,5 +1,5 @@
-General Index
-=============
+Library Contents
+================
 
 **pyifx.hsl**
 

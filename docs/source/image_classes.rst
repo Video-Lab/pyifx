@@ -93,7 +93,7 @@ The methods of this class include:
 	pyifx.misc.PyifxImage.get_image()
 	pyifx.misc.PyifxImage.set_image()
 
-.. note:: A full list & description of parameters & methods in the PyifxImage class can be found `here <misc.html>`_ or by visiting the `general index <modules.html>`_.
+.. note:: A full list & description of parameters & methods in the PyifxImage class can be found `here <misc.html>`_ or by visiting the `library contents page <modules.html>`_.
 
 Image Volume
 ------------
@@ -145,4 +145,4 @@ The methods of this class include:
 	pyifx.misc.ImageVolume.get_volume()
 	pyifx.misc.ImageVolume.set_volume()
 
-.. note:: As stated before, a full list & description of parameters & methods in the ImageVolume class can be found `here <misc.html>`_ or by visiting the `general index <modules.html>`_.
+.. note:: As stated before, a full list & description of parameters & methods in the ImageVolume class can be found `here <misc.html>`_ or by visiting the `library contents page <modules.html>`_.
