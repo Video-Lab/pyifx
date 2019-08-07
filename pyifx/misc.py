@@ -341,19 +341,21 @@ def combine(img1, img2, out_path, write=True):
 	"""combine(img1, img2, out_path, write=True)
 			Combines the data of two PyifxImages, ImageVolumes, or ImageLists to form new PyifxImages.
 
-			Parameters: 
-			img1 (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The first image to be added to the combination.
+			:type img1: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list
+			:param img1: The first image to be added to the combination.
 
-			img2 (pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list): The second image to be added to the combination.
-			Arguments of type ImageVolume and list can be used in conjunction, but images of type PyifxImage must be used together.
+			:type img2: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list
+			:param img2: The second image to be added to the combination. Arguments of type ImageVolume and list can be used in conjunction, but images of type PyifxImage must be used together.
 
-			out_path (str): The path that the combine image(s) will be written to.
+			:type out_path: str
+			:param out_path: The path that the combine image(s) will be written to.
 
-			write (bool): Whether to write the image or not.
+			:type write: bool
+			:param write: Whether to write the image or not.
 
-			Returns:
-			PyifxImage instance (pyifx.misc.PyifxImage)
-			List with elements of type PyifxImage (list)
+			:return: PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage
+			:rtype: pyifx.misc.PyifxImage, pyifx.misc.ImageVolume, list	
+
 	"""
 
 	INTERNAL._type_checker(img1, [PyifxImage, ImageVolume, list])
