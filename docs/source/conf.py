@@ -20,6 +20,7 @@ sys.path.append(os.path.abspath('../../'))
 project = 'pyifx'
 copyright = '2019, Jad Khalili'
 author = 'Jad Khalili'
+master_doc = 'contents'
 
 
 # -- General configuration ---------------------------------------------------
