@@ -9,8 +9,8 @@ pip is required to install this library. If you do not have pip, refer to `this 
 Dependencies
 ************
 The current dependencies of the library include:
-* NumPy
-* Imageio
+	* NumPy
+	* Imageio
 
 However, these do not need to be installed beforehand. Installing the library will also install any dependencies it has if they are not found.
 
