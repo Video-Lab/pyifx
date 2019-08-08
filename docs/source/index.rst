@@ -17,6 +17,7 @@ Pyifx Documentation
    License <license>
    Enquiries <enquiries>
    API Reference <modules>
+   General Index <genindex>
 
 What is Pyifx?
 --------------
