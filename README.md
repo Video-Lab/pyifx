@@ -13,7 +13,7 @@ An image processing, editing &amp; handling library in Python.
 0.2.0 - Graphics module added <br />
 0.2.1 - Resize feature added <br />
 0.2.2 - File naming & formatting features added <br />
-0.3.0 - Composition module added (CURRENT)<br />
+0.3.0 - Composition module added <br />
 <b>1.0.0 - Initial Release (CURRENT)</b><br />
 
 ## Features
