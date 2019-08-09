@@ -1,22 +1,21 @@
 import setuptools
-
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
   name='pyifx',
-  version='0.3.0',
+  version='1.0.0',
   description="An image handling, processing, & editing library for Python.",
   long_description=long_description,
+  long_description_content_type="text/markdown",
   author='Jad Khalili',
   author_email='jad.khalili123@gmail.com',
   packages=setuptools.find_packages(),
-  long_description_content_type="text/markdown",
   url="https://github.com/Video-Lab/pyifx/",
   zip_safe=False,
   install_requires=[
       'numpy',
-      'imageio'
+      'imageio',
       ],
   classifiers=[
   "Programming Language :: Python :: 3",

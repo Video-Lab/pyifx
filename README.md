@@ -32,7 +32,7 @@ A full list of features is available in the [user guide & documentation](https:/
 ## Code Example
 The code block below perfectly details the use of the library.
 
-```python
+``` python
 #demo_file.py
 import pyifx
 
