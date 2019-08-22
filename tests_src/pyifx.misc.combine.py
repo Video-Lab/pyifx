@@ -1,7 +1,5 @@
-
-Misc
-
-set_paths("tests/imgs/misc/combine/")
+from test_vars import *
+set_paths("../tests/imgs/misc/combine")
 
 pyifx.misc.combine(img1, img2, "tests/imgs/misc/combine/combined.jpg")
 pyifx.misc.combine([img_list[0]], [img_list[1]], "tests/imgs/misc/combine/LIST-combined.jpg")
