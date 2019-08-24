@@ -182,3 +182,26 @@ Although functions can be added to the API reference automatically, they still n
 		pyifx.graphics.new_function <---- New function here
 
 If the module is new and must be added, write the module name (in the format of the module name above) and bold it. Under that, add an autosummary directive and add the function to the list, making sure to follow the same format as the example above. Classes can be added in the same way.
+
+Writing Tests
+-------------
+
+Writing tests is one of the most important parts of this project. Whether it is due to changing an existing feature or adding a new one, tests must be written in order to verify the validity of a change to the library. In order to keep tests organized, a few rules must be followed for writing them.
+
+Location & Naming
+*****************
+
+As seen in the `project root table <#project-root>`_, the **tests** directory contains test input & output files, while the **tests_src** directory is used to store test sources files. Any new tests **must** be written & saved in the tests_src directory.
+
+Each test file is dedicated to an individual function. Functions must have individual test files and cannot be combined together. Files are named after the function as if they were being referenced from the root package. 
+
+:: 
+
+	tests_src |
+		pyifx.hsl.brighten.py
+		pyifx.hsl.darken.py
+		...
+		pyifx.misc.combine.py
+		...
+
+As seen above, the test file for the "brighten" function is named "pyifx.hsl.brighten.py", after its location in the package. 
