@@ -3,8 +3,6 @@ import sys
 import numpy as np
 import pyifx
 
-sys.path.append("../")
-
 def set_paths(new_path):
 	for img in img_list:
 		img.set_output_path(os.path.join(new_path, os.path.split(img.get_output_path())[1]))
