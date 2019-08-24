@@ -101,7 +101,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#documentation-structure">Documentation Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#writing-tests">Writing Tests</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#location-naming">Location &amp; Naming</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-file-structure">Test File Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Test Materials</a></li>
 </ul>
 </li>
 </ul>
@@ -392,8 +393,8 @@
 </div>
 <p>As seen above, the test file for the “brighten” function is named “pyifx.hsl.brighten.py”, after its location in the package.</p>
 </div>
-<div class="section" id="id1">
-<h3>Writing Tests<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="test-file-structure">
+<h3>Test File Structure<a class="headerlink" href="#test-file-structure" title="Permalink to this headline">¶</a></h3>
 <p>Tests follow a specific structure in order to thoroughly cover every situation. Below is an example of what a test file would look like.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># pyifx.graphics.convolute_custom.py</span>
 
@@ -426,6 +427,46 @@
 <li><p><strong>Main tests</strong>: Where the tests should be ran. The tests must be ran for all of the variables included in the <a class="reference external" href="#test-materials">test materials</a>, &amp; any other parameters should include a variety of values.</p></li>
 <li><p><strong>Error tests</strong>: Where the error handling of the function is tested through the <a class="reference external" href="#test_materials">call_error_test function</a>. Try to include all types of potential errors.</p></li>
 </ul>
+</div>
+<div class="section" id="id1">
+<h3>Test Materials<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>All materials needed for the test are provided in the <code class="docutils literal notranslate"><span class="pre">test_vars.py</span></code> file, which is located in the same directory as the rest of the tests. This file includes:</p>
+<ul class="simple">
+<li><p>Path-changing function (to help changing paths for individual variables)</p></li>
+<li><p>Error handler &amp; catcher</p></li>
+<li><p>Variables (2x PyifxImage Instance, 1x ImageVolume, 1x Image List)</p></li>
+</ul>
+<dl class="function">
+<dt id="set_paths">
+<code class="sig-name descname">set_paths</code><span class="sig-paren">(</span><em class="sig-param">new_path</em><span class="sig-paren">)</span><a class="headerlink" href="#set_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the output path of test variables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>new_path</strong> (<em>str</em>) – The new output path.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="call_error_test">
+<code class="sig-name descname">call_error_test</code><span class="sig-paren">(</span><em class="sig-param">function</em>, <em class="sig-param">arguments</em><span class="sig-paren">)</span><a class="headerlink" href="#call_error_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls a function with a provided list of arguments &amp; catches any errors that arise. Prints message if caught successfully.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>function</strong> (<em>str</em>) – The function to be called. Should be referenced from package (eg. pyifx.hsl.brighten). Does not include parentheses.</p></li>
+<li><p><strong>arguments</strong> (<em>list</em>) – The arguments to be passed to the function. Should be contained in a list (in order of passing to the function).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Boolean indicating if the error was caught.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 </div>
 </div>

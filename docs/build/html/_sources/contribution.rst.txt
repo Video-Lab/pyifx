@@ -207,8 +207,8 @@ Each test file is dedicated to an individual function. Functions must have indiv
 As seen above, the test file for the "brighten" function is named "pyifx.hsl.brighten.py", after its location in the package.
 
 
-Writing Tests
-*************
+Test File Structure
+*******************
 
 Tests follow a specific structure in order to thoroughly cover every situation. Below is an example of what a test file would look like.
 
@@ -242,3 +242,29 @@ Tests follow a specific structure in order to thoroughly cover every situation. 
 * **Custom variables**: Any extra variables needed for the tests. These should only be included if required by the function.
 * **Main tests**: Where the tests should be ran. The tests must be ran for all of the variables included in the `test materials <#test-materials>`_, & any other parameters should include a variety of values.
 * **Error tests**: Where the error handling of the function is tested through the `call_error_test function <#test_materials>`_. Try to include all types of potential errors.
+
+
+Test Materials
+**************
+
+All materials needed for the test are provided in the ``test_vars.py`` file, which is located in the same directory as the rest of the tests. This file includes:
+
+* Path-changing function (to help changing paths for individual variables)
+* Error handler & catcher
+* Variables (2x PyifxImage Instance, 1x ImageVolume, 1x Image List)
+
+.. py:function :: set_paths(new_path)
+
+	Changes the output path of test variables.
+
+	:param str new_path: The new output path.
+
+.. py:function :: call_error_test(function, arguments)
+
+	Calls a function with a provided list of arguments & catches any errors that arise. Prints message if caught successfully.
+
+	:param str function: The function to be called. Should be referenced from package (eg. pyifx.hsl.brighten). Does not include parentheses.
+	:param list arguments: The arguments to be passed to the function. Should be contained in a list (in order of passing to the function).
+
+	:return: Boolean indicating if the error was caught.
+	:rtype: bool

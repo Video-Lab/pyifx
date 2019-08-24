@@ -13,9 +13,9 @@ def set_paths(new_path):
 	img1.set_output_path(os.path.join(new_path, os.path.split(img1.get_output_path())[1]))
 	img2.set_output_path(os.path.join(new_path, os.path.split(img2.get_output_path())[1]))
 
-def call_error_test(function, args):
+def call_error_test(function, arguments):
 	try:
-		globals()[function](*args)
+		globals()[function](*arguments)
 	except Exception:
 		print("Error caught successfully.")
 		return True
