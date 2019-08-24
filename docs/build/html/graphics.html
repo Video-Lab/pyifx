@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Graphics &mdash; pyifx  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyifx
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_classes.html">Image Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribution.html">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enquiries.html">Enquiries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyifx</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Graphics</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/graphics.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="graphics">
+<h1>Graphics<a class="headerlink" href="#graphics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>This section focuses on the look and composition of images as a whole. Functions in this section mostly apply effects to images to change their look, such as blurs and pixelations. This section covers a wider variety of tools compared to the HSL module.</p>
+</div>
+<div class="section" id="module-pyifx.graphics">
+<span id="function-list"></span><h2>Function List<a class="headerlink" href="#module-pyifx.graphics" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyifx.graphics.blur_gaussian">
+<code class="sig-prename descclassname">pyifx.graphics.</code><code class="sig-name descname">blur_gaussian</code><span class="sig-paren">(</span><em class="sig-param">img_paths</em>, <em class="sig-param">radius=3</em>, <em class="sig-param">size=None</em>, <em class="sig-param">write=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyifx.graphics.blur_gaussian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes images(s) and blurs them using a gaussian kernel based on a given radius.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_paths</strong> (<a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage"><em>pyifx.misc.PyifxImage</em></a><em>, </em><a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume"><em>pyifx.misc.ImageVolume</em></a><em>, </em><em>list</em>) – The image(s) to be blurred.</p></li>
+<li><p><strong>radius</strong> (<em>int</em>) – The radius of the gaussian kernel. If nothing is entered for this parameter, it will default to 3.</p></li>
+<li><p><strong>size</strong> (<em>list</em><em>, </em><em>NoneType</em>) – The dimensions of the gaussian kernel. Must be entered in</p></li>
+<li><p><strong>write</strong> (<em>bool</em>) – Whether to write the blurred image(s).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage">pyifx.misc.PyifxImage</a>, <a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume">pyifx.misc.ImageVolume</a>, list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyifx.graphics.blur_mean">
+<code class="sig-prename descclassname">pyifx.graphics.</code><code class="sig-name descname">blur_mean</code><span class="sig-paren">(</span><em class="sig-param">img_paths</em>, <em class="sig-param">radius=3</em>, <em class="sig-param">write=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyifx.graphics.blur_mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes images(s) and blurs them using a mean kernel based on a given radius.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_paths</strong> (<a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage"><em>pyifx.misc.PyifxImage</em></a><em>, </em><a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume"><em>pyifx.misc.ImageVolume</em></a><em>, </em><em>list</em>) – The image(s) to be blurred.</p></li>
+<li><p><strong>radius</strong> (<em>int</em>) – The radius of the mean kernel. If nothing is entered for this parameter, it will default to 3.</p></li>
+<li><p><strong>write</strong> (<em>bool</em>) – Whether to write the blurred image(s).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage">pyifx.misc.PyifxImage</a>, <a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume">pyifx.misc.ImageVolume</a>, list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyifx.graphics.convolute_custom">
+<code class="sig-prename descclassname">pyifx.graphics.</code><code class="sig-name descname">convolute_custom</code><span class="sig-paren">(</span><em class="sig-param">img_paths</em>, <em class="sig-param">kernel</em>, <em class="sig-param">write=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyifx.graphics.convolute_custom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes image(s) and creates new images that are convoluted over using a given kernel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_paths</strong> (<a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage"><em>pyifx.misc.PyifxImage</em></a><em>, </em><a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume"><em>pyifx.misc.ImageVolume</em></a><em>, </em><em>list</em>) – The image(s) to be convoluted over.</p></li>
+<li><p><strong>kernel</strong> (<em>numpy.ndarray</em><em>, </em><em>list</em>) – The kernel to be used for convolution. This can be provided in either a 2-dimensional list or a numpy 2-dimensional array.</p></li>
+<li><p><strong>write</strong> (<em>bool</em>) – Whether to write the convoluted image(s).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage">pyifx.misc.PyifxImage</a>, <a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume">pyifx.misc.ImageVolume</a>, list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyifx.graphics.detect_edges">
+<code class="sig-prename descclassname">pyifx.graphics.</code><code class="sig-name descname">detect_edges</code><span class="sig-paren">(</span><em class="sig-param">img_paths</em>, <em class="sig-param">write=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyifx.graphics.detect_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes image(s) and creates new images focusing on edges.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_paths</strong> (<a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage"><em>pyifx.misc.PyifxImage</em></a><em>, </em><a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume"><em>pyifx.misc.ImageVolume</em></a><em>, </em><em>list</em>) – The image(s) to be manipulated.</p></li>
+<li><p><strong>write</strong> (<em>bool</em>) – Whether to write the manipulated image(s).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage">pyifx.misc.PyifxImage</a>, <a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume">pyifx.misc.ImageVolume</a>, list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyifx.graphics.pixelate">
+<code class="sig-prename descclassname">pyifx.graphics.</code><code class="sig-name descname">pixelate</code><span class="sig-paren">(</span><em class="sig-param">img_paths</em>, <em class="sig-param">factor=4</em>, <em class="sig-param">write=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyifx.graphics.pixelate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes image(s) and pixelates them based on a given factor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_paths</strong> (<a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage"><em>pyifx.misc.PyifxImage</em></a><em>, </em><a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume"><em>pyifx.misc.ImageVolume</em></a><em>, </em><em>list</em>) – The image(s) to be pixelated.</p></li>
+<li><p><strong>factor</strong> (<em>int</em>) – How much the image(s) should be pixelated. If nothing is entered for this parameter, it will default to 4.</p></li>
+<li><p><strong>write</strong> (<em>bool</em>) – Whether to write the pixelated image(s).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PyifxImage instance, ImageVolume instance, or list with elements of type PyifxImage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="misc.html#pyifx.misc.PyifxImage" title="pyifx.misc.PyifxImage">pyifx.misc.PyifxImage</a>, <a class="reference internal" href="misc.html#pyifx.misc.ImageVolume" title="pyifx.misc.ImageVolume">pyifx.misc.ImageVolume</a>, list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Jad Khalili
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Usage &mdash; pyifx  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contribution" href="contribution.html" />
+    <link rel="prev" title="Image Classes" href="image_classes.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyifx
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_classes.html">Image Classes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#importing-an-image">Importing an Image</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyifximage">PyifxImage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#imagevolume">ImageVolume</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyifximage-list">PyifxImage list</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-imported-images">Using Imported Images</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#function-categories">Function Categories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#function-structure">Function Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#full-code-example">Full Code Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contribution.html">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enquiries.html">Enquiries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyifx</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="contribution.html" class="btn btn-neutral float-right" title="Contribution" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="image_classes.html" class="btn btn-neutral float-left" title="Image Classes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="importing-an-image">
+<h2>Importing an Image<a class="headerlink" href="#importing-an-image" title="Permalink to this headline">¶</a></h2>
+<p>As stated in the previous section, most of pyifx’s functionality is based around the use of <a class="reference external" href="image_classes.html">image classes</a>. There are three options to create data that is compatible with the Pyifx library.</p>
+<div class="section" id="pyifximage">
+<h3>PyifxImage<a class="headerlink" href="#pyifximage" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="image_classes.html#pyifx-image">PyifxImage class</a> allows you to package data about an image into a class instance. This instance can then be passed to functions provided by the library to manipulate image data.</p>
+<p>The snippet below shows an example of what creating an instance of this class would look like. You can view the full code example of this article <a class="reference external" href="usage.html#full-code-example">here</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#demo_file.py</span>
+<span class="kn">import</span> <span class="nn">pyifx</span>
+
+<span class="c1"># Creating the image</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span><span class="p">(</span><span class="n">input_path</span><span class="o">=</span><span class="s2">&quot;path/to/img.png&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;path/to/new_img.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>More information about the PyifxImage class is available <a class="reference external" href="image_classes.html#pyifx-image">here</a>.</p>
+</div>
+</div>
+<div class="section" id="imagevolume">
+<h3>ImageVolume<a class="headerlink" href="#imagevolume" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="image_classes.html#image-volume">ImageVolume class</a> allows for the generation of a list of PyifxImage instances based on specified parameters. As with the PyifxImage class, instances of this class can be passed to library-provided functions as well.</p>
+<p>Creating an ImageVolume instance is very similar to creating a PyifxImage instance. You can view the full code example of this article <a class="reference external" href="usage.html#full-code-example">here</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating the volume</span>
+<span class="n">volume</span> <span class="o">=</span> <span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">ImageVolume</span><span class="p">(</span><span class="n">input_path</span><span class="o">=</span><span class="s2">&quot;lots/of/images/&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;lots/of/images/modified/&quot;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>More information about the ImageVolume class is available <a class="reference external" href="image_classes.html#image-volume">here</a>.</p>
+</div>
+</div>
+<div class="section" id="pyifximage-list">
+<h3>PyifxImage list<a class="headerlink" href="#pyifximage-list" title="Permalink to this headline">¶</a></h3>
+<p>Lists of PyifxImage instances can also be passed directly into pyifx functions. This can be used to import images from multiple directories, or if PyifxImage instances need to have properties that do not share any patterns or sequences.</p>
+<p>Below is an example of what creating a PyifxImage instance list would look like. You can view the full code example of this article <a class="reference external" href="usage.html#full-code-example">here</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Creating the list</span>
+<span class="n">image_2</span> <span class="o">=</span> <span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span><span class="p">(</span><span class="n">input_path</span><span class="o">=</span><span class="s2">&quot;different/path/to/img.png&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;different/path/to/new_img.png&quot;</span><span class="p">)</span>
+
+<span class="n">image_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">image</span><span class="p">,</span> <span class="n">image_2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="using-imported-images">
+<h2>Using Imported Images<a class="headerlink" href="#using-imported-images" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="function-categories">
+<h3>Function Categories<a class="headerlink" href="#function-categories" title="Permalink to this headline">¶</a></h3>
+<p>Once an image is imported into an accepted class instance, it can be used by any of the main functions in the library. Functions are split into 4 categories based on their main purpose. These categories can be accessed based on the module names listed below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pyifx</span><span class="o">.</span><span class="n">hsl</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">graphics</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">comp</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 22%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Module name</p></th>
+<th class="head"><p>Literal translation</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="hsl.html">pyifx.hsl</a></p></td>
+<td><p>HSL (Hue, Saturation, Light)</p></td>
+<td><p>Functions in this section are focused around color &amp; its
+manipulation. In simple terms, hue refers to the color itself,
+saturation to its intensity, and light to how bright or dark the
+color is.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="comp.html">pyifx.comp</a></p></td>
+<td><p>Compositon</p></td>
+<td><p>This section contains functions related to the manipulation of the
+properties of images. This includes its dimensions and file type
+among other properties.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="graphics.html">pyifx.graphics</a></p></td>
+<td><p>Graphics</p></td>
+<td><p>This section focuses on the look and composition of images as a
+whole. Functions in this section mostly apply effects to images to
+change their look, such as blurs and pixelations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="misc.html">pyifx.misc</a></p></td>
+<td><p>Miscellaneous</p></td>
+<td><p>Unlike the composition module, this section focuses on managing
+images instead of editing them. Functions and classes in this
+module include image classes and image import functions.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A full list of functions is available <a class="reference external" href="modules.html">here</a>. To view functions contained in specific categories, visit the category’s specific page mentioned in the <a class="reference external" href="index.html">table of contents</a>.</p>
+</div>
+</div>
+<div class="section" id="function-structure">
+<h3>Function Structure<a class="headerlink" href="#function-structure" title="Permalink to this headline">¶</a></h3>
+<p>pyifx functions accept any of the image classes mentioned in the <a class="reference external" href="#importing-an-image">import section</a>. They return a new, modified instance of the same class or type as provided in the function. What is modified can vary based on what the function does. This is usually the image data; however, functions can also return modified input and output paths, prefixes (for ImageVolume instances), and other properties.</p>
+<p>Below is an example of what using a pyifx function would look like.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">brightened_image</span> <span class="o">=</span> <span class="n">pyifx</span><span class="o">.</span><span class="n">hsl</span><span class="o">.</span><span class="n">brighten</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">brightened_image</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>If this file is run, we can see what the return value of this function would look like.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python demo_file.py
+&lt;class <span class="s1">&#39;pyifx.misc.PyifxImage&#39;</span>&gt;
+</pre></div>
+</div>
+<p>The return value type always matches the image input type, regardless of the function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">brightened_list</span> <span class="o">=</span> <span class="n">pyifx</span><span class="o">.</span><span class="n">hsl</span><span class="o">.</span><span class="n">brighten</span><span class="p">(</span><span class="n">image_list</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">brightened_list</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python demo_file.py
+&lt;class <span class="s1">&#39;list&#39;</span>&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="full-code-example">
+<h2>Full Code Example<a class="headerlink" href="#full-code-example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#demo_file.py</span>
+<span class="kn">import</span> <span class="nn">pyifx</span>
+
+<span class="c1"># Creating the image</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span><span class="p">(</span><span class="n">input_path</span><span class="o">=</span><span class="s2">&quot;path/to/img.png&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;path/to/new_img.png&quot;</span><span class="p">)</span>
+
+<span class="c1"># Creating the volume</span>
+<span class="n">volume</span> <span class="o">=</span> <span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">ImageVolume</span><span class="p">(</span><span class="n">input_path</span><span class="o">=</span><span class="s2">&quot;lots/of/images/&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;lots/of/images/modified/&quot;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+
+<span class="c1">#Creating the list</span>
+<span class="n">image_2</span> <span class="o">=</span> <span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span><span class="p">(</span><span class="n">input_path</span><span class="o">=</span><span class="s2">&quot;different/path/to/img.png&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;different/path/to/new_img.png&quot;</span><span class="p">)</span>
+
+<span class="n">image_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">image</span><span class="p">,</span> <span class="n">image_2</span><span class="p">]</span>
+
+<span class="n">brightened_image</span> <span class="o">=</span> <span class="n">pyifx</span><span class="o">.</span><span class="n">hsl</span><span class="o">.</span><span class="n">brighten</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">brightened_image</span><span class="p">))</span>
+
+<span class="n">brightened_list</span> <span class="o">=</span> <span class="n">pyifx</span><span class="o">.</span><span class="n">hsl</span><span class="o">.</span><span class="n">brighten</span><span class="p">(</span><span class="n">image_list</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">brightened_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="contribution.html" class="btn btn-neutral float-right" title="Contribution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="image_classes.html" class="btn btn-neutral float-left" title="Image Classes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Jad Khalili
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

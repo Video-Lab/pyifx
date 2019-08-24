@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Image Classes &mdash; pyifx  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Usage" href="usage.html" />
+    <link rel="prev" title="Getting Started" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyifx
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Image Classes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-are-they">What are They?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyifx-image">Pyifx Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#image-volume">Image Volume</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribution.html">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enquiries.html">Enquiries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyifx</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Image Classes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/image_classes.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="usage.html" class="btn btn-neutral float-right" title="Usage" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="image-classes">
+<h1>Image Classes<a class="headerlink" href="#image-classes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-are-they">
+<h2>What are They?<a class="headerlink" href="#what-are-they" title="Permalink to this headline">¶</a></h2>
+<p>All of the functions in this library are based around the use of Pyifx Image classes. They allow you to store important information about an image in Python while also providing useful functions relating to their properties.</p>
+</div>
+<div class="section" id="pyifx-image">
+<h2>Pyifx Image<a class="headerlink" href="#pyifx-image" title="Permalink to this headline">¶</a></h2>
+<p>The PyifxImage class allows for images to be read, modified, and written in combination with functions provided by the library. This class can either be instantiated through the use of an input and outputh path, or by providing given image data as long as it is in the form of a NumPy ndarray.</p>
+<p>Below is an example of what creating instances of the PyifxImage class would look like.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyifx</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image</span> <span class="o">=</span> <span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span><span class="p">(</span><span class="n">input_path</span><span class="o">=</span><span class="s2">&quot;path/to/img.png&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;path/to/new_img.png&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image_from_data</span> <span class="o">=</span> <span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span><span class="p">(</span><span class="n">input_path</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;path/to/new_img.png&quot;</span><span class="p">,</span> <span class="n">img</span><span class="o">=</span><span class="n">image_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once the class is instantiated, it reads the image located at the specified input path and converts it into a NumPy ndarray. This array can be easily manipulated &amp; worked with to manipulate the represented image.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="o">&gt;&gt;&gt;</span> <span class="n">image</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
+ <span class="o">&gt;&gt;&gt;</span> <span class="n">array</span><span class="p">([[[</span><span class="mi">174</span><span class="p">,</span> <span class="mi">173</span><span class="p">,</span> <span class="mi">213</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">174</span><span class="p">,</span> <span class="mi">173</span><span class="p">,</span> <span class="mi">213</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">174</span><span class="p">,</span> <span class="mi">173</span><span class="p">,</span> <span class="mi">213</span><span class="p">],</span>
+ <span class="o">...</span><span class="p">,</span>
+ <span class="p">[</span><span class="mi">188</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">224</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">188</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">224</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">188</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">224</span><span class="p">]],</span>
+
+<span class="p">[[</span><span class="mi">174</span><span class="p">,</span> <span class="mi">173</span><span class="p">,</span> <span class="mi">213</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">174</span><span class="p">,</span> <span class="mi">173</span><span class="p">,</span> <span class="mi">213</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">174</span><span class="p">,</span> <span class="mi">173</span><span class="p">,</span> <span class="mi">213</span><span class="p">],</span>
+ <span class="o">...</span><span class="p">,</span>
+ <span class="p">[</span><span class="mi">188</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">224</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">188</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">224</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">188</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">224</span><span class="p">]],</span>
+
+<span class="p">[[</span><span class="mi">174</span><span class="p">,</span> <span class="mi">173</span><span class="p">,</span> <span class="mi">213</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">174</span><span class="p">,</span> <span class="mi">173</span><span class="p">,</span> <span class="mi">213</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">174</span><span class="p">,</span> <span class="mi">173</span><span class="p">,</span> <span class="mi">213</span><span class="p">],</span>
+ <span class="o">...</span><span class="p">,</span>
+ <span class="p">[</span><span class="mi">188</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">224</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">188</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">224</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">188</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">224</span><span class="p">]],</span>
+
+<span class="o">...</span><span class="p">,</span>
+
+<span class="p">[[</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">135</span><span class="p">],</span>
+ <span class="p">[</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">135</span><span class="p">],</span>
+ <span class="p">[</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">134</span><span class="p">],</span>
+ <span class="o">...</span><span class="p">,</span>
+ <span class="p">[</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">107</span><span class="p">,</span> <span class="mi">147</span><span class="p">],</span>
+ <span class="p">[</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">107</span><span class="p">,</span> <span class="mi">147</span><span class="p">],</span>
+ <span class="p">[</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">107</span><span class="p">,</span> <span class="mi">147</span><span class="p">]],</span>
+
+<span class="p">[[</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">136</span><span class="p">],</span>
+ <span class="p">[</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">135</span><span class="p">],</span>
+ <span class="p">[</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">134</span><span class="p">],</span>
+ <span class="o">...</span><span class="p">,</span>
+ <span class="p">[</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">107</span><span class="p">,</span> <span class="mi">147</span><span class="p">],</span>
+ <span class="p">[</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">148</span><span class="p">],</span>
+ <span class="p">[</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">148</span><span class="p">]],</span>
+
+<span class="p">[[</span> <span class="mi">96</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">137</span><span class="p">],</span>
+ <span class="p">[</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">136</span><span class="p">],</span>
+ <span class="p">[</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">133</span><span class="p">],</span>
+ <span class="o">...</span><span class="p">,</span>
+ <span class="p">[</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">148</span><span class="p">],</span>
+ <span class="p">[</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">148</span><span class="p">],</span>
+ <span class="p">[</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">149</span><span class="p">]]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">uint8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The array is 3-dimensional, with the first dimension representing each row, the second for each pixel, and the third for each channel. The dimensions of the image can be viewed by accessing the shape property of the array.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">image</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">1080</span><span class="p">,</span> <span class="mi">1920</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The reason the height comes before width is due to the fact that the first number represents the <strong>number</strong> of rows, which makes up the height of the image due to them being stacked on top of each other. The same goes for the width of the image, as well as the image channels.</p>
+<p>The methods of this class include:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span><span class="o">.</span><span class="n">refresh_image</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span><span class="o">.</span><span class="n">get_input_path</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span><span class="o">.</span><span class="n">set_input_path</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span><span class="o">.</span><span class="n">get_output_path</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span><span class="o">.</span><span class="n">set_output_path</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span><span class="o">.</span><span class="n">set_image</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A full list &amp; description of parameters &amp; methods in the PyifxImage class can be found <a class="reference external" href="misc.html">here</a> or by visiting the <a class="reference external" href="modules.html">library contents page</a>.</p>
+</div>
+</div>
+<div class="section" id="image-volume">
+<h2>Image Volume<a class="headerlink" href="#image-volume" title="Permalink to this headline">¶</a></h2>
+<p>The ImageVolume class is a tool used to create and collect PyifxImage instances for a large number of images. Instead of creating these images manually, the class will generate a list of PyifxImage instances based on a provided input directory. The generation method can also be tweaked through adjusting certain parameters when creating instances of the class (ex. Whether to include images from subdirectories.)</p>
+<p>On instantiating this class, a ‘volume’ of images will be created based on the specified arguments. Provided below is an example of what using the class might look like.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyifx</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">volume</span> <span class="o">=</span> <span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">ImageVolume</span><span class="p">(</span><span class="n">input_path</span><span class="o">=</span><span class="s2">&quot;lots/of/images/&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;lots/of/images/modified/&quot;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">volume</span><span class="o">.</span><span class="n">get_volume</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Running this file will show us what the generated list of images looks like.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="o">&lt;</span><span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x0CC66E10</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x0CC70030</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">PyifxImage</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x0CC66E50</span><span class="o">&gt;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Upon closer inspection, we can see what these images are based off of.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">image</span> <span class="o">=</span> <span class="n">volume</span><span class="o">.</span><span class="n">get_volume</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image</span><span class="o">.</span><span class="n">get_input_path</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;lots/of/images/image_1.jpg&quot;</span>
+</pre></div>
+</div>
+<p>And if we view the output path of the image, we can see where it leads to.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">image</span><span class="o">.</span><span class="n">get_output_path</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;lots/of/images/modified/_image_1.jpg&quot;</span>
+</pre></div>
+</div>
+<p>This is done for every image in the specified directory, and any subdirectories with images in it (if toggled).</p>
+<p>The methods of this class include:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">ImageVolume</span><span class="o">.</span><span class="n">volume_to_list</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">ImageVolume</span><span class="o">.</span><span class="n">convert_dir_to_images</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">ImageVolume</span><span class="o">.</span><span class="n">get_input_path</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">ImageVolume</span><span class="o">.</span><span class="n">set_input_path</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">ImageVolume</span><span class="o">.</span><span class="n">get_output_path</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">ImageVolume</span><span class="o">.</span><span class="n">set_output_path</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">ImageVolume</span><span class="o">.</span><span class="n">get_prefix</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">ImageVolume</span><span class="o">.</span><span class="n">set_prefix</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">ImageVolume</span><span class="o">.</span><span class="n">get_volume</span><span class="p">()</span>
+<span class="n">pyifx</span><span class="o">.</span><span class="n">misc</span><span class="o">.</span><span class="n">ImageVolume</span><span class="o">.</span><span class="n">set_volume</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As stated before, a full list &amp; description of parameters &amp; methods in the ImageVolume class can be found <a class="reference external" href="misc.html">here</a> or by visiting the <a class="reference external" href="modules.html">library contents page</a>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="usage.html" class="btn btn-neutral float-right" title="Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Jad Khalili
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
