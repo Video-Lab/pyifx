@@ -60,7 +60,9 @@ The root of the project contains files other than the library itself. Below is a
 +-------------------+--------------------------------------------------------------------------------------------------------------------------------+
 |pyifx              |The main library. Contains all of the source code and required package files. Any contributions to the library can be made here.|
 +-------------------+--------------------------------------------------------------------------------------------------------------------------------+
-|tests              |Includes test files and materials.                                                                                              |
+|tests              |Includes test materials & altered images.                                                                                       |
++-------------------+--------------------------------------------------------------------------------------------------------------------------------+
+|tests_src          |Contains the source files for tests.                                                                                            |
 +-------------------+--------------------------------------------------------------------------------------------------------------------------------+
 |.gitignore         |Required for ignoring build files regarding version control.                                                                    |
 +-------------------+--------------------------------------------------------------------------------------------------------------------------------+
