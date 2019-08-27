@@ -58,7 +58,7 @@ class PyifxImage():
 			:rtype: pyifx.misc.PyifxImage
 
 		"""
-		self.image = np.asarray(imageio.imread(self.path))
+		self.image = np.asarray(imageio.imread(self.input_path))
 		return self
 
 	def get_input_path(self):
