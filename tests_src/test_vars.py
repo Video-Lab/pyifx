@@ -1,7 +1,10 @@
 import os
 import sys
 import numpy as np
+
+sys.path.append("../")
 import pyifx
+sys.path.append("./tests_src/")
 
 def set_paths(new_path):
 	for img in img_list:
