@@ -82,7 +82,7 @@ class PyifxImage():
 			:rtype: pyifx.misc.PyifxImage
 
 		"""
-		self.input_path = new_input_path if os.path.split(input_path)[0] != "" else "./" + new_input_path
+		self.input_path = new_input_path if os.path.split(new_input_path)[0] != "" else "./" + new_input_path
 		self.refresh_image()
 		return self
 
@@ -108,7 +108,7 @@ class PyifxImage():
 
 		"""
 
-		self.output_path = new_output_path if os.path.split(output_path)[0] != "" else "./" + new_output_path
+		self.output_path = new_output_path if os.path.split(new_output_path)[0] != "" else "./" + new_output_path
 		return self
 
 	def get_image(self):
