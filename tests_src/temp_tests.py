@@ -2,10 +2,6 @@
 from test_vars import *
 import sys
 
-
-set_paths("../tests/imgs/misc/PyifxImage/set_input_path")
-sys.path.append("../tests/imgs/")
-
 img1.set_input_path("512x512-jpeg-1.jpg")
 img1.set_output_path("OUT-512x512-jpeg-1.jpg")
 
