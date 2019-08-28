@@ -3,15 +3,15 @@ Getting Started
 
 .. raw:: html
 
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/szkNdMNjxaE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div style="position: relative; padding-bottom: 26.25%; height: 60vh; overflow: hidden; width: 100%;">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/szkNdMNjxaE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-    
+
 Prerequisites
 -------------
 pip is required to install this library. If you do not have pip, refer to `this guide <https://pip.pypa.io/en/stable/installing/>`_ regarding installation instructions.
 
-Dependencies
+Dependencies 	
 ************
 The current dependencies of the library include:
 	* NumPy
