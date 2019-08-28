@@ -306,7 +306,7 @@ class ImageVolume():
 		self.volume = new_volume
 		return self
 
-	def convert_dir_to_images(self, input_dir, convert=False):
+	def convert_dir_to_images(self, input_dir, convert=False, level=None):
 		"""	convert_dir_to_images(input_dir, convert=False):
 			Converts files from a given directory into PyifxImage instances.
 			
@@ -316,11 +316,15 @@ class ImageVolume():
 			:type convert: bool
 			:param convert: Whether to import images from subdirectories as well.
 
+			:type level: int, NoneType
+			:param level: The depth to which images should be imported.
+
 			:return: List with elements of type PyifxImage
 			:rtype: list
 
 		"""
 		INTERNAL._type_checker(input_dir, [str])
+		INTERNAL._type_checker(level, [int, None])
 	
 		images = []
 		possible_extensions = ['.jpg', '.jpeg', '.png']
