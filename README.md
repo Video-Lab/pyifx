@@ -14,7 +14,9 @@ An image processing, editing &amp; handling library in Python.
 0.2.1 - Resize feature added <br />
 0.2.2 - File naming & formatting features added <br />
 0.3.0 - Composition module added <br />
-<b>1.0.0 - Initial Release (CURRENT)</b><br />
+1.0.0 - Initial Release <br />
+1.0.1 - Bug Fixes
+<b>1.0.2 - Test Framework (CURRENT)</b> <br />
 
 ## Features
 pyifx contains 4 main modules, giving users access to functions such as:
