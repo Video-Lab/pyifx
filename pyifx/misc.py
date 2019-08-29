@@ -153,8 +153,8 @@ class ImageVolume():
 
 	"""
 
-	def __init__(self, input_path, output_path, prefix="_", convert=False):
-		"""	__init__(self, input_path, output_path, prefix="_", convert=False)
+	def __init__(self, input_path, output_path, prefix="_", level=1):
+		"""	__init__(self, input_path, output_path, prefix="_", level=1)
 			The ImageVolume constructor method.
 
 			:type input_path: str
@@ -166,8 +166,8 @@ class ImageVolume():
 			:type prefix: str
 			:param prefix: The prefix for edited image file names. If nothing is entered for this parameter, it will default to "_".
 
-			:type convert: bool
-			:param convert: Whether the instance should also read in images from subdirectories. If nothing is entered for this parameter, it will default to false.
+			:type level: int
+			:param level: The depth to which images should be imported from subdirectories. For infinite depth, set this value to 0. If nothing is entered, this value will default to 1, importing from the root directory exclusively.
 
 			:return: ImageVolume instance
 			:rtype: pyifx.misc.ImageVolume
@@ -180,16 +180,16 @@ class ImageVolume():
 
 		self.input_path = input_path
 		self.output_path = output_path
+		self.level = level
 		self.prefix = prefix
-		self.convert = convert
-		self.volume = self.volume_to_list(convert)
+		self.volume = self.volume_to_list(level)
 
-	def volume_to_list(self, convert=False):
-		"""	volume_to_list(self, convert=False)
+	def volume_to_list(self, level=1):
+		"""	volume_to_list(self, level=1)
 			The method used to create a list of PyifxImage instances based on the arguments entered in the constructor method. The volume property will be set based on the return value of this function.
 
-			:type convert: bool
-			:param convert: Whether to import images from subdirectories. If nothing is entered for this parameter, it will default to False.
+			:type level: int
+			:param level: The depth to which images should be imported from subdirectories. For infinite depth, set this value to 0. If nothing is entered, this value will default to 1, importing from the root directory exclusively.
 
 			:return: PyifxImage list 
 			:rtype: list
@@ -200,7 +200,7 @@ class ImageVolume():
 		INTERNAL._type_checker(self.get_output_path(), [str])
 		INTERNAL._type_checker(self.get_prefix(), [str])
 		
-		return self.convert_dir_to_images(self.get_input_path(), convert)
+		return self.convert_dir_to_images(self.get_input_path(), level)
 
 	def get_input_path(self):
 		"""	get_input_path(self):
@@ -212,22 +212,22 @@ class ImageVolume():
 		"""
 		return self.input_path
 
-	def set_input_path(self, new_input_path, convert=False):
-		"""	set_input_path(self, new_input_path, convert=False):
+	def set_input_path(self, new_input_path, level=self.level):
+		"""	set_input_path(self, new_input_path, level=1):
 			Sets the instances input path and returns it.
 
 			:type new_input_path: str
 			:param new_input_path: What the input path will be set to.
 
-			:type convert: bool
-			:param convert: Whether the instance should also read in images from subdirectories. If nothing is entered for this parameter, it will default to false.
+			:type level: int
+			:param level: The depth to which images should be imported from subdirectories. For infinite depth, set this value to 0. If nothing is entered, this value will default to the previously set level of the class.
 
 			:return: ImageVolume instance 
 			:rtype: pyifx.misc.ImageVolume
 
 		"""
 		self.input_path = new_input_path
-		self.volume = self.volume_to_list(convert)
+		self.volume = self.volume_to_list(level)
 		return self
 
 	def get_output_path(self):
@@ -240,7 +240,7 @@ class ImageVolume():
 		"""
 		return self.output_path
 
-	def set_output_path(self, new_output_path, convert=False):
+	def set_output_path(self, new_output_path):
 		"""set_output_path(self, new_output_path):
 			Sets the instances output path and returns the instance.
 
@@ -252,7 +252,6 @@ class ImageVolume():
 
 		"""
 		self.output_path = new_output_path
-		self.volume = self.volume_to_list(convert)
 		return self
 
 	def get_prefix(self):
@@ -307,13 +306,13 @@ class ImageVolume():
 		return self
 
 	def convert_dir_to_images(self, input_dir, level=1):
-		"""	convert_dir_to_images(input_dir, convert=False):
+		"""	convert_dir_to_images(input_dir, level=1):
 			Converts files from a given directory into PyifxImage instances.
 			
 			:type input_dir: str
 			:param input_dir: The directory to read files from.
 
-			:type level: int, NoneType
+			:type level: int
 			:param level: The depth to which images should be imported from subdirectories. For infinite depth, set this value to 0. If nothing is entered, this value will default to 1, importing from the root directory exclusively.
 
 			:return: List with elements of type PyifxImage
