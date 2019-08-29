@@ -306,39 +306,40 @@ class ImageVolume():
 		self.volume = new_volume
 		return self
 
-	def convert_dir_to_images(self, input_dir, convert=False, level=None):
+	def convert_dir_to_images(self, input_dir, level=1):
 		"""	convert_dir_to_images(input_dir, convert=False):
 			Converts files from a given directory into PyifxImage instances.
 			
 			:type input_dir: str
 			:param input_dir: The directory to read files from.
 
-			:type convert: bool
-			:param convert: Whether to import images from subdirectories as well.
-
 			:type level: int, NoneType
-			:param level: The depth to which images should be imported.
+			:param level: The depth to which images should be imported from subdirectories. For infinite depth, set this value to 0. If nothing is entered, this value will default to 1, importing from the root directory exclusively.
 
 			:return: List with elements of type PyifxImage
 			:rtype: list
 
 		"""
 		INTERNAL._type_checker(input_dir, [str])
-		INTERNAL._type_checker(level, [int, None])
+		INTERNAL._type_checker(level, [int])
+
+		if(level < 0):
+			raise ValueError("Please enter a level greater than 0.")
 	
 		images = []
 		possible_extensions = ['.jpg', '.jpeg', '.png']
+		depth = 1
 
-		def add_to_images(internal_input_dir):
+		def add_to_images(internal_input_dir, depth):
 			for f in os.listdir(internal_input_dir):
 			 	if os.path.splitext(f)[1] in possible_extensions:
 			 		images.append(PyifxImage(internal_input_dir + f, os.path.join(self.get_output_path(),f"{self.get_prefix()}{os.path.split(f)[1]}")))
 
-			 	if convert:
-				 	if os.path.isdir(f):
-				 		add_to_images(internal_input_dir + f)
+			 	if depth <= level and os.path.isdir(f):
+			 		depth += 1
+				 	add_to_images(internal_input_dir + f, depth)
 
-		add_to_images(input_dir)
+		add_to_images(input_dir, depth)
 		return images
 
 
