@@ -176,7 +176,7 @@ class ImageVolume():
 		INTERNAL._type_checker(input_path, [str])
 		INTERNAL._type_checker(output_path, [str])
 		INTERNAL._type_checker(prefix, [str])
-		INTERNAL._type_checker(convert, [bool])
+		INTERNAL._type_checker(level, [int])
 
 		self.input_path = input_path
 		self.output_path = output_path
@@ -212,7 +212,7 @@ class ImageVolume():
 		"""
 		return self.input_path
 
-	def set_input_path(self, new_input_path, level=self.level):
+	def set_input_path(self, new_input_path, level=1):
 		"""	set_input_path(self, new_input_path, level=1):
 			Sets the instances input path and returns it.
 
@@ -327,18 +327,21 @@ class ImageVolume():
 	
 		images = []
 		possible_extensions = ['.jpg', '.jpeg', '.png']
-		depth = 1
 
 		def add_to_images(internal_input_dir, depth):
 			for f in os.listdir(internal_input_dir):
-			 	if os.path.splitext(f)[1] in possible_extensions:
-			 		images.append(PyifxImage(internal_input_dir + f, os.path.join(self.get_output_path(),f"{self.get_prefix()}{os.path.split(f)[1]}")))
+				new_path = os.path.join(internal_input_dir, f)
 
-			 	if depth <= level and os.path.isdir(f):
-			 		depth += 1
-				 	add_to_images(internal_input_dir + f, depth)
+				if (level == 0 or depth < level) and os.path.isdir(new_path):
+					add_to_images(new_path, depth + 1)
 
-		add_to_images(input_dir, depth)
+				if os.path.splitext(f)[1] in possible_extensions:
+			 		images.append(PyifxImage(new_path, os.path.join(self.get_output_path(),f"{self.get_prefix()}{os.path.split(f)[1]}")))
+
+
+
+		add_to_images(input_dir, 1)
+		self.set_volume(images)
 		return images
 
 
