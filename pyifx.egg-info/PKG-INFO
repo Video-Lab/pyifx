@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pyifx
-Version: 1.0.2
+Version: 1.0.3
 Summary: An image handling, processing, & editing library for Python.
 Home-page: https://github.com/Video-Lab/pyifx/
 Author: Jad Khalili
@@ -22,7 +22,10 @@ Description: # pyifx
         0.2.1 - Resize feature added <br />
         0.2.2 - File naming & formatting features added <br />
         0.3.0 - Composition module added <br />
-        <b>1.0.0 - Initial Release (CURRENT)</b><br />
+        1.0.0 - Initial Release <br />
+        1.0.1 - Bug Fixes
+        1.0.2 - Test Framework <br />
+        <b>1.0.3 - Depth support added for ImageVolume (CURRENT) </b> <br />
         
         ## Features
         pyifx contains 4 main modules, giving users access to functions such as:

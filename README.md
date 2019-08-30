@@ -16,7 +16,8 @@ An image processing, editing &amp; handling library in Python.
 0.3.0 - Composition module added <br />
 1.0.0 - Initial Release <br />
 1.0.1 - Bug Fixes
-<b>1.0.2 - Test Framework (CURRENT)</b> <br />
+1.0.2 - Test Framework <br />
+<b>1.0.3 - Depth support added for ImageVolume (CURRENT) </b> <br />
 
 ## Features
 pyifx contains 4 main modules, giving users access to functions such as:

@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
   name='pyifx',
-  version='1.0.2',
+  version='1.0.3',
   description="An image handling, processing, & editing library for Python.",
   long_description=long_description,
   long_description_content_type="text/markdown",
